@@ -1,0 +1,22 @@
+[
+  {
+    "id": 111,
+    "title": "Scene 1",
+    "instructions": "Instrucciones de la escena número 1",
+    "duration": 1,
+    "rndBtnOptions": ["Mano", "Lengua", "Todo vale"]
+  },
+  {
+    "id": 222,
+    "title": "Scene 2",
+    "instructions": "Instrucciones de la escena número 2",
+    "duration": 2
+  },
+  {
+    "id": 333,
+    "title": "Scene 3",
+    "instructions": "Instrucciones de la escena número 3",
+    "duration": 3,
+    "rndBtnOptions": ["Solo Tocamientos", "Tocamientos y penetración"]
+  }
+]
