@@ -18,13 +18,13 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   const playedSceneIds = ref<number[]>([])
   const currentScene = ref<Scene | null>(null)
 
-  // const getIndex = computed<number>(() => index.value)
+  const getSceneIndex = computed<number>(() => sceneIndex.value)
 
-  // const getCards = computed<Card[]>(() => shuffledCards.value)
+  const getScenes = computed<Scene[]>(() => scenes.value)
 
   const getScenesLength = computed<number>(() => scenes.value.length)
 
-  // const getPlayedCardIds = computed<number[]>(() => playedCardIds.value)
+  const getPlayedSceneIds = computed<number[]>(() => playedSceneIds.value)
 
   // const getCardsNumberLength = computed<number>(() => defaultCards.value.length)
 
@@ -34,34 +34,36 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   //   defaultCards.value = cards
   // }
 
-  // function selectRandomCards(numberOfCards: number) {
-  //   index.value = 0
-  //   const shuffleCards = shuffleArray(defaultCards.value)
-  //   const cards = getElementsArray(shuffleCards, numberOfCards)
-  //   currentCard.value = cards[index.value]
-  //   playedCardIds.value = []
-  //   shuffledCards.value = cards
-  // }
+  function selectRandomScenes(
+    numberOfCards: number = defaultScenes.value.length
+  ) {
+    sceneIndex.value = 0
+    const shuffleScenes = shuffleArray(defaultScenes.value)
+    const selectedScenes = getElementsArray(shuffleScenes, numberOfCards)
+    currentScene.value = selectedScenes[sceneIndex.value]
+    playedSceneIds.value = []
+    scenes.value = selectedScenes
+  }
 
-  // function pushPlayedCardId(id: number) {
-  //   playedCardIds.value.push(id)
-  // }
+  function pushPlayedSceneId(id: number) {
+    playedSceneIds.value.push(id)
+  }
 
-  // function popPlayedCardId() {
-  //   playedCardIds.value.pop()
-  // }
+  function popPlayedSceneId() {
+    playedSceneIds.value.pop()
+  }
 
-  // function increaseIndex() {
-  //   index.value++
-  // }
+  function increaseIndex() {
+    sceneIndex.value++
+  }
 
-  // function decreaseIndex() {
-  //   index.value--
-  // }
+  function decreaseIndex() {
+    sceneIndex.value--
+  }
 
-  // function setCurrentCard(card: Card) {
-  //   currentCard.value = card
-  // }
+  function setCurrentScene(scene: Scene) {
+    currentScene.value = scene
+  }
 
   // function $reset() {
   //   shuffledCards.value = []
@@ -72,6 +74,15 @@ export const useSceneStore = defineStore('useSceneStore', () => {
 
   return {
     getCurrentScene,
-    getScenesLength
+    getScenesLength,
+    selectRandomScenes,
+    getSceneIndex,
+    pushPlayedSceneId,
+    increaseIndex,
+    decreaseIndex,
+    getScenes,
+    setCurrentScene,
+    popPlayedSceneId,
+    getPlayedSceneIds
   }
 })

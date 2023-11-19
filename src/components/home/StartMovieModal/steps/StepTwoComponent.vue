@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { useCountdownStore } from '@/stores/useCountdownStore'
 // import { onMounted, ref } from 'vue'
 // import { useButtonsStore } from '@/stores/useButtonsStore'
 // import { useForm } from 'vee-validate'
@@ -35,24 +36,27 @@ import { useRouter } from 'vue-router'
 // import { useCardsStore } from '@/stores/useCardsStore'
 
 // STORE
+const countdownStore = useCountdownStore()
+
+// ROUTER
 const router = useRouter()
 
 const modes = [
   {
     name: 'Impro mode',
-    action: () => router.push({ name: 'Impro' }),
+    action: () => goToView('Impro'),
     explanation:
       'En este modo de juego las escenas van apareciendo aleatoriamente de una a una'
   },
   {
     name: 'Actor mode',
-    action: () => router.push({ name: 'Actor' }),
+    action: () => goToView('Actor'),
     explanation:
       'En este modo de juego seelciionas el número de escenas que quieres rodar'
   },
   {
     name: 'Director mode',
-    action: () => router.push({ name: 'Director' }),
+    action: () => goToView('Director'),
     explanation:
       'En este modo de juego lo configuras todo como quieras y puedes cargar y grabar escenas'
   }
@@ -114,6 +118,10 @@ const modes = [
 // function chooseCards() {
 //   console.log('eligeeeee')
 // }
+function goToView(name: string) {
+  router.push({ name })
+  countdownStore.setCountdownStatus(true)
+}
 </script>
 
 <style lang="scss" scoped>

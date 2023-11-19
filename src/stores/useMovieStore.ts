@@ -7,14 +7,15 @@ interface Players {
 
 export const useMovieStore = defineStore('useMovieStore', () => {
   // const gameStartedFlag = ref<boolean>(false)
-  // const playedGamesNumber = ref<number>(0)
+  const playedMoviesNumber = ref<number>(0)
   const playerNames = reactive<{ player1: string; player2: string }>({
     player1: '',
     player2: ''
   })
 
   // const getGameStartedFlag = computed<boolean>(() => gameStartedFlag.value)
-  // const getPlayedGamesNumber = computed<number>(() => playedGamesNumber.value)
+  // const getPlayedMoviesNumber = computed<number>(() => playedMoviesNumber.value)
+
   const getPlayerNames = computed<{ player1: string; player2: string }>(
     () => playerNames
   )
@@ -23,9 +24,9 @@ export const useMovieStore = defineStore('useMovieStore', () => {
   //   gameStartedFlag.value = value
   // }
 
-  // function addNewGamePlayed() {
-  //   playedGamesNumber.value++
-  // }
+  function addNewGamePlayed() {
+    playedMoviesNumber.value++
+  }
 
   function setPlayerNames(payload: {
     player: keyof Players['playerNames']
@@ -52,6 +53,7 @@ export const useMovieStore = defineStore('useMovieStore', () => {
     // getGameStartedFlag,
     // getPlayedGamesNumber,
     setPlayerNames,
-    getPlayerNames
+    getPlayerNames,
+    addNewGamePlayed
   }
 })
