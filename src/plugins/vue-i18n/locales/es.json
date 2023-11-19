@@ -1,0 +1,36 @@
+{
+  "all_played": "¡¡¡Todas jugadas!!!",
+  "button": {
+    "continue": "Continuar",
+    "next": "Siguiente",
+    "play": "Jugar",
+    "previous": "Anterior",
+    "random": "Random",
+    "reset": "Resetear",
+    "restart": "Jugar otra vez",
+    "start": "Iniciar",
+    "stop": "Detener",
+    "increment": "Up",
+    "decrement": "Down",
+    "close": "Cerrar",
+    "save": "Guardar"
+  },
+  "component": {
+    "step_one": {
+      "player_name": "Nombre del jugador {number}:"
+    },
+    "step_two": {
+      "choose_cards_number": "Elige el número de cartas",
+      "random_deck": "Baraja aleatoria",
+      "choose_cards": "Elige tus cartas",
+      "impro_mode": "Modo impro"
+    }
+  },
+  "rule": {
+    "required": "Este campo es necesario.",
+    "min": "El valor mínimo permitido es {number}.",
+    "max": "El valor máximo permitido es {number}."
+  },
+  "play_again": "Jugar otra vez",
+  "turn": "Turno de"
+}
