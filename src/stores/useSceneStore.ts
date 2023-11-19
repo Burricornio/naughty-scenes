@@ -30,6 +30,13 @@ export const useSceneStore = defineStore('useSceneStore', () => {
 
   const getCurrentScene = computed<Scene | null>(() => currentScene.value)
 
+  const allScenesPlayed = computed<boolean>(() =>
+    Boolean(
+      getScenesLength.value &&
+        getPlayedSceneIds.value.length === getScenesLength.value
+    )
+  )
+
   // function updateCardsOrder(cards: Card[]) {
   //   defaultCards.value = cards
   // }
@@ -83,6 +90,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     getScenes,
     setCurrentScene,
     popPlayedSceneId,
-    getPlayedSceneIds
+    getPlayedSceneIds,
+    allScenesPlayed
   }
 })

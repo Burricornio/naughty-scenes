@@ -1,5 +1,5 @@
 <template>
-  <h2 v-if="!allScenesPlayed && sceneStore.getCurrentScene">
+  <h2 v-if="!sceneStore.allScenesPlayed && sceneStore.getCurrentScene">
     {{ text.turn }}: {{ playerTurn }}
   </h2>
   <SceneComponent
@@ -8,7 +8,6 @@
     @select-next-scene="selectNextScene"
     @select-previous-scene="selectPreviousScene"
   />
-  <p v-if="allScenesPlayed">¡Has jugado todas las escenas!</p>
 </template>
 
 <script setup lang="ts">
@@ -26,20 +25,12 @@ const movieStore = useMovieStore()
 const { t } = useI18n()
 const text = { allPlayed: t('all_played'), turn: t('turn') }
 
-// COMPUTED
-const allScenesPlayed = computed<boolean>(() =>
-  Boolean(
-    sceneStore.getScenesLength &&
-      sceneStore.getPlayedSceneIds.length === sceneStore.getScenesLength
-  )
-)
-
 const playerTurn = computed<string>(() => {
   const playerNames = Object.values(movieStore.getPlayerNames)
   return playerNames[sceneStore.getSceneIndex % playerNames.length]
 })
 
-// // METHODS
+// METHODS
 function selectNextScene(): void {
   if (sceneStore.getCurrentScene) {
     sceneStore.pushPlayedSceneId(sceneStore.getCurrentScene.id)

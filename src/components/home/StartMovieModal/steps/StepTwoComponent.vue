@@ -8,35 +8,20 @@
         <p class="explanation">{{ mode.explanation }}</p>
       </div>
     </div>
-    <!-- <div class="input-container">
-      <label>{{ text.chooseCardsNumber }}:</label>
-      <input
-        type="number"
-        v-bind="cardsNumberInput"
-        :max="cardsStore.getCardsNumberLength"
-        :min="minNumber"
-      />
-      <p class="errors">{{ errors.cardsNumber }}</p>
-    </div>
-    <div class="chooose-cards-container">
-      <button @click="selectRandomCards">{{ text.randomDeck }}</button>
-      <button @click="chooseCards">{{ text.chooseCards }}</button>
-    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
+import { onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCountdownStore } from '@/stores/useCountdownStore'
-// import { onMounted, ref } from 'vue'
-// import { useButtonsStore } from '@/stores/useButtonsStore'
-// import { useForm } from 'vee-validate'
-// import { useI18n } from 'vue-i18n'
-// import * as yup from 'yup'
-// import { useCardsStore } from '@/stores/useCardsStore'
+import useModal from '@/composables/useModal'
 
 // STORE
 const countdownStore = useCountdownStore()
+
+// COMPOSABLE
+const { closeModal } = useModal()
 
 // ROUTER
 const router = useRouter()
@@ -62,65 +47,13 @@ const modes = [
   }
 ]
 
-// STORE
-// const buttonsStore = useButtonsStore()
-// const cardsStore = useCardsStore()
+onUnmounted(() => {
+  closeModal()
+})
 
-// const minNumber = 1
-
-// TEXTS
-// const { t } = useI18n()
-// const text = {
-//   chooseCards: t('component.step_two.choose_cards'),
-//   chooseCardsNumber: t('component.step_two.choose_cards_number'),
-//   maxRule: t('rule.max', { number: cardsStore.getCardsNumberLength }),
-//   minRule: t('rule.min', { number: minNumber }),
-//   randomDeck: t('component.step_two.random_deck'),
-//   requiredRule: t('rule.required')
-// }
-
-// // DATA
-// const cardsNumber = ref<number>(1)
-
-// const { errors, defineInputBinds } = useForm({
-//   initialValues: {
-//     cardsNumber: cardsNumber.value
-//   },
-//   validationSchema: yup.object({
-//     cardsNumber: addRules()
-//   })
-// })
-// const cardsNumberInput = defineInputBinds('cardsNumber')
-
-// HOOKS
-// onMounted(() => {
-//   buttonsStore.setDisabledStepperLeftButton(false)
-//   buttonsStore.setDisabledStepperRightButton(true)
-// })
-
-// METHODS
-// function selectRandomCards(): void {
-//   if (cardsNumberInput.value.value! <= cardsStore.getCardsNumberLength) {
-//     cardsStore.selectRandomCards(cardsNumberInput.value.value as number)
-//     buttonsStore.setDisabledStepperRightButton(false)
-//   }
-// }
-
-// function addRules() {
-//   return yup
-//     .number()
-//     .transform((val, orig) => (orig === '' ? undefined : val))
-//     .required(text.requiredRule)
-//     .min(minNumber, text.minRule)
-//     .max(cardsStore.getCardsNumberLength, text.maxRule)
-// }
-
-// function chooseCards() {
-//   console.log('eligeeeee')
-// }
 function goToView(name: string) {
-  router.push({ name })
   countdownStore.setCountdownStatus(true)
+  router.push({ name })
 }
 </script>
 
