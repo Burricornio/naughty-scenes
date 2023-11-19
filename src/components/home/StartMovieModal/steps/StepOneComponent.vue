@@ -22,13 +22,15 @@
       />
       <p class="errors">{{ errors.player2 }}</p>
     </div>
-    <button :disabled="disabledButton">SIGUIENTE</button>
+    <button :disabled="disabledButton" @click="goToStepTwo">SIGUIENTE</button>
   </form>
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import { Step } from '@/components/home/StartMovieModal/steps/types/stepsTypes'
 import { useMovieStore } from '@/stores/useMovieStore'
+import { useModalsStore } from '@/stores/useModalsStore'
 import { useI18n } from 'vue-i18n'
 import { useForm } from 'vee-validate'
 import * as yup from 'yup'
@@ -40,6 +42,7 @@ const disabledButton = ref<boolean>(true)
 
 // STORE
 const movieStore = useMovieStore()
+const modalsStore = useModalsStore()
 
 // TEXTS
 const { t } = useI18n()
@@ -64,7 +67,7 @@ const { errors, defineInputBinds } = useForm({
 const player1 = defineInputBinds(PLAYER_1)
 const player2 = defineInputBinds(PLAYER_2)
 
-// // WATCHER
+// WATCHER
 watch(
   [
     () => movieStore.getPlayerNames.player1,
@@ -91,6 +94,10 @@ function requiredField() {
     .string()
     .required(text.requiredRule)
     .min(minCharacters, text.minRule)
+}
+
+function goToStepTwo() {
+  modalsStore.setStartMovieModalCurrentStep(Step.SELECT_MOVIE_MODE)
 }
 </script>
 

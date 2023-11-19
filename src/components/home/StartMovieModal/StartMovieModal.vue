@@ -4,6 +4,9 @@
     <StepOneComponent
       v-if="modalsStore.currentStep === Step.INSERT_PLAYER_NAMES"
     />
+    <StepTwoComponent
+      v-if="modalsStore.currentStep === Step.SELECT_MOVIE_MODE"
+    />
   </ModalComponent>
 </template>
 
@@ -16,6 +19,7 @@ import { useModalsStore } from '@/stores/useModalsStore'
 import InstructionComponent from '@/components/home/StartMovieModal/InstructionComponent.vue'
 import ModalComponent from '@/components/ModalComponent.vue'
 import StepOneComponent from '@/components/home/StartMovieModal/steps/StepOneComponent.vue'
+import StepTwoComponent from '@/components/home/StartMovieModal/steps/StepTwoComponent.vue'
 
 // STORE
 const resetStore = useResetStore()

@@ -20,7 +20,7 @@ const intructionText = computed<string>(() => {
     case Step.INSERT_PLAYER_NAMES:
       return 'Introduce el nombre de los participantes'
     case Step.SELECT_MOVIE_MODE:
-      return 'Elige si quieres jugar con una baraja aleatoria o prefieres seleccionar tus propias cartas'
+      return 'Selecciona el modo de película que quieres'
     default:
       return ''
   }
