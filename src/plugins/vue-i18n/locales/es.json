@@ -13,7 +13,8 @@
     "increment": "Up",
     "decrement": "Down",
     "close": "Cerrar",
-    "save": "Guardar"
+    "save": "Guardar",
+    "select": "Seleccionar"
   },
   "component": {
     "step_one": {
@@ -30,9 +31,10 @@
   },
   "view": {
     "actor": {
-      "choose_scenes_number": "Elige el número de escenas",
-      "random_deck": "Baraja aleatoria",
-      "choose_cards": "Elige tus cartas"
+      "random_deck": "Baraja aleatoria"
+    },
+    "director": {
+      "scenes_number_label": "Número de escenas"
     }
   },
   "play_again": "Jugar otra vez",
