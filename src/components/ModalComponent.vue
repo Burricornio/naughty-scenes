@@ -49,12 +49,15 @@ function closeModal() {
 
     button {
       position: absolute;
+      height: 20px;
+      min-width: 0;
       right: 20px;
       color: $main-color;
       font-size: 18px;
       background-color: transparent;
       padding: 0;
       border: none;
+      margin: 0;
     }
 
     button:hover {
