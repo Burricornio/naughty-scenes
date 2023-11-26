@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="timer-container">
     <div>
       <button @click="startTimer" :disabled="isTimerRunning">
         {{ startButtonText }}
@@ -12,6 +12,7 @@
       </button>
     </div>
     <DurationComponent
+      class="duration"
       @up-duration="increment"
       @down-duration="decrement"
       :minutes="minutesRef"
@@ -119,3 +120,12 @@ function decrement(): void {
   minutesRef.value--
 }
 </script>
+
+<style lang="scss" scoped>
+.timer-container {
+  margin: 20px;
+}
+.duration {
+  margin: 10px;
+}
+</style>

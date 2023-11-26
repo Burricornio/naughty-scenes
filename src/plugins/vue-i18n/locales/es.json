@@ -20,9 +20,6 @@
       "player_name": "Nombre del jugador {number}:"
     },
     "step_two": {
-      "choose_cards_number": "Elige el número de cartas",
-      "random_deck": "Baraja aleatoria",
-      "choose_cards": "Elige tus cartas",
       "impro_mode": "Modo impro"
     }
   },
@@ -30,6 +27,13 @@
     "required": "Este campo es necesario.",
     "min": "El valor mínimo permitido es {number}.",
     "max": "El valor máximo permitido es {number}."
+  },
+  "view": {
+    "actor": {
+      "choose_scenes_number": "Elige el número de escenas",
+      "random_deck": "Baraja aleatoria",
+      "choose_cards": "Elige tus cartas"
+    }
   },
   "play_again": "Jugar otra vez",
   "turn": "Turno de"

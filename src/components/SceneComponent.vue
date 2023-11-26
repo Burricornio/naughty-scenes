@@ -5,9 +5,8 @@
       :goPrev="selectPreviousScene"
       :prevButtonDisabled="prevButtonDisabled"
     />
-    <h1>{{ scene.title }}</h1>
-    <p>{{ scene.instructions }}</p>
-    <small>{{ scene.id }}</small>
+    <h2 class="title">{{ scene.title }}</h2>
+    <p class="instructions">{{ scene.instructions }}</p>
     <RandomButtonComponent
       v-if="scene.rndBtnOptions && scene.rndBtnOptions.length"
       :options="scene.rndBtnOptions"
@@ -43,3 +42,16 @@ function selectPreviousScene() {
   emit(EmittedEvent.SELECT_PREVIOUS_SCENE)
 }
 </script>
+
+<style lang="scss" scoped>
+.title {
+  text-transform: uppercase;
+  font-size: 22px;
+}
+
+.instructions {
+  background-color: $white;
+  margin: 20px;
+  padding: 10px;
+}
+</style>
