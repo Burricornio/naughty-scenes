@@ -39,9 +39,9 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     )
   )
 
-  // function updateCardsOrder(cards: Card[]) {
-  //   defaultCards.value = cards
-  // }
+  function updateScenesOrder(prueba: Scene[]) {
+    scenes.value = prueba
+  }
 
   function selectRandomScenes(
     numberOfCards: number = defaultScenes.value.length
@@ -94,6 +94,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     popPlayedSceneId,
     getPlayedSceneIds,
     allScenesPlayed,
-    getDefaultScenesNumberLength
+    getDefaultScenesNumberLength,
+    updateScenesOrder
   }
 })
