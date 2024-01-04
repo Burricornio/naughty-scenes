@@ -17,11 +17,19 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useForm } from 'vee-validate'
 import { useI18n } from 'vue-i18n'
 import * as yup from 'yup'
 import { useSceneStore } from '@/stores/useSceneStore'
+import { EmittedEvent } from '@/events'
+
+const props = defineProps({
+  scenesNumber: {
+    type: Number,
+    required: true
+  }
+})
 
 // STORE
 const sceneStore = useSceneStore()
@@ -38,12 +46,9 @@ const text = {
   selectScenesNumber: t('button.select')
 }
 
-// DATA
-const scenesNumber = ref<number>(3)
-
 const { errors, defineInputBinds } = useForm({
   initialValues: {
-    scenesNumber: scenesNumber.value
+    scenesNumber: props.scenesNumber
   },
   validationSchema: yup.object({
     scenesNumber: addRules()
@@ -58,12 +63,21 @@ const disabledBtn = computed(() => {
     : true
 })
 
+// EMITS
+const emit = defineEmits([EmittedEvent.CHANGE_SCENES_NUMBER_LENGTH])
+
+function changeInputValue(value: number) {
+  emit(EmittedEvent.CHANGE_SCENES_NUMBER_LENGTH, value)
+}
+
 // METHODS
 function selectScenes(): void {
   if (
     scenesNumberInput.value.value! <= sceneStore.getDefaultScenesNumberLength
   ) {
-    sceneStore.selectRandomScenes(scenesNumberInput.value.value as number)
+    const inputValue = scenesNumberInput.value.value as number
+    sceneStore.selectRandomScenes(inputValue)
+    changeInputValue(inputValue)
   }
 }
 

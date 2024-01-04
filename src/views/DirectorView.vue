@@ -1,11 +1,22 @@
 <template>
   <div class="director-view">
     <h1>Director mode</h1>
-    <SelectScenesNumberInputComponent />
+    <SelectScenesNumberInputComponent
+      :scenesNumber="numberOfScenes"
+      @change-scenes-number-length="selectRandomScenes"
+    />
     <div v-if="scenes.length">
       <draggable v-model="scenes" item-key="id" group="scenes" :animation="200">
         <template #item="{ element }">
-          <section>{{ element.id }}</section>
+          <div class="acordeon-item">
+            <header @click="toggleAcordeon(element)">
+              <h2>Vamos: {{ element.isAcordeonAbierto }}</h2>
+              <h2>{{ element.id }}</h2>
+            </header>
+            <section v-if="element.isAcordeonAbierto">
+              <div>Holasassaasass</div>
+            </section>
+          </div>
         </template>
       </draggable>
     </div>
@@ -13,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
 import { useSceneStore } from '@/stores/useSceneStore'
 import draggable from 'vuedraggable'
@@ -22,22 +33,33 @@ import draggable from 'vuedraggable'
 const sceneStore = useSceneStore()
 
 // DATA
-// ¿Dejar que el jugador escoja el número de escenas?
-const numberOfScenes = 3
+const numberOfScenes = 4
 
-const scenes = computed({
-  get: () => sceneStore.getScenes,
-  set: (value) => sceneStore.updateScenesOrder(value)
-})
+const scenes = ref([])
 
 // HOOKS
 onMounted(() => {
   selectRandomScenes(numberOfScenes)
 })
 
+// COMPUTED
+// const scenesWithState = computed(() =>
+//   scenes.value.map((scene) => ({
+//     ...scene,
+//     isAcordeonAbierto: false
+//   }))
+// )
+
 // METHODS
 function selectRandomScenes(numberOfScenes: number): void {
+  console.log('entruuuuuuuu')
   sceneStore.selectRandomScenes(numberOfScenes)
+  scenes.value = sceneStore.getScenes
+}
+
+function toggleAcordeon(scene) {
+  console.log(scene)
+  scene.isAcordeonAbierto = !scene.isAcordeonAbierto
 }
 </script>
 
@@ -46,13 +68,25 @@ function selectRandomScenes(numberOfScenes: number): void {
   @include flex($flex-direction: column);
   margin-bottom: 20px;
 
-  section {
-    @include flex($flex-direction: column);
-    background-color: green;
-    width: 400px;
-    margin: 20px;
-    height: 50px;
-    color: white;
+  .acordeon-item {
+    header {
+      cursor: pointer;
+      background-color: teal;
+      padding: 10px;
+      h2 {
+        margin: 0;
+        color: white;
+      }
+    }
+
+    section {
+      @include flex($flex-direction: column);
+      background-color: green;
+      width: 400px;
+      margin: 20px;
+      height: 50px;
+      color: white;
+    }
   }
 }
 </style>
