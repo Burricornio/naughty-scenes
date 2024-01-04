@@ -10,10 +10,10 @@
         <template #item="{ element }">
           <div class="acordeon-item">
             <header @click="toggleAcordeon(element)">
-              <h2>Vamos: {{ element.isAcordeonAbierto }}</h2>
+              <h2>Vamos: {{ element.isOpenAccordion }}</h2>
               <h2>{{ element.id }}</h2>
             </header>
-            <section v-if="element.isAcordeonAbierto">
+            <section v-if="element.isOpenAccordion">
               <div>Holasassaasass</div>
             </section>
           </div>
@@ -49,7 +49,9 @@ function selectRandomScenes(numberOfScenes: number): void {
 }
 
 function toggleAcordeon(scene: AccordionScene) {
+  console.log('opemnnnnnnn', scene)
   scene.isOpenAccordion = !scene.isOpenAccordion
+  console.log(scene)
 }
 </script>
 
