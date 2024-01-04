@@ -24,42 +24,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
-import { useSceneStore } from '@/stores/useSceneStore'
+import { AccordionScene, useSceneStore } from '@/stores/useSceneStore'
 import draggable from 'vuedraggable'
 
 // STORE
 const sceneStore = useSceneStore()
 
 // DATA
-const numberOfScenes = 4
+const numberOfScenes = 3
 
-const scenes = ref([])
+const scenes = ref<AccordionScene[]>([])
 
 // HOOKS
 onMounted(() => {
   selectRandomScenes(numberOfScenes)
 })
 
-// COMPUTED
-// const scenesWithState = computed(() =>
-//   scenes.value.map((scene) => ({
-//     ...scene,
-//     isAcordeonAbierto: false
-//   }))
-// )
-
 // METHODS
 function selectRandomScenes(numberOfScenes: number): void {
-  console.log('entruuuuuuuu')
   sceneStore.selectRandomScenes(numberOfScenes)
-  scenes.value = sceneStore.getScenes
+  scenes.value = sceneStore.getScenes as AccordionScene[]
 }
 
-function toggleAcordeon(scene) {
-  console.log(scene)
-  scene.isAcordeonAbierto = !scene.isAcordeonAbierto
+function toggleAcordeon(scene: AccordionScene) {
+  scene.isOpenAccordion = !scene.isOpenAccordion
 }
 </script>
 
