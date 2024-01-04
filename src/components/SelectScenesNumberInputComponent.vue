@@ -32,7 +32,7 @@ const minNumber = 1
 const { t } = useI18n()
 const text = {
   scenesNumberLabel: t('view.director.scenes_number_label'),
-  maxRule: t('rule.max', { number: sceneStore.getScenesLength }),
+  maxRule: t('rule.max', { number: addMaxInputValue() }),
   minRule: t('rule.min', { number: minNumber }),
   requiredRule: t('rule.required'),
   selectScenesNumber: t('button.select')
@@ -65,6 +65,10 @@ function selectScenes(): void {
   ) {
     sceneStore.selectRandomScenes(scenesNumberInput.value.value as number)
   }
+}
+
+function addMaxInputValue() {
+  return sceneStore.getDefaultScenesNumberLength
 }
 
 function addRules() {
