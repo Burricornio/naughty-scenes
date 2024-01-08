@@ -52,12 +52,13 @@ function toggleAccordion(scene: AccordionScene) {
 .accordion-container {
   @include flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
   width: 1500px;
   margin-bottom: 20px;
 
   .acordeon-item {
     margin: 10px;
-    width: 400px;
+    width: calc(25% - 20px);
 
     header {
       cursor: pointer;
