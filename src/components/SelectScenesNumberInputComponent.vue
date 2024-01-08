@@ -7,6 +7,7 @@
         v-bind="scenesNumberInput"
         :max="sceneStore.getDefaultScenesNumberLength"
         :min="minNumber"
+        @keyup.enter="(event) => handleEnterKey(event)"
       />
       <p class="errors">{{ errors.scenesNumber }}</p>
     </div>
@@ -92,6 +93,12 @@ function addRules() {
     .required(text.requiredRule)
     .min(minNumber, text.minRule)
     .max(sceneStore.getDefaultScenesNumberLength, text.maxRule)
+}
+
+function handleEnterKey(event: KeyboardEvent): void {
+  if (event.target instanceof HTMLInputElement && event.target.value) {
+    selectScenes()
+  }
 }
 </script>
 
