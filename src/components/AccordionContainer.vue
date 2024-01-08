@@ -1,7 +1,7 @@
 <template>
   <draggable
     class="accordion-container"
-    v-model="scenes"
+    v-model="modifiedScenes"
     item-key="id"
     group="scenes"
     :animation="200"
@@ -21,15 +21,27 @@
 </template>
 
 <script setup lang="ts">
-import { AccordionScene } from '@/stores/useSceneStore'
+import { AccordionScene, Scene, useSceneStore } from '@/stores/useSceneStore'
 import { computed } from 'vue'
 import draggable from 'vuedraggable'
 
 const props = defineProps<{
-  scenes: AccordionScene[]
+  scenes: Scene[]
 }>()
 
-const scenes = computed(() => props.scenes)
+const sceneStore = useSceneStore()
+
+const modifiedScenes = computed({
+  get: () => {
+    return props.scenes.map((scene: Scene) => {
+      return {
+        ...scene,
+        isOpenAccordion: true
+      }
+    })
+  },
+  set: (value) => sceneStore.updateScenesOrder(value)
+})
 
 function toggleAccordion(scene: AccordionScene) {
   scene.isOpenAccordion = !scene.isOpenAccordion
@@ -38,7 +50,9 @@ function toggleAccordion(scene: AccordionScene) {
 
 <style lang="scss" scoped>
 .accordion-container {
-  @include flex($flex-direction: column);
+  @include flex;
+  flex-wrap: wrap;
+  width: 1500px;
   margin-bottom: 20px;
 
   .acordeon-item {

@@ -12,10 +12,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
 import AccordionContainerComponent from '@/components/AccordionContainer.vue'
 import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
-import { AccordionScene, useSceneStore } from '@/stores/useSceneStore'
+import { Scene, useSceneStore } from '@/stores/useSceneStore'
 
 // STORE
 const sceneStore = useSceneStore()
@@ -23,7 +23,7 @@ const sceneStore = useSceneStore()
 // DATA
 const numberOfScenes = 3
 
-const scenes = ref<AccordionScene[]>([])
+const scenes = computed<Scene[]>(() => sceneStore.getScenes)
 
 // HOOKS
 onMounted(() => {
@@ -33,13 +33,13 @@ onMounted(() => {
 // METHODS
 function selectRandomScenes(numberOfScenes: number): void {
   sceneStore.selectRandomScenes(numberOfScenes)
-  scenes.value = sceneStore.getScenes as AccordionScene[]
 }
 </script>
 
 <style lang="scss" scoped>
 .director-view {
   @include flex($flex-direction: column);
+  width: 1500px;
   margin-bottom: 20px;
 }
 </style>

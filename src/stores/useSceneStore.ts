@@ -43,8 +43,8 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     )
   )
 
-  function updateScenesOrder(prueba: Scene[]) {
-    scenes.value = prueba
+  function updateScenesOrder(newOrder: Scene[]) {
+    scenes.value = newOrder
   }
 
   function selectRandomScenes(
