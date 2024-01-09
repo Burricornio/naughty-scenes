@@ -11,13 +11,16 @@
       @change-scenes-number-length="selectRandomScenes"
     /> -->
     <div v-if="scenes.length">
-      <SelectScenesContainerComponent :scenes="scenes" />
+      <SelectScenesContainerComponent
+        :scenes="scenes"
+        @calculate-director-movie-length="changeInputLength"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
 // import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
@@ -27,9 +30,13 @@ const sceneStore = useSceneStore()
 
 // DATA
 // const numberOfScenes = 3
-const numberOfSelectedScenes = 0
+const numberOfSelectedScenes = ref<number>(0)
 
 const scenes = computed<Scene[]>(() => sceneStore.getScenes)
+
+function changeInputLength(movieLength: number) {
+  numberOfSelectedScenes.value = movieLength
+}
 
 // HOOKS
 onMounted(() => {

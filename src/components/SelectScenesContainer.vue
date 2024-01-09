@@ -25,6 +25,7 @@
 import { computed, ref } from 'vue'
 import { DirectorScene, Scene } from '@/stores/useSceneStore'
 import draggable from 'vuedraggable'
+import { EmittedEvent } from '@/events'
 
 // PROPS
 const props = defineProps<{
@@ -42,14 +43,27 @@ const modifiedScenes = ref(
 
 // COMPUTED
 const movie = computed(() => {
-  return modifiedScenes.value.filter((scene: DirectorScene) => scene.selected)
+  return modifiedScenes.value
+    .filter((scene: DirectorScene) => scene.selected)
+    .map((scene: DirectorScene) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { isOpenAccordion, selected, ...cleanScene } = scene
+      return cleanScene
+    })
 })
+
+// EMITS
+const emit = defineEmits([EmittedEvent.CALCULATE_DIRECTOR_MOVIE_LENGTH])
+
+function emitMovieLength() {
+  emit(EmittedEvent.CALCULATE_DIRECTOR_MOVIE_LENGTH, movie.value.length)
+}
 
 // METHODS
 function addSceneToMovie(scene: DirectorScene) {
   scene.selected = !scene.selected
   modifiedScenes.value = [...modifiedScenes.value]
-  console.log(movie.value)
+  emitMovieLength()
 }
 </script>
 
