@@ -22,34 +22,36 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { DirectorScene, Scene } from '@/stores/useSceneStore'
+import { DirectorScene, Scene, useSceneStore } from '@/stores/useSceneStore'
+import { computed } from 'vue'
 import draggable from 'vuedraggable'
 
-// PROPS
 const props = defineProps<{
   scenes: Scene[]
 }>()
 
-// DATA
-const modifiedScenes = ref(
-  props.scenes.map((scene: Scene) => ({
-    ...scene,
-    isOpenAccordion: true,
-    selected: false
-  }))
-)
+const sceneStore = useSceneStore()
 
-// COMPUTED
-const movie = computed(() => {
-  return modifiedScenes.value.filter((scene: DirectorScene) => scene.selected)
+const modifiedScenes = computed({
+  get: () => {
+    return props.scenes.map((scene: Scene) => {
+      return {
+        ...scene,
+        isOpenAccordion: true
+      }
+    })
+  },
+  set: (value) => sceneStore.updateScenesOrder(value)
 })
 
-// METHODS
+// TODO - No se abre el acordeon, ¿pero quiero un acordeón?
+// function toggleAccordion(scene: DirectorScene) {
+//   scene.isOpenAccordion = !scene.isOpenAccordion
+// }
+
 function addSceneToMovie(scene: DirectorScene) {
   scene.selected = !scene.selected
-  modifiedScenes.value = [...modifiedScenes.value]
-  console.log(movie.value)
+  console.log(modifiedScenes.value)
 }
 </script>
 
@@ -62,12 +64,11 @@ function addSceneToMovie(scene: DirectorScene) {
   margin-bottom: 20px;
 
   .acordeon-item {
-    @include borders($color: gold);
     margin: 10px;
-    width: calc(25% - 30px);
+    width: calc(25% - 20px);
 
     &.selected {
-      border-color: red;
+      border: 2px solid red;
     }
 
     header {

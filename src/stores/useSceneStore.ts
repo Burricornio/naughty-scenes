@@ -11,8 +11,9 @@ export type Scene = {
   rndBtnOptions?: string[]
 }
 
-export type AccordionScene = Scene & {
+export type DirectorScene = Scene & {
   isOpenAccordion: boolean
+  selected: boolean
 }
 
 export const useSceneStore = defineStore('useSceneStore', () => {
@@ -24,7 +25,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
 
   const getSceneIndex = computed<number>(() => sceneIndex.value)
 
-  const getScenes = computed<Scene[] | AccordionScene[]>(() => scenes.value)
+  const getScenes = computed<Scene[] | DirectorScene[]>(() => scenes.value)
 
   const getScenesLength = computed<number>(() => scenes.value.length)
 
@@ -47,9 +48,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     scenes.value = newOrder
   }
 
-  function selectRandomScenes(
-    numberOfCards: number = defaultScenes.value.length
-  ) {
+  function selectRandomScenes(numberOfCards: number) {
     sceneIndex.value = 0
     const shuffleScenes = shuffleArray(defaultScenes.value)
     const selectedScenes = getElementsArray(shuffleScenes, numberOfCards)
