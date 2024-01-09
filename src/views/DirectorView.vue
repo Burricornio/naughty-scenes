@@ -11,14 +11,14 @@
       @change-scenes-number-length="selectRandomScenes"
     /> -->
     <div v-if="scenes.length">
-      <AccordionContainerComponent :scenes="scenes" />
+      <SelectScenesContainerComponent :scenes="scenes" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
-import AccordionContainerComponent from '@/components/AccordionContainer.vue'
+import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
 // import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
 
