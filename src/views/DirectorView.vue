@@ -64,7 +64,7 @@ function selectRandomScenes(numberOfScenes: number): void {
 }
 
 function updateMovie(movie: DirectorScene[]) {
-  sceneStore.updateSelectedDirectorScenes(movie)
+  directorSceneStore.updateSelectedDirectorScenes(movie)
   numberOfSelectedScenes.value = movie.filter(
     (scene: DirectorScene) => scene.selected
   ).length
