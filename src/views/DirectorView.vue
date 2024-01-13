@@ -24,7 +24,10 @@
       </div>
     </div>
     <!-- STEP 2 -->
-    <div v-if="step === 2">A renderizar items para ordenar</div>
+    <div v-if="step === 2">
+      A renderizar items para ordenar
+      <div>{{ onlySelectedScenes }}</div>
+    </div>
     <!-- STEP 3 -->
     <div v-if="step === 3">A configurar pelicula</div>
   </div>
@@ -53,6 +56,10 @@ const directorScenes = computed<DirectorScene[]>(
   () => directorSceneStore.getDirectorScenes
 )
 
+const onlySelectedScenes = computed<DirectorScene[]>(
+  () => directorSceneStore.getCurrentMovie
+)
+
 // HOOKS
 onMounted(() => {
   selectRandomScenes(sceneStore.getDefaultScenesNumberLength)
@@ -65,6 +72,10 @@ function selectRandomScenes(numberOfScenes: number): void {
 
 function updateMovie(movie: DirectorScene[]) {
   directorSceneStore.updateSelectedDirectorScenes(movie)
+  const onlySelectedScenes = movie.filter(
+    (scene: DirectorScene) => scene.selected
+  )
+  directorSceneStore.updateCurrentMovie(onlySelectedScenes)
   numberOfSelectedScenes.value = movie.filter(
     (scene: DirectorScene) => scene.selected
   ).length

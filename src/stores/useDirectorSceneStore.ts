@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { Scene, useSceneStore } from './useSceneStore'
 
@@ -12,6 +12,8 @@ const sceneStore = useSceneStore()
 export const useDirectorSceneStore = defineStore(
   'useDirectorSceneStore',
   () => {
+    const currentMovie = ref<DirectorScene[]>([])
+
     const getDirectorScenes = computed({
       get: () => {
         return sceneStore.getScenes.map((scene: Scene) => ({
@@ -23,13 +25,21 @@ export const useDirectorSceneStore = defineStore(
       set: (value) => value
     })
 
+    const getCurrentMovie = computed(() => currentMovie.value)
+
     function updateSelectedDirectorScenes(movie: DirectorScene[]) {
       getDirectorScenes.value = movie
     }
 
+    function updateCurrentMovie(movie: DirectorScene[]) {
+      currentMovie.value = movie
+    }
+
     return {
       getDirectorScenes,
-      updateSelectedDirectorScenes
+      updateSelectedDirectorScenes,
+      getCurrentMovie,
+      updateCurrentMovie
     }
   }
 )
