@@ -1,30 +1,28 @@
 <template>
-  <draggable
-    class="accordion-container"
-    v-model="modifiedScenes"
-    item-key="id"
-    group="scenes"
-    :animation="200"
-  >
-    <template #item="{ element }">
-      <div class="acordeon-item" :class="{ selected: element.selected }">
-        <header @click="addSceneToMovie(element)">
-          <h2>Open: {{ element.isOpenAccordion }}</h2>
-          <h2>Selected: {{ element.selected }}</h2>
-          <h2>{{ element.id }}</h2>
+  <section class="select-scenes-container">
+    <ul class="scene-list">
+      <li
+        v-for="scene in modifiedScenes"
+        :key="scene.id"
+        :class="['scene-item', { selected: scene.selected }]"
+        @click="addSceneToMovie(scene)"
+      >
+        <header>
+          <h2>Open: {{ scene.isOpenAccordion }}</h2>
+          <h2>Selected: {{ scene.selected }}</h2>
+          <h2>{{ scene.id }}</h2>
         </header>
-        <section v-if="element.isOpenAccordion">
-          <div>{{ element.instructions }}</div>
+        <section v-if="scene.isOpenAccordion">
+          <div>{{ scene.instructions }}</div>
         </section>
-      </div>
-    </template>
-  </draggable>
+      </li>
+    </ul>
+  </section>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { DirectorScene } from '@/stores/useSceneStore'
-import draggable from 'vuedraggable'
 import { EmittedEvent } from '@/events'
 
 // PROPS
@@ -50,39 +48,40 @@ function addSceneToMovie(scene: DirectorScene) {
 </script>
 
 <style lang="scss" scoped>
-.accordion-container {
-  @include flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  width: 1500px;
-  margin-bottom: 20px;
+.select-scenes-container {
+  .scene-list {
+    @include flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 1500px;
+    margin-bottom: 20px;
 
-  .acordeon-item {
-    @include borders($color: gold);
-    margin: 10px;
-    width: calc(25% - 30px);
-
-    &.selected {
-      border-color: red;
-    }
-
-    header {
+    .scene-item {
+      @include borders($color: gold);
+      margin: 10px;
+      width: calc(25% - 30px);
       cursor: pointer;
-      background-color: teal;
-      padding: 10px;
+      &.selected {
+        border-color: red;
+      }
 
-      h2 {
-        margin: 0;
+      header {
+        background-color: teal;
+        padding: 10px;
+
+        h2 {
+          margin: 0;
+          color: white;
+        }
+      }
+
+      section {
+        @include flex($flex-direction: column);
+        background-color: green;
+        width: 100%;
+        height: 50px;
         color: white;
       }
-    }
-
-    section {
-      @include flex($flex-direction: column);
-      background-color: green;
-      width: 100%;
-      height: 50px;
-      color: white;
     }
   }
 }

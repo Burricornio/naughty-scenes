@@ -24,10 +24,10 @@
       </div>
     </div>
     <!-- STEP 2 -->
-    <div v-if="step === 2">
-      A renderizar items para ordenar
-      <div>{{ onlySelectedScenes }}</div>
-    </div>
+    <OrderCurrentDirectorMovieAccordion
+      v-if="step === 2"
+      :currentMovieScenes="onlySelectedScenes"
+    />
     <!-- STEP 3 -->
     <div v-if="step === 3">A configurar pelicula</div>
   </div>
@@ -36,6 +36,7 @@
 <script setup lang="ts">
 import { onMounted, computed, ref } from 'vue'
 import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
+import OrderCurrentDirectorMovieAccordion from '@/components/OrderCurrentDirectorMovieAccordion.vue'
 // import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
 import {
   DirectorScene,
