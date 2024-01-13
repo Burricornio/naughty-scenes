@@ -4,5 +4,5 @@ export enum EmittedEvent {
   SELECT_PREVIOUS_SCENE = 'select-previous-scene',
   REPEAT_AGAIN = 'repeat-again',
   CHANGE_SCENES_NUMBER_LENGTH = 'change-scenes-number-length',
-  CALCULATE_DIRECTOR_MOVIE_LENGTH = 'calculate-director-movie-length'
+  UPDATE_DIRECTOR_MOVIE = 'update-director-movie'
 }

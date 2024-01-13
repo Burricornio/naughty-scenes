@@ -22,48 +22,30 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { DirectorScene, Scene } from '@/stores/useSceneStore'
+import { ref } from 'vue'
+import { DirectorScene } from '@/stores/useSceneStore'
 import draggable from 'vuedraggable'
 import { EmittedEvent } from '@/events'
 
 // PROPS
 const props = defineProps<{
-  scenes: Scene[]
+  directorScenes: DirectorScene[]
 }>()
 
-// DATA
-const modifiedScenes = ref(
-  props.scenes.map((scene: Scene) => ({
-    ...scene,
-    isOpenAccordion: true,
-    selected: false
-  }))
-)
-
-// COMPUTED
-const movie = computed(() => {
-  return modifiedScenes.value
-    .filter((scene: DirectorScene) => scene.selected)
-    .map((scene: DirectorScene) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { isOpenAccordion, selected, ...cleanScene } = scene
-      return cleanScene
-    })
-})
+const modifiedScenes = ref(props.directorScenes)
 
 // EMITS
-const emit = defineEmits([EmittedEvent.CALCULATE_DIRECTOR_MOVIE_LENGTH])
+const emit = defineEmits([EmittedEvent.UPDATE_DIRECTOR_MOVIE])
 
-function emitMovieLength() {
-  emit(EmittedEvent.CALCULATE_DIRECTOR_MOVIE_LENGTH, movie.value.length)
+function emitModifiedMovie(movie: DirectorScene[]) {
+  emit(EmittedEvent.UPDATE_DIRECTOR_MOVIE, movie)
 }
 
 // METHODS
 function addSceneToMovie(scene: DirectorScene) {
   scene.selected = !scene.selected
   modifiedScenes.value = [...modifiedScenes.value]
-  emitMovieLength()
+  emitModifiedMovie(modifiedScenes.value)
 }
 </script>
 
