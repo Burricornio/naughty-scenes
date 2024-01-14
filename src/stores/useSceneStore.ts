@@ -11,11 +11,6 @@ export type Scene = {
   rndBtnOptions?: string[]
 }
 
-export type DirectorScene = Scene & {
-  isOpenAccordion: boolean
-  selected: boolean
-}
-
 export const useSceneStore = defineStore('useSceneStore', () => {
   const sceneIndex = ref<number>(0)
   const defaultScenes = ref<Scene[]>(defaultScenesJSON)
@@ -25,7 +20,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
 
   const getSceneIndex = computed<number>(() => sceneIndex.value)
 
-  const getScenes = computed<Scene[] | DirectorScene[]>(() => scenes.value)
+  const getScenes = computed<Scene[]>(() => scenes.value)
 
   const getScenesLength = computed<number>(() => scenes.value.length)
 

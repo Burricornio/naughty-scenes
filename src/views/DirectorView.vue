@@ -24,10 +24,7 @@
       </div>
     </div>
     <!-- STEP 2 -->
-    <OrderCurrentDirectorMovieAccordion
-      v-if="step === 2"
-      :currentMovieScenes="onlySelectedScenes"
-    />
+    <OrderCurrentDirectorMovieAccordion v-if="step === 2" />
     <!-- STEP 3 -->
     <div v-if="step === 3">A configurar pelicula</div>
   </div>

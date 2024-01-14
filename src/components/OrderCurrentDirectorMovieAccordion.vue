@@ -22,17 +22,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { DirectorScene } from '@/stores/useSceneStore'
+import { computed } from 'vue'
+import { useDirectorSceneStore } from '@/stores/useDirectorSceneStore'
 import draggable from 'vuedraggable'
 
-// PROPS
-const props = defineProps<{
-  currentMovieScenes: DirectorScene[]
-}>()
+// STORE
+const directorSceneStore = useDirectorSceneStore()
 
-// DATA
-const currentMovie = ref(props.currentMovieScenes)
+const currentMovie = computed({
+  get: () => directorSceneStore.getCurrentMovie,
+  set: (value) => directorSceneStore.updateCurrentMovie(value)
+})
 </script>
 
 <style lang="scss" scoped>
