@@ -54,10 +54,6 @@ const directorScenes = computed<DirectorScene[]>(
   () => directorSceneStore.getDirectorScenes
 )
 
-const onlySelectedScenes = computed<DirectorScene[]>(
-  () => directorSceneStore.getCurrentMovie
-)
-
 // HOOKS
 onMounted(() => {
   selectRandomScenes(sceneStore.getDefaultScenesNumberLength)

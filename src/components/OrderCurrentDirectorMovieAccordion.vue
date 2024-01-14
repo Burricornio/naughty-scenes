@@ -11,6 +11,11 @@
         <div class="acordeon-item">
           <header>
             <h2>{{ element.title }}</h2>
+            <Icon
+              icon="ion:close-round"
+              class="remove-icon"
+              @click="removeScene(element.id)"
+            />
           </header>
           <section v-if="element.isOpenAccordion">
             <div>{{ element.instructions }}</div>
@@ -23,16 +28,26 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useDirectorSceneStore } from '@/stores/useDirectorSceneStore'
+import {
+  DirectorScene,
+  useDirectorSceneStore
+} from '@/stores/useDirectorSceneStore'
 import draggable from 'vuedraggable'
+import { Icon } from '@iconify/vue'
 
 // STORE
 const directorSceneStore = useDirectorSceneStore()
 
+// COMPUTED
 const currentMovie = computed({
   get: () => directorSceneStore.getCurrentMovie,
   set: (value) => directorSceneStore.updateCurrentMovie(value)
 })
+
+// METHODS
+function removeScene(sceneId: number): void {
+  directorSceneStore.removeCurrentMovieScene(sceneId)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -44,8 +59,16 @@ const currentMovie = computed({
     background: green;
     color: white;
     margin: 10px;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     cursor: move;
+
+    header {
+      @include flex($justify-content: space-between);
+
+      .remove-icon {
+        cursor: pointer;
+      }
+    }
   }
 }
 </style>

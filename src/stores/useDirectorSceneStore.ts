@@ -27,7 +27,7 @@ export const useDirectorSceneStore = defineStore(
 
     const getCurrentMovie = computed(() => currentMovie.value)
 
-    function updateSelectedDirectorScenes(movie: DirectorScene[]) {
+    function updateSelectedDirectorScenes(movie: DirectorScene[]): void {
       getDirectorScenes.value = movie
     }
 
@@ -35,11 +35,17 @@ export const useDirectorSceneStore = defineStore(
       currentMovie.value = movie
     }
 
+    function removeCurrentMovieScene(id: number) {
+      // Filtrar las escenas para excluir la escena con el ID especificado
+      currentMovie.value = currentMovie.value.filter((scene) => scene.id !== id)
+    }
+
     return {
       getDirectorScenes,
       updateSelectedDirectorScenes,
       getCurrentMovie,
-      updateCurrentMovie
+      updateCurrentMovie,
+      removeCurrentMovieScene
     }
   }
 )
