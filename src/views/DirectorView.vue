@@ -19,19 +19,23 @@
       <div v-if="directorScenes.length">
         <SelectScenesContainerComponent
           :directorScenes="directorScenes"
+          :unselectSceneIds="unselectSceneIds"
           @update-director-movie="updateMovie"
         />
       </div>
     </div>
     <!-- STEP 2 -->
-    <OrderCurrentDirectorMovieAccordion v-if="step === 2" />
+    <OrderCurrentDirectorMovieAccordion
+      v-if="step === 2"
+      @unselect-scenes="onUnselectScenes"
+    />
     <!-- STEP 3 -->
     <div v-if="step === 3">A configurar pelicula</div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed, ref } from 'vue'
+import { onMounted, computed, ref, watch } from 'vue'
 import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
 import OrderCurrentDirectorMovieAccordion from '@/components/OrderCurrentDirectorMovieAccordion.vue'
 // import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
@@ -48,10 +52,21 @@ const sceneStore = useSceneStore()
 // DATA
 const step = ref<number>(1)
 const numberOfSelectedScenes = ref<number>(0)
+const unselectSceneIds = ref<number[]>([])
 
 // COMPUTED
 const directorScenes = computed<DirectorScene[]>(
   () => directorSceneStore.getDirectorScenes
+)
+
+// WATCH
+watch(
+  () => step.value,
+  (value) => {
+    if (value !== 1) {
+      unselectSceneIds.value = []
+    }
+  }
 )
 
 // HOOKS
@@ -65,7 +80,6 @@ function selectRandomScenes(numberOfScenes: number): void {
 }
 
 function updateMovie(movie: DirectorScene[]) {
-  directorSceneStore.updateSelectedDirectorScenes(movie)
   const onlySelectedScenes = movie.filter(
     (scene: DirectorScene) => scene.selected
   )
@@ -78,6 +92,11 @@ function updateMovie(movie: DirectorScene[]) {
 // TODO TIPAR PASOS
 function setStep(stepNumber: number) {
   step.value = stepNumber
+}
+
+function onUnselectScenes(ids: number[]) {
+  ids.forEach((id: number) => unselectSceneIds.value.push(id))
+  numberOfSelectedScenes.value = numberOfSelectedScenes.value - ids.length
 }
 </script>
 

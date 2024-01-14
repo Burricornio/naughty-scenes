@@ -21,13 +21,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { DirectorScene } from '@/stores/useSceneStore'
+import { onMounted, ref } from 'vue'
 import { EmittedEvent } from '@/events'
+import { DirectorScene } from '@/stores/useDirectorSceneStore'
 
 // PROPS
 const props = defineProps<{
   directorScenes: DirectorScene[]
+  unselectSceneIds: number[]
 }>()
 
 const modifiedScenes = ref(props.directorScenes)
@@ -39,11 +40,25 @@ function emitModifiedMovie(movie: DirectorScene[]) {
   emit(EmittedEvent.UPDATE_DIRECTOR_MOVIE, movie)
 }
 
+// HOOKS
+onMounted(() => {
+  if (props.unselectSceneIds.length) {
+    unselectScenes()
+  }
+})
+
 // METHODS
 function addSceneToMovie(scene: DirectorScene) {
   scene.selected = !scene.selected
-  modifiedScenes.value = [...modifiedScenes.value]
   emitModifiedMovie(modifiedScenes.value)
+}
+
+function unselectScenes() {
+  modifiedScenes.value.forEach((scene: DirectorScene) => {
+    if (props.unselectSceneIds.includes(scene.id)) {
+      scene.selected = false
+    }
+  })
 }
 </script>
 
