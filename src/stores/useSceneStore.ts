@@ -44,6 +44,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   }
 
   function selectRandomScenes(numberOfCards: number) {
+    console.log('eeeee', numberOfCards)
     sceneIndex.value = 0
     const shuffleScenes = shuffleArray(defaultScenes.value)
     const selectedScenes = getElementsArray(shuffleScenes, numberOfCards)

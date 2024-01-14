@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/director',
     name: 'Director',
-    component: () => import('@/views/DirectorView.vue')
+    component: () => import('@/views/DirectorView/DirectorView.vue')
   }
 ]
 

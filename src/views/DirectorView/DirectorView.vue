@@ -2,14 +2,18 @@
   <div class="director-view">
     <h1>Director mode</h1>
     <div class="steps-container">
-      <button @click="setStep(1)">SELECT YOUR SCENES</button>
+      <button @click="setStep(DirectorStep.SELECT_SCENES)">
+        SELECT YOUR SCENES
+      </button>
       <button :disabled="numberOfSelectedScenes === 0" @click="setStep(2)">
         ORDER YOUR SCENES
       </button>
-      <button @click="setStep(3)">CONFIGURE MOVIE</button>
+      <button @click="setStep(DirectorStep.CONFIGURE_MOVIE)">
+        CONFIGURE MOVIE
+      </button>
     </div>
     <!-- STEP 1 -->
-    <div v-if="step === 1">
+    <div v-if="step === DirectorStep.SELECT_SCENES">
       <p>Selecciona las escenas que quieras rodar</p>
       <span>{{ numberOfSelectedScenes }}</span>
       <!-- <SelectScenesNumberInputComponent
@@ -26,16 +30,19 @@
     </div>
     <!-- STEP 2 -->
     <OrderCurrentDirectorMovieAccordion
-      v-if="step === 2"
+      v-if="step === DirectorStep.ORDER_SCENES"
       @unselect-scenes="onUnselectScenes"
     />
     <!-- STEP 3 -->
-    <div v-if="step === 3">A configurar pelicula</div>
+    <div v-if="step === DirectorStep.CONFIGURE_MOVIE">
+      A configurar pelicula
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, computed, ref, watch } from 'vue'
+import { DirectorStep } from '@/views/DirectorView/types/directorViewTypes'
 import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
 import OrderCurrentDirectorMovieAccordion from '@/components/OrderCurrentDirectorMovieAccordion.vue'
 // import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
@@ -50,7 +57,7 @@ const directorSceneStore = useDirectorSceneStore()
 const sceneStore = useSceneStore()
 
 // DATA
-const step = ref<number>(1)
+const step = ref<number>(DirectorStep.SELECT_SCENES)
 const numberOfSelectedScenes = ref<number>(0)
 const unselectSceneIds = ref<number[]>([])
 
@@ -63,7 +70,7 @@ const directorScenes = computed<DirectorScene[]>(
 watch(
   () => step.value,
   (value) => {
-    if (value !== 1) {
+    if (value !== DirectorStep.SELECT_SCENES) {
       unselectSceneIds.value = []
     }
   }
@@ -90,7 +97,7 @@ function updateMovie(movie: DirectorScene[]) {
 }
 
 // TODO TIPAR PASOS
-function setStep(stepNumber: number) {
+function setStep(stepNumber: DirectorStep) {
   step.value = stepNumber
 }
 
