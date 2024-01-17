@@ -44,7 +44,6 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   }
 
   function selectRandomScenes(numberOfCards: number) {
-    console.log('eeeee', numberOfCards)
     sceneIndex.value = 0
     const shuffleScenes = shuffleArray(defaultScenes.value)
     const selectedScenes = getElementsArray(shuffleScenes, numberOfCards)
@@ -80,6 +79,10 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   //   index.value = 0
   // }
 
+  function addNewScene(scene: Scene) {
+    scenes.value.unshift(scene)
+  }
+
   return {
     getCurrentScene,
     getScenesLength,
@@ -94,6 +97,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     getPlayedSceneIds,
     allScenesPlayed,
     getDefaultScenesNumberLength,
-    updateScenesOrder
+    updateScenesOrder,
+    addNewScene
   }
 })
