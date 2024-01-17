@@ -1,6 +1,6 @@
 <template>
   <section class="select-scenes-container">
-    <ul class="scene-list">
+    <ul class="scene-list" :key="componentKey">
       <li
         v-for="scene in modifiedScenes"
         :key="scene.id"
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { EmittedEvent } from '@/events'
 import { DirectorScene } from '@/stores/useDirectorSceneStore'
 
@@ -31,7 +31,11 @@ const props = defineProps<{
   unselectSceneIds: number[]
 }>()
 
-const modifiedScenes = ref(props.directorScenes)
+// DATA
+const componentKey = ref<number>(1)
+
+// COMPUTED
+const modifiedScenes = computed(() => props.directorScenes)
 
 // EMITS
 const emit = defineEmits([EmittedEvent.UPDATE_DIRECTOR_MOVIE])
@@ -50,6 +54,7 @@ onMounted(() => {
 // METHODS
 function addSceneToMovie(scene: DirectorScene) {
   scene.selected = !scene.selected
+  componentKey.value += componentKey.value
   emitModifiedMovie(modifiedScenes.value)
 }
 
@@ -59,6 +64,7 @@ function unselectScenes() {
       scene.selected = false
     }
   })
+  componentKey.value += componentKey.value
 }
 </script>
 
