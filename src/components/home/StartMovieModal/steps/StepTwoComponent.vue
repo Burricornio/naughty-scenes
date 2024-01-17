@@ -12,16 +12,11 @@
 </template>
 
 <script setup lang="ts">
-import { onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCountdownStore } from '@/stores/useCountdownStore'
-import useModal from '@/composables/useModal'
 
 // STORE
 const countdownStore = useCountdownStore()
-
-// COMPOSABLE
-const { closeModal } = useModal()
 
 // ROUTER
 const router = useRouter()
@@ -46,10 +41,6 @@ const modes = [
       'En este modo de juego lo configuras todo como quieras y puedes cargar y grabar escenas'
   }
 ]
-
-onUnmounted(() => {
-  closeModal()
-})
 
 function goToView(name: string) {
   countdownStore.setCountdownStatus(true)

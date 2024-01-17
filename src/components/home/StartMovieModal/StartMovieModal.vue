@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import useModal from '@/composables/useModal'
 import { Step } from '@/components/home/StartMovieModal/steps/types/stepsTypes'
 import { useResetStore } from '@/stores/useResetstore'
@@ -32,8 +32,15 @@ onMounted(() =>
   modalsStore.setStartMovieModalCurrentStep(Step.INSERT_PLAYER_NAMES)
 )
 
+onUnmounted(() => {
+  if (open.value) {
+    closeModal()
+  }
+})
+
 function closeStartMovieModal() {
   resetStore.resetState()
+  console.log('entroooooo')
   closeModal()
 }
 </script>
