@@ -11,6 +11,7 @@
       <button @click="setStep(DirectorStep.CONFIGURE_MOVIE)">
         CONFIGURE MOVIE
       </button>
+      <button @click="addNewScene">ADD YOUR OWN SCENE</button>
     </div>
     <!-- STEP 1 -->
     <div v-if="step === DirectorStep.SELECT_SCENES">
@@ -37,12 +38,14 @@
     <div v-if="step === DirectorStep.CONFIGURE_MOVIE">
       A configurar pelicula
     </div>
+    <AddNewSceneModal />
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, computed, ref, watch } from 'vue'
 import { DirectorStep } from '@/views/DirectorView/types/directorViewTypes'
+import AddNewSceneModal from '@/components/AddNewSceneModal.vue'
 import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
 import OrderCurrentDirectorMovieAccordion from '@/components/OrderCurrentDirectorMovieAccordion.vue'
 // import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
@@ -51,10 +54,12 @@ import {
   useDirectorSceneStore
 } from '@/stores/useDirectorSceneStore'
 import { useSceneStore } from '@/stores/useSceneStore'
+import useModal from '@/composables/useModal'
 
 // STORE
 const directorSceneStore = useDirectorSceneStore()
 const sceneStore = useSceneStore()
+const { openAddNewSceneModal } = useModal()
 
 // DATA
 const step = ref<number>(DirectorStep.SELECT_SCENES)
@@ -96,7 +101,10 @@ function updateMovie(movie: DirectorScene[]) {
   ).length
 }
 
-// TODO TIPAR PASOS
+function addNewScene() {
+  openAddNewSceneModal()
+}
+
 function setStep(stepNumber: DirectorStep) {
   step.value = stepNumber
 }
