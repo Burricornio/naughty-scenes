@@ -38,7 +38,9 @@
     <div v-if="step === DirectorStep.CONFIGURE_MOVIE">
       A configurar pelicula
     </div>
-    <AddNewSceneModal />
+    <AddNewSceneModal
+      @increase-selected-scenes-length="onIncreaseSelectedSecensLength"
+    />
   </div>
 </template>
 
@@ -112,6 +114,10 @@ function setStep(stepNumber: DirectorStep) {
 function onUnselectScenes(ids: number[]) {
   ids.forEach((id: number) => unselectSceneIds.value.push(id))
   numberOfSelectedScenes.value = numberOfSelectedScenes.value - ids.length
+}
+
+function onIncreaseSelectedSecensLength() {
+  numberOfSelectedScenes.value += 1
 }
 </script>
 

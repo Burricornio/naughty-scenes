@@ -30,21 +30,33 @@ title:"Scene 9" -->
 <script setup lang="ts">
 import useModal from '@/composables/useModal'
 import ModalComponent from '@/components/ModalComponent.vue'
-import { reactive } from 'vue'
-import { Scene, useSceneStore } from '@/stores/useSceneStore'
+import { ref } from 'vue'
+import { useSceneStore } from '@/stores/useSceneStore'
+import { DirectorScene } from '@/stores/useDirectorSceneStore'
+import { EmittedEvent } from '@/events'
 
 // STORE
 const { openAddNewScene, closeAddNewSceneModal } = useModal()
 const { addNewScene } = useSceneStore()
 
 // DATA
-const scene = reactive<Scene>({
+const scene = ref<DirectorScene>({
   duration: 0,
-  id: 999,
+  id: Math.floor(Math.random() * (10000 - 100) + 100),
   instructions: '',
   rndBtnOptions: [],
-  title: ''
+  title: '',
+  type: 'custom',
+  selected: true,
+  isOpenAccordion: true
 })
+
+// EMITS
+const emit = defineEmits([EmittedEvent.INCREASE_SELECTED_SCENES_LENGTH])
+
+function increaseSelectedScenesLength() {
+  emit(EmittedEvent.INCREASE_SELECTED_SCENES_LENGTH)
+}
 
 // METHODS
 function closeModal() {
@@ -52,7 +64,18 @@ function closeModal() {
 }
 
 function saveNewScene() {
-  addNewScene(scene)
+  addNewScene(scene.value)
+  increaseSelectedScenesLength()
   closeAddNewSceneModal()
+  scene.value = {
+    duration: 0,
+    id: 999,
+    instructions: '',
+    rndBtnOptions: [],
+    title: '',
+    type: 'custom',
+    selected: true,
+    isOpenAccordion: true
+  }
 }
 </script>

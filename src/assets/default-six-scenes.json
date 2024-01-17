@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "title": "Scene 1",
+    "instructions": "Instrucciones de la escena número 1",
+    "duration": 1,
+    "rndBtnOptions": ["Mano", "Lengua", "Todo vale"],
+    "type": "default"
+  },
+  {
+    "id": 2,
+    "title": "Scene 2",
+    "instructions": "Instrucciones de la escena número 2",
+    "duration": 2,
+    "type": "default"
+  },
+  {
+    "id": 3,
+    "title": "Scene 3",
+    "instructions": "Instrucciones de la escena número 3",
+    "duration": 3,
+    "rndBtnOptions": ["Solo Tocamientos", "Tocamientos y penetración"],
+    "type": "default"
+  },
+  {
+    "id": 4,
+    "title": "Scene 4",
+    "instructions": "Instrucciones de la escena número 4",
+    "duration": 4,
+    "rndBtnOptions": ["Solo Tocamientos", "Tocamientos y penetración"],
+    "type": "default"
+  },
+  {
+    "id": 5,
+    "title": "Scene 5",
+    "instructions": "Instrucciones de la escena número 5",
+    "duration": 5,
+    "rndBtnOptions": ["Solo Tocamientos", "Tocamientos y penetración"],
+    "type": "default"
+  },
+  {
+    "id": 6,
+    "title": "Scene 6",
+    "instructions": "Instrucciones de la escena número 6",
+    "duration": 6,
+    "rndBtnOptions": ["Solo Tocamientos", "Tocamientos y penetración"],
+    "type": "default"
+  }
+]

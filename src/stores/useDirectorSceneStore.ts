@@ -19,7 +19,7 @@ export const useDirectorSceneStore = defineStore(
         return sceneStore.getScenes.map((scene: Scene) => ({
           ...scene,
           isOpenAccordion: true,
-          selected: false
+          selected: scene.selected || false
         }))
       },
       set: (value) => value

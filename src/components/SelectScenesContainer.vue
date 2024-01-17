@@ -10,7 +10,7 @@
         <header>
           <h2>Open: {{ scene.isOpenAccordion }}</h2>
           <h2>Selected: {{ scene.selected }}</h2>
-          <h2>{{ scene.id }}</h2>
+          <h2>{{ scene.title }}</h2>
         </header>
         <section v-if="scene.isOpenAccordion">
           <div>{{ scene.instructions }}</div>

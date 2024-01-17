@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import defaultScenesJSON from '@/assets/default-scenes.json'
+// import defaultScenesJSON from '@/assets/default-scenes.json'
+import defaultSixScenesJSON from '@/assets/default-six-scenes.json'
 import { getElementsArray, shuffleArray } from '@/helpers/array'
 
 export type Scene = {
@@ -9,11 +10,13 @@ export type Scene = {
   instructions: string
   duration: number
   rndBtnOptions?: string[]
+  type: string
+  selected?: boolean
 }
 
 export const useSceneStore = defineStore('useSceneStore', () => {
   const sceneIndex = ref<number>(0)
-  const defaultScenes = ref<Scene[]>(defaultScenesJSON)
+  const defaultScenes = ref<Scene[]>(defaultSixScenesJSON)
   const scenes = ref<Scene[]>([])
   const playedSceneIds = ref<number[]>([])
   const currentScene = ref<Scene | null>(null)
@@ -80,6 +83,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   // }
 
   function addNewScene(scene: Scene) {
+    console.log('guardar', scene)
     scenes.value.unshift(scene)
   }
 

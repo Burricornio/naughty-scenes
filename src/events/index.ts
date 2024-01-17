@@ -5,5 +5,6 @@ export enum EmittedEvent {
   REPEAT_AGAIN = 'repeat-again',
   CHANGE_SCENES_NUMBER_LENGTH = 'change-scenes-number-length',
   UPDATE_DIRECTOR_MOVIE = 'update-director-movie',
-  UNSELECT_SCENES = 'unselect-scenes'
+  UNSELECT_SCENES = 'unselect-scenes',
+  INCREASE_SELECTED_SCENES_LENGTH = 'increase-selected-scenes-length'
 }
