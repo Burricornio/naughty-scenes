@@ -21,67 +21,44 @@
         :scenesNumber="numberOfScenes"
         @change-scenes-number-length="selectRandomScenes"
       /> -->
-      <div v-if="directorScenes.length">
-        <SelectScenesContainerComponent
-          :directorScenes="directorScenes"
-          :unselectSceneIds="unselectSceneIds"
-          @update-director-movie="updateMovie"
-        />
+      <div v-if="scenes.length">
+        <SelectScenesContainerComponent :scenes="scenes" />
       </div>
     </div>
     <!-- STEP 2 -->
     <OrderCurrentDirectorMovieAccordion
       v-if="step === DirectorStep.ORDER_SCENES"
-      @unselect-scenes="onUnselectScenes"
     />
     <!-- STEP 3 -->
     <div v-if="step === DirectorStep.CONFIGURE_MOVIE">
       A configurar pelicula
     </div>
-    <AddNewSceneModal
-      @increase-selected-scenes-length="onIncreaseSelectedSecensLength"
-    />
+    <AddNewSceneModal />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed, ref, watch } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import { DirectorStep } from '@/views/DirectorView/types/directorViewTypes'
 import AddNewSceneModal from '@/components/AddNewSceneModal.vue'
 import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
 import OrderCurrentDirectorMovieAccordion from '@/components/OrderCurrentDirectorMovieAccordion.vue'
 // import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
-import {
-  DirectorScene,
-  useDirectorSceneStore
-} from '@/stores/useDirectorSceneStore'
-import { useSceneStore } from '@/stores/useSceneStore'
+import { Scene, useSceneStore } from '@/stores/useSceneStore'
 import useModal from '@/composables/useModal'
 import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 
 // STORE
-const directorSceneStore = useDirectorSceneStore()
 const sceneStore = useSceneStore()
 const { openAddNewSceneModal } = useModal()
 
 // DATA
 const step = ref<number>(DirectorStep.SELECT_SCENES)
-const numberOfSelectedScenes = ref<number>(0)
-const unselectSceneIds = ref<number[]>([])
 
 // COMPUTED
-const directorScenes = computed<DirectorScene[]>(
-  () => directorSceneStore.getDirectorScenes
-)
-
-// WATCH
-watch(
-  () => step.value,
-  (value) => {
-    if (value !== DirectorStep.SELECT_SCENES) {
-      unselectSceneIds.value = []
-    }
-  }
+const scenes = computed<Scene[]>(() => sceneStore.getScenes)
+const numberOfSelectedScenes = computed<number>(
+  () => sceneStore.getSelectedScenesLength
 )
 
 // HOOKS
@@ -94,31 +71,12 @@ function selectRandomScenes(numberOfScenes: number): void {
   sceneStore.selectRandomScenes(numberOfScenes)
 }
 
-function updateMovie(movie: DirectorScene[]) {
-  const onlySelectedScenes = movie.filter(
-    (scene: DirectorScene) => scene.selected
-  )
-  directorSceneStore.updateCurrentMovie(onlySelectedScenes)
-  numberOfSelectedScenes.value = movie.filter(
-    (scene: DirectorScene) => scene.selected
-  ).length
-}
-
 function addNewScene() {
   openAddNewSceneModal()
 }
 
 function setStep(stepNumber: DirectorStep) {
   step.value = stepNumber
-}
-
-function onUnselectScenes(ids: number[]) {
-  ids.forEach((id: number) => unselectSceneIds.value.push(id))
-  numberOfSelectedScenes.value = numberOfSelectedScenes.value - ids.length
-}
-
-function onIncreaseSelectedSecensLength() {
-  numberOfSelectedScenes.value += 1
 }
 </script>
 

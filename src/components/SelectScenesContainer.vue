@@ -1,6 +1,6 @@
 <template>
   <section class="select-scenes-container">
-    <ul class="scene-list" :key="componentKey">
+    <ul class="scene-list">
       <li
         v-for="scene in modifiedScenes"
         :key="scene.id"
@@ -21,50 +21,20 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
-import { EmittedEvent } from '@/events'
-import { DirectorScene } from '@/stores/useDirectorSceneStore'
+import { computed } from 'vue'
+import { Scene } from '@/stores/useSceneStore'
 
 // PROPS
 const props = defineProps<{
-  directorScenes: DirectorScene[]
-  unselectSceneIds: number[]
+  scenes: Scene[]
 }>()
 
-// DATA
-const componentKey = ref<number>(1)
-
 // COMPUTED
-const modifiedScenes = computed(() => props.directorScenes)
-
-// EMITS
-const emit = defineEmits([EmittedEvent.UPDATE_DIRECTOR_MOVIE])
-
-function emitModifiedMovie(movie: DirectorScene[]) {
-  emit(EmittedEvent.UPDATE_DIRECTOR_MOVIE, movie)
-}
-
-// HOOKS
-onMounted(() => {
-  if (props.unselectSceneIds.length) {
-    unselectScenes()
-  }
-})
+const modifiedScenes = computed(() => props.scenes)
 
 // METHODS
-function addSceneToMovie(scene: DirectorScene) {
+function addSceneToMovie(scene: Scene) {
   scene.selected = !scene.selected
-  componentKey.value += componentKey.value
-  emitModifiedMovie(modifiedScenes.value)
-}
-
-function unselectScenes() {
-  modifiedScenes.value.forEach((scene: DirectorScene) => {
-    if (props.unselectSceneIds.includes(scene.id)) {
-      scene.selected = false
-    }
-  })
-  componentKey.value += componentKey.value
 }
 </script>
 

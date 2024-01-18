@@ -18,7 +18,7 @@
                 @click="removeScene(element.id)"
               />
             </header>
-            <section v-if="element.isOpenAccordion">
+            <section>
               <div>{{ element.instructions }}</div>
             </section>
           </div>
@@ -30,36 +30,18 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { useDirectorSceneStore } from '@/stores/useDirectorSceneStore'
+import { computed } from 'vue'
 import draggable from 'vuedraggable'
 import { Icon } from '@iconify/vue'
-import { EmittedEvent } from '@/events'
+import { useSceneStore } from '@/stores/useSceneStore'
 
-// STORE
-const directorSceneStore = useDirectorSceneStore()
+const sceneStore = useSceneStore()
 
-// DATA
-const unselectSceneIds = ref<number[]>([])
-
-// COMPUTED
-const currentMovie = computed({
-  get: () => directorSceneStore.getCurrentMovie,
-  set: (value) => directorSceneStore.updateCurrentMovie(value)
-})
-
-// EMITS
-const emit = defineEmits([EmittedEvent.UNSELECT_SCENES])
-
-function emitUnselectSceneIds(ids: number[]) {
-  emit(EmittedEvent.UNSELECT_SCENES, ids)
-}
+const currentMovie = computed(() => sceneStore.getSelectedScenes)
 
 // METHODS
 function removeScene(sceneId: number): void {
-  directorSceneStore.removeCurrentMovieScene(sceneId)
-  unselectSceneIds.value.push(sceneId)
-  emitUnselectSceneIds(unselectSceneIds.value)
+  sceneStore.unselectScene(sceneId)
 }
 </script>
 

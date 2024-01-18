@@ -12,6 +12,7 @@ export type Scene = {
   rndBtnOptions?: string[]
   type: string
   selected?: boolean
+  isOpenAccordion?: boolean
 }
 
 export const useSceneStore = defineStore('useSceneStore', () => {
@@ -24,6 +25,14 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   const getSceneIndex = computed<number>(() => sceneIndex.value)
 
   const getScenes = computed<Scene[]>(() => scenes.value)
+
+  const getSelectedScenes = computed<Scene[]>(() =>
+    scenes.value.filter((scene: Scene) => scene.selected)
+  )
+
+  const getSelectedScenesLength = computed<number>(
+    () => getSelectedScenes.value.length
+  )
 
   const getScenesLength = computed<number>(() => scenes.value.length)
 
@@ -86,6 +95,14 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     scenes.value.unshift(scene)
   }
 
+  function unselectScene(id: number) {
+    scenes.value.forEach((scene: Scene) => {
+      if (scene.id === id) {
+        scene.selected = false
+      }
+    })
+  }
+
   return {
     getCurrentScene,
     getScenesLength,
@@ -101,6 +118,9 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     allScenesPlayed,
     getDefaultScenesNumberLength,
     updateScenesOrder,
-    addNewScene
+    addNewScene,
+    getSelectedScenesLength,
+    getSelectedScenes,
+    unselectScene
   }
 })
