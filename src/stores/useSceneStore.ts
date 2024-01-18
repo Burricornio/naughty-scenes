@@ -15,6 +15,11 @@ export type Scene = {
   isOpenAccordion?: boolean
 }
 
+interface SelectScenesObject {
+  numberOfScenes: number
+  shuffle: boolean
+}
+
 export const useSceneStore = defineStore('useSceneStore', () => {
   const sceneIndex = ref<number>(0)
   const defaultScenes = ref<Scene[]>(defaultSixScenesJSON)
@@ -55,11 +60,16 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     scenes.value = newOrder
   }
 
-  function selectRandomScenes(numberOfCards: number) {
+  function selectScenes({ numberOfScenes, shuffle }: SelectScenesObject) {
     sceneIndex.value = 0
-    const shuffleScenes = shuffleArray(defaultScenes.value)
-    const selectedScenes = getElementsArray(shuffleScenes, numberOfCards)
-    currentScene.value = selectedScenes[sceneIndex.value]
+    let selectedScenes: Scene[] = []
+    if (shuffle) {
+      const shuffleScenes = shuffleArray(defaultScenes.value)
+      selectedScenes = getElementsArray(shuffleScenes, numberOfScenes)
+      currentScene.value = selectedScenes[sceneIndex.value]
+    } else {
+      selectedScenes = defaultScenes.value
+    }
     playedSceneIds.value = []
     scenes.value = selectedScenes
   }
@@ -106,7 +116,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   return {
     getCurrentScene,
     getScenesLength,
-    selectRandomScenes,
+    selectScenes,
     getSceneIndex,
     pushPlayedSceneId,
     increaseIndex,

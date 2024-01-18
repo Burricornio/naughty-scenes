@@ -33,16 +33,19 @@ const numberOfScenes = 3
 
 // HOOKS
 onMounted(() => {
-  selectRandomScenes(numberOfScenes)
+  selectRandomScenes()
 })
 
 // METHODS
-function selectRandomScenes(numberOfScenes: number): void {
-  sceneStore.selectRandomScenes(numberOfScenes)
+function selectRandomScenes() {
+  sceneStore.selectScenes({
+    numberOfScenes: numberOfScenes,
+    shuffle: true
+  })
 }
 
 function onRepeatAgain() {
   countdownStore.setCountdownStatus(true)
-  sceneStore.selectRandomScenes(numberOfScenes)
+  selectRandomScenes()
 }
 </script>

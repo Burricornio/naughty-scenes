@@ -1,9 +1,9 @@
 <template>
   <section class="current-director-movie-accordion">
-    <div v-if="currentMovie.length">
+    <div v-if="movie.length">
       <draggable
         class="accordion-container"
-        v-model="currentMovie"
+        v-model="movie"
         item-key="id"
         group="scenes"
         :animation="200"
@@ -30,14 +30,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import draggable from 'vuedraggable'
 import { Icon } from '@iconify/vue'
-import { useSceneStore } from '@/stores/useSceneStore'
+import { Scene, useSceneStore } from '@/stores/useSceneStore'
 
 const sceneStore = useSceneStore()
 
-const currentMovie = computed(() => sceneStore.getSelectedScenes)
+const scenes = computed(() => sceneStore.getSelectedScenes)
+
+const movie = ref<Scene[]>(scenes.value)
 
 // METHODS
 function removeScene(sceneId: number): void {

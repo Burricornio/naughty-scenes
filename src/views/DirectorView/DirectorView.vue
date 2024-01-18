@@ -63,13 +63,11 @@ const numberOfSelectedScenes = computed<number>(
 
 // HOOKS
 onMounted(() => {
-  selectRandomScenes(sceneStore.getDefaultScenesNumberLength)
+  sceneStore.selectScenes({
+    numberOfScenes: sceneStore.getDefaultScenesNumberLength,
+    shuffle: false
+  })
 })
-
-// METHODS
-function selectRandomScenes(numberOfScenes: number): void {
-  sceneStore.selectRandomScenes(numberOfScenes)
-}
 
 function addNewScene() {
   openAddNewSceneModal()

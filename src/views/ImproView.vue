@@ -26,12 +26,15 @@ onMounted(() => {
 })
 
 // METHODS
-function selectRandomScenes(): void {
-  sceneStore.selectRandomScenes()
+function selectRandomScenes() {
+  sceneStore.selectScenes({
+    numberOfScenes: sceneStore.getDefaultScenesNumberLength,
+    shuffle: true
+  })
 }
 
 function onRepeatAgain() {
   countdownStore.setCountdownStatus(true)
-  sceneStore.selectRandomScenes()
+  selectRandomScenes()
 }
 </script>
