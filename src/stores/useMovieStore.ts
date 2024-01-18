@@ -36,12 +36,12 @@ export const useMovieStore = defineStore('useMovieStore', () => {
     playerNames[player] = name
   }
 
-  // function $reset() {
-  //   gameStartedFlag.value = false
-  //   playedGamesNumber.value = 0
-  //   playerNames.player1 = ''
-  //   playerNames.player2 = ''
-  // }
+  function resetPlayerNames() {
+    // gameStartedFlag.value = false
+    // playedGamesNumber.value = 0
+    playerNames.player1 = ''
+    playerNames.player2 = ''
+  }
 
   return {
     // setPlayerNames,
@@ -54,6 +54,7 @@ export const useMovieStore = defineStore('useMovieStore', () => {
     // getPlayedGamesNumber,
     setPlayerNames,
     getPlayerNames,
-    addNewGamePlayed
+    addNewGamePlayed,
+    resetPlayerNames
   }
 })

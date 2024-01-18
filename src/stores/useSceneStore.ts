@@ -71,7 +71,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     sceneIndex.value--
   }
 
-  function setCurrentScene(scene: Scene) {
+  function setCurrentScene(scene: Scene | null) {
     currentScene.value = scene
   }
 
@@ -83,7 +83,6 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   // }
 
   function addNewScene(scene: Scene) {
-    console.log('guardar', scene)
     scenes.value.unshift(scene)
   }
 

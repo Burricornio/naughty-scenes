@@ -14,7 +14,7 @@
 import { onMounted, onUnmounted } from 'vue'
 import useModal from '@/composables/useModal'
 import { Step } from '@/components/home/StartMovieModal/steps/types/stepsTypes'
-import { useResetStore } from '@/stores/useResetstore'
+import { useResetStore } from '@/stores/useResetStore'
 import { useModalsStore } from '@/stores/useModalsStore'
 import InstructionComponent from '@/components/home/StartMovieModal/InstructionComponent.vue'
 import ModalComponent from '@/components/ModalComponent.vue'
@@ -22,7 +22,7 @@ import StepOneComponent from '@/components/home/StartMovieModal/steps/StepOneCom
 import StepTwoComponent from '@/components/home/StartMovieModal/steps/StepTwoComponent.vue'
 
 // STORE
-const resetStore = useResetStore()
+const { resetGame } = useResetStore()
 const modalsStore = useModalsStore()
 
 const { open, closeModal } = useModal()
@@ -39,8 +39,7 @@ onUnmounted(() => {
 })
 
 function closeStartMovieModal() {
-  resetStore.resetState()
-  console.log('entroooooo')
+  resetGame()
   closeModal()
 }
 </script>
