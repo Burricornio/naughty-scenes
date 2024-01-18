@@ -1,6 +1,6 @@
 <template>
   <div class="director-view">
-    <h1>Director mode</h1>
+    <HeaderViewComponent title="ACTOR MODE" />
     <div class="steps-container">
       <button @click="setStep(DirectorStep.SELECT_SCENES)">
         SELECT YOUR SCENES
@@ -57,6 +57,7 @@ import {
 } from '@/stores/useDirectorSceneStore'
 import { useSceneStore } from '@/stores/useSceneStore'
 import useModal from '@/composables/useModal'
+import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 
 // STORE
 const directorSceneStore = useDirectorSceneStore()

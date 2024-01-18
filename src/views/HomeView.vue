@@ -11,6 +11,7 @@ import useModal from '@/composables/useModal'
 import StartMovieButtonComponent from '@/components/home/StartMovieButtonComponent.vue'
 import StartMovieModal from '@/components/home/StartMovieModal/StartMovieModal.vue'
 
+// STORE
 const { open } = useModal()
 </script>
 

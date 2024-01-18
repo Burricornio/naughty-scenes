@@ -1,7 +1,7 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
   <div v-else>
-    <h1>Actor mode</h1>
+    <HeaderViewComponent title="ACTOR MODE" />
     <SceneContainerComponent />
     <SceneMiniaturesComponent
       v-if="!sceneStore.allScenesPlayed"
@@ -21,6 +21,7 @@ import CountdownComponent from '@/components/CountdownComponent.vue'
 import MovieEndedComponent from '@/components/MovieEndedComponent.vue'
 import SceneContainerComponent from '@/components/SceneContainer/SceneContainerComponent.vue'
 import SceneMiniaturesComponent from '@/components/SceneMiniaturesComponent.vue'
+import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 
 // STORE
 const sceneStore = useSceneStore()
