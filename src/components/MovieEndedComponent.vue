@@ -6,23 +6,17 @@
         <span>Repetir</span>
         <Icon class="icon" icon="material-symbols:repeat" />
       </button>
-      <button class="icon-container" @click="goToHome">
-        <span>Ir a inicio</span>
-        <Icon class="icon" icon="material-symbols:home" />
-      </button>
+      <GoToHomeButtonComponent />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { EmittedEvent } from '@/events'
-import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useSceneStore } from '@/stores/useSceneStore'
+import GoToHomeButtonComponent from '@/components/GoToHomeButtonComponent.vue'
 import { Icon } from '@iconify/vue'
-
-// ROUTER
-const router = useRouter()
 
 // STORE
 const sceneStore = useSceneStore()
@@ -36,11 +30,6 @@ const emit = defineEmits([EmittedEvent.REPEAT_AGAIN])
 
 function repeatAgain() {
   emit(EmittedEvent.REPEAT_AGAIN)
-}
-
-// METHODS
-function goToHome() {
-  router.push({ name: 'Home' })
 }
 </script>
 
