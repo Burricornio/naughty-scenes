@@ -1,80 +1,55 @@
 <template>
   <div class="director-view">
-    <HeaderViewComponent title="ACTOR MODE" />
-    <div class="steps-container">
-      <button @click="setStep(DirectorStep.SELECT_SCENES)">
-        SELECT YOUR SCENES
-      </button>
-      <button :disabled="numberOfSelectedScenes === 0" @click="setStep(2)">
-        ORDER YOUR SCENES
-      </button>
-      <button @click="setStep(DirectorStep.CONFIGURE_MOVIE)">
-        CONFIGURE MOVIE
-      </button>
-      <button @click="addNewScene">ADD YOUR OWN SCENE</button>
-    </div>
-    <!-- STEP 1 -->
-    <div v-if="step === DirectorStep.SELECT_SCENES">
-      <p>Selecciona las escenas que quieras rodar</p>
-      <span>{{ numberOfSelectedScenes }}</span>
-      <!-- <SelectScenesNumberInputComponent
-        :scenesNumber="numberOfScenes"
-        @change-scenes-number-length="selectRandomScenes"
-      /> -->
-      <div v-if="scenes.length">
-        <SelectScenesContainerComponent :scenes="scenes" />
-      </div>
-    </div>
-    <!-- STEP 2 -->
-    <OrderCurrentDirectorMovieAccordion
-      v-if="step === DirectorStep.ORDER_SCENES"
+    <HeaderViewComponent
+      v-if="!countdownStore.showCountdown"
+      title="DIRECTOR MODE"
     />
-    <!-- STEP 3 -->
-    <div v-if="step === DirectorStep.CONFIGURE_MOVIE">
-      A configurar pelicula
-    </div>
-    <AddNewSceneModal />
+    <MovieContainerComponent
+      v-if="startedMovieFlag"
+      @repeat-again="onRepeatAgain"
+    />
+    <DirectorStepsComponent
+      :changeStartedMovieFlag="changeStartedMovieFlag"
+      @update-director-movie="onUpdateDirectorMovie"
+      v-else
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed, ref } from 'vue'
-import { DirectorStep } from '@/views/DirectorView/types/directorViewTypes'
-import AddNewSceneModal from '@/components/AddNewSceneModal.vue'
-import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
-import OrderCurrentDirectorMovieAccordion from '@/components/OrderCurrentDirectorMovieAccordion.vue'
+import { onMounted, ref } from 'vue'
 // import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
-import useModal from '@/composables/useModal'
 import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
+import { useCountdownStore } from '@/stores/useCountdownStore'
+import MovieContainerComponent from '@/components/director-view/MovieContainerComponent.vue'
+import DirectorStepsComponent from '@/components/director-view/DirectorStepsComponent.vue'
 
 // STORE
 const sceneStore = useSceneStore()
-const { openAddNewSceneModal } = useModal()
+const countdownStore = useCountdownStore()
 
 // DATA
-const step = ref<number>(DirectorStep.SELECT_SCENES)
-
-// COMPUTED
-const scenes = computed<Scene[]>(() => sceneStore.getScenes)
-const numberOfSelectedScenes = computed<number>(
-  () => sceneStore.getSelectedScenesLength
-)
+const movie = ref<Scene[]>([])
+const startedMovieFlag = ref<boolean>(false)
 
 // HOOKS
 onMounted(() => {
-  sceneStore.selectScenes({
-    numberOfScenes: sceneStore.getDefaultScenesNumberLength,
-    shuffle: false
-  })
+  countdownStore.setCountdownStatus(false)
 })
 
-function addNewScene() {
-  openAddNewSceneModal()
+// METHODS
+function onRepeatAgain() {
+  countdownStore.setCountdownStatus(true)
+  sceneStore.playMovie(movie.value)
 }
 
-function setStep(stepNumber: DirectorStep) {
-  step.value = stepNumber
+function changeStartedMovieFlag() {
+  startedMovieFlag.value = true
+}
+
+function onUpdateDirectorMovie(scenes: Scene[]) {
+  movie.value = scenes
 }
 </script>
 

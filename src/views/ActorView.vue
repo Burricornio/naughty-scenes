@@ -46,6 +46,6 @@ function selectRandomScenes() {
 
 function onRepeatAgain() {
   countdownStore.setCountdownStatus(true)
-  selectRandomScenes()
+  sceneStore.playMovie(sceneStore.getScenes)
 }
 </script>

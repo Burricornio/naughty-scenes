@@ -7,6 +7,7 @@
         item-key="id"
         group="scenes"
         :animation="200"
+        @end="setNewOrder"
       >
         <template #item="{ element }">
           <div class="acordeon-item">
@@ -34,12 +35,20 @@ import { computed, ref } from 'vue'
 import draggable from 'vuedraggable'
 import { Icon } from '@iconify/vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
+import { EmittedEvent } from '@/events'
 
 const sceneStore = useSceneStore()
 
 const scenes = computed(() => sceneStore.getSelectedScenes)
 
 const movie = ref<Scene[]>(scenes.value)
+
+// EMITS
+const emit = defineEmits([EmittedEvent.UPDATE_DIRECTOR_MOVIE])
+
+function setNewOrder() {
+  emit(EmittedEvent.UPDATE_DIRECTOR_MOVIE, movie.value)
+}
 
 // METHODS
 function removeScene(sceneId: number): void {
