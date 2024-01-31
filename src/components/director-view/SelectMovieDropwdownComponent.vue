@@ -75,7 +75,7 @@ const handleDocumentClick = (event: MouseEvent) => {
 <style lang="scss" scoped>
 .select-movie-dropdown {
   position: relative;
-  width: 200px;
+  width: 250px;
 }
 
 .selected-option {

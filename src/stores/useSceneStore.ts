@@ -131,6 +131,16 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     })
   }
 
+  function deleteCustomScene(sceneId: number) {
+    const sceneIndex = scenes.value.findIndex(
+      (scene: Scene) => scene.id === sceneId
+    )
+
+    if (sceneIndex !== -1) {
+      scenes.value.splice(sceneIndex, 1)
+    }
+  }
+
   return {
     playMovie,
     getCurrentScene,
@@ -153,6 +163,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     unselectScene,
     unselectAllScenes,
     getDefaultScenes,
-    selectAllScenes
+    selectAllScenes,
+    deleteCustomScene
   }
 })

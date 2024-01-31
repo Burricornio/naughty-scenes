@@ -4,11 +4,21 @@
       <li
         v-for="scene in modifiedScenes"
         :key="scene.id"
-        :class="['scene-item', { selected: scene.selected }]"
+        :class="[
+          'scene-item',
+          { selected: scene.selected, custom: scene.type === 'custom' }
+        ]"
         @click="addSceneToMovie(scene)"
       >
         <header>
-          <h2>Open: {{ scene.isOpenAccordion }}</h2>
+          <div class="title-container">
+            <h2>Open: {{ scene.isOpenAccordion }}</h2>
+            <Icon
+              v-if="scene.type === 'custom'"
+              icon="ion:close-round"
+              @click.stop="deleteScene(scene.id)"
+            />
+          </div>
           <h2>Selected: {{ scene.selected }}</h2>
           <h2>{{ scene.title }}</h2>
         </header>
@@ -22,12 +32,16 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Scene } from '@/stores/useSceneStore'
+import { Scene, useSceneStore } from '@/stores/useSceneStore'
+import { Icon } from '@iconify/vue'
 
 // PROPS
 const props = defineProps<{
   scenes: Scene[]
 }>()
+
+// STORE
+const sceneStore = useSceneStore()
 
 // COMPUTED
 const modifiedScenes = computed(() => props.scenes)
@@ -35,6 +49,10 @@ const modifiedScenes = computed(() => props.scenes)
 // METHODS
 function addSceneToMovie(scene: Scene) {
   scene.selected = !scene.selected
+}
+
+function deleteScene(sceneId: number) {
+  sceneStore.deleteCustomScene(sceneId)
 }
 </script>
 
@@ -56,9 +74,18 @@ function addSceneToMovie(scene: Scene) {
         border-color: red;
       }
 
+      &.custom header {
+        background: olivedrab;
+      }
+
       header {
         background-color: teal;
         padding: 10px;
+
+        .title-container {
+          @include flex($justify-content: space-between);
+          color: white;
+        }
 
         h2 {
           margin: 0;
