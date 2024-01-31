@@ -1,12 +1,13 @@
 <template>
   <section class="current-director-movie-accordion">
-    <div v-if="currentMovie.length">
+    <div v-if="movie.length">
       <draggable
         class="accordion-container"
-        v-model="currentMovie"
+        v-model="movie"
         item-key="id"
         group="scenes"
         :animation="200"
+        @end="setNewOrder"
       >
         <template #item="{ element }">
           <div class="acordeon-item">
@@ -18,7 +19,7 @@
                 @click="removeScene(element.id)"
               />
             </header>
-            <section v-if="element.isOpenAccordion">
+            <section>
               <div>{{ element.instructions }}</div>
             </section>
           </div>
@@ -31,35 +32,27 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useDirectorSceneStore } from '@/stores/useDirectorSceneStore'
 import draggable from 'vuedraggable'
 import { Icon } from '@iconify/vue'
+import { Scene, useSceneStore } from '@/stores/useSceneStore'
 import { EmittedEvent } from '@/events'
 
-// STORE
-const directorSceneStore = useDirectorSceneStore()
+const sceneStore = useSceneStore()
 
-// DATA
-const unselectSceneIds = ref<number[]>([])
+const scenes = computed(() => sceneStore.getSelectedScenes)
 
-// COMPUTED
-const currentMovie = computed({
-  get: () => directorSceneStore.getCurrentMovie,
-  set: (value) => directorSceneStore.updateCurrentMovie(value)
-})
+const movie = ref<Scene[]>(scenes.value)
 
 // EMITS
-const emit = defineEmits([EmittedEvent.UNSELECT_SCENES])
+const emit = defineEmits([EmittedEvent.UPDATE_DIRECTOR_MOVIE])
 
-function emitUnselectSceneIds(ids: number[]) {
-  emit(EmittedEvent.UNSELECT_SCENES, ids)
+function setNewOrder() {
+  emit(EmittedEvent.UPDATE_DIRECTOR_MOVIE, movie.value)
 }
 
 // METHODS
 function removeScene(sceneId: number): void {
-  directorSceneStore.removeCurrentMovieScene(sceneId)
-  unselectSceneIds.value.push(sceneId)
-  emitUnselectSceneIds(unselectSceneIds.value)
+  sceneStore.unselectScene(sceneId)
 }
 </script>
 

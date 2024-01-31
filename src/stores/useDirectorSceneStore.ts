@@ -1,37 +1,37 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { Scene, useSceneStore } from './useSceneStore'
+import { Scene } from './useSceneStore'
 
-export type DirectorScene = Scene & {
-  isOpenAccordion: boolean
-  selected: boolean
-}
+// export type DirectorScene = Scene & {
+//   isOpenAccordion: boolean
+//   selected: boolean
+// }
 
-const sceneStore = useSceneStore()
+// const sceneStore = useSceneStore()
 
 export const useDirectorSceneStore = defineStore(
   'useDirectorSceneStore',
   () => {
-    const currentMovie = ref<DirectorScene[]>([])
+    const currentMovie = ref<Scene[]>([])
 
-    const getDirectorScenes = computed({
-      get: () => {
-        return sceneStore.getScenes.map((scene: Scene) => ({
-          ...scene,
-          isOpenAccordion: true,
-          selected: scene.selected || false
-        }))
-      },
-      set: (value) => value
-    })
+    // const getDirectorScenes = computed({
+    //   get: () => {
+    //     return sceneStore.getScenes.map((scene: Scene) => ({
+    //       ...scene,
+    //       isOpenAccordion: true,
+    //       selected: scene.selected || false
+    //     }))
+    //   },
+    //   set: (value) => value
+    // })
 
     const getCurrentMovie = computed(() => currentMovie.value)
 
-    function updateSelectedDirectorScenes(movie: DirectorScene[]): void {
-      getDirectorScenes.value = movie
-    }
+    // function updateSelectedDirectorScenes(movie: DirectorScene[]): void {
+    //   getDirectorScenes.value = movie
+    // }
 
-    function updateCurrentMovie(movie: DirectorScene[]) {
+    function updateCurrentMovie(movie: Scene[]) {
       currentMovie.value = movie
     }
 
@@ -41,8 +41,8 @@ export const useDirectorSceneStore = defineStore(
     }
 
     return {
-      getDirectorScenes,
-      updateSelectedDirectorScenes,
+      // getDirectorScenes,
+      // updateSelectedDirectorScenes,
       getCurrentMovie,
       updateCurrentMovie,
       removeCurrentMovieScene

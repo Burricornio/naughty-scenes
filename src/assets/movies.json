@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Pelicula 1",
+    "date": "",
+    "scenes": "[1, 2, 3]"
+  },
+  {
+    "id": 2,
+    "title": "Pelicula 2",
+    "date": "",
+    "scenes": "[4, 5, 6]"
+  }
+]

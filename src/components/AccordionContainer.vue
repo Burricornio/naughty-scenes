@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { DirectorScene, Scene } from '@/stores/useSceneStore'
+import { Scene } from '@/stores/useSceneStore'
 import draggable from 'vuedraggable'
 
 // PROPS

@@ -12,6 +12,12 @@ export type Scene = {
   rndBtnOptions?: string[]
   type: string
   selected?: boolean
+  isOpenAccordion?: boolean
+}
+
+interface SelectScenesObject {
+  numberOfScenes: number
+  shuffle: boolean
 }
 
 export const useSceneStore = defineStore('useSceneStore', () => {
@@ -25,9 +31,19 @@ export const useSceneStore = defineStore('useSceneStore', () => {
 
   const getScenes = computed<Scene[]>(() => scenes.value)
 
+  const getSelectedScenes = computed<Scene[]>(() =>
+    scenes.value.filter((scene: Scene) => scene.selected)
+  )
+
+  const getSelectedScenesLength = computed<number>(
+    () => getSelectedScenes.value.length
+  )
+
   const getScenesLength = computed<number>(() => scenes.value.length)
 
   const getPlayedSceneIds = computed<number[]>(() => playedSceneIds.value)
+
+  const getDefaultScenes = computed<Scene[]>(() => defaultScenes.value)
 
   const getDefaultScenesNumberLength = computed<number>(
     () => defaultScenes.value.length
@@ -46,13 +62,22 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     scenes.value = newOrder
   }
 
-  function selectRandomScenes(numberOfCards: number) {
+  function playMovie(movie: Scene[]): void {
     sceneIndex.value = 0
-    const shuffleScenes = shuffleArray(defaultScenes.value)
-    const selectedScenes = getElementsArray(shuffleScenes, numberOfCards)
-    currentScene.value = selectedScenes[sceneIndex.value]
     playedSceneIds.value = []
-    scenes.value = selectedScenes
+    scenes.value = movie
+    currentScene.value = scenes.value[sceneIndex.value]
+  }
+
+  function selectScenes({ numberOfScenes, shuffle }: SelectScenesObject) {
+    let selectedScenes: Scene[] = []
+    if (shuffle) {
+      const shuffleScenes = shuffleArray(defaultScenes.value)
+      selectedScenes = getElementsArray(shuffleScenes, numberOfScenes)
+    } else {
+      selectedScenes = defaultScenes.value
+    }
+    playMovie(selectedScenes)
   }
 
   function pushPlayedSceneId(id: number) {
@@ -86,10 +111,41 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     scenes.value.unshift(scene)
   }
 
+  function unselectScene(id: number) {
+    scenes.value.forEach((scene: Scene) => {
+      if (scene.id === id) {
+        scene.selected = false
+      }
+    })
+  }
+
+  function unselectAllScenes() {
+    scenes.value.forEach((scene: Scene) => {
+      scene.selected = false
+    })
+  }
+
+  function selectAllScenes() {
+    scenes.value.forEach((scene: Scene) => {
+      scene.selected = true
+    })
+  }
+
+  function deleteCustomScene(sceneId: number) {
+    const sceneIndex = scenes.value.findIndex(
+      (scene: Scene) => scene.id === sceneId
+    )
+
+    if (sceneIndex !== -1) {
+      scenes.value.splice(sceneIndex, 1)
+    }
+  }
+
   return {
+    playMovie,
     getCurrentScene,
     getScenesLength,
-    selectRandomScenes,
+    selectScenes,
     getSceneIndex,
     pushPlayedSceneId,
     increaseIndex,
@@ -101,6 +157,13 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     allScenesPlayed,
     getDefaultScenesNumberLength,
     updateScenesOrder,
-    addNewScene
+    addNewScene,
+    getSelectedScenesLength,
+    getSelectedScenes,
+    unselectScene,
+    unselectAllScenes,
+    getDefaultScenes,
+    selectAllScenes,
+    deleteCustomScene
   }
 })
