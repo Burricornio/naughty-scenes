@@ -1,10 +1,11 @@
 <template>
-  <div class="select-movie-dropdown">
+  <div class="select-movie-dropdown" ref="dropdownRef">
     <div class="selected-option" @click="toggleDropdown">
       {{ selectedMovie ? selectedMovie.title : 'Selecciona una película' }}
     </div>
     <transition name="fade">
       <div v-if="isDropdownOpen" class="options">
+        <div @click="loadAllScenes">Cargar todas las escenas</div>
         <div
           v-for="movie in movies"
           :key="movie.id"
@@ -20,7 +21,7 @@
 <script setup lang="ts">
 import { useMovieStore, MovieParsed } from '@/stores/useMovieStore'
 import { useSceneStore } from '@/stores/useSceneStore'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, Ref } from 'vue'
 
 // STORE
 const movieStore = useMovieStore()
@@ -29,19 +30,44 @@ const sceneStore = useSceneStore()
 // DATA
 const selectedMovie = ref<MovieParsed | null>(null)
 const isDropdownOpen = ref(false)
+const dropdownRef: Ref<HTMLElement | null> = ref(null)
 
 // COMPUTED
 const movies = computed(() => movieStore.getMovies)
 
+// HOOKS
+onMounted(() => {
+  document.addEventListener('click', handleDocumentClick)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleDocumentClick)
+})
+
 // METHODS
-function toggleDropdown() {
+function toggleDropdown(): void {
   isDropdownOpen.value = !isDropdownOpen.value
 }
 
-function selectMovie(movie: MovieParsed) {
+function selectMovie(movie: MovieParsed): void {
   selectedMovie.value = movie
   isDropdownOpen.value = false
   sceneStore.playMovie(movie.scenes)
+}
+
+function loadAllScenes(): void {
+  isDropdownOpen.value = false
+  selectedMovie.value = null
+  sceneStore.unselectAllScenes()
+  sceneStore.playMovie(sceneStore.getDefaultScenes)
+}
+
+const handleDocumentClick = (event: MouseEvent) => {
+  const dropdown = dropdownRef.value
+
+  if (dropdown && !dropdown.contains(event.target as Node)) {
+    isDropdownOpen.value = false
+  }
 }
 </script>
 
