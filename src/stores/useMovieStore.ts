@@ -1,16 +1,43 @@
 import { computed, reactive, ref } from 'vue'
 import { defineStore } from 'pinia'
+import moviesJSON from '@/assets/movies.json'
+import { Scene, useSceneStore } from './useSceneStore'
 
 interface Players {
   playerNames: { player1: string; player2: string }
 }
 
+interface Movie {
+  id: number
+  title: string
+  date: string
+  scenes: string
+}
+
 export const useMovieStore = defineStore('useMovieStore', () => {
   // const gameStartedFlag = ref<boolean>(false)
+  const { getDefaultScenes } = useSceneStore()
+
   const playedMoviesNumber = ref<number>(0)
   const playerNames = reactive<{ player1: string; player2: string }>({
     player1: '',
     player2: ''
+  })
+  const movies = ref<Movie[]>(moviesJSON)
+
+  const getMovies = computed(() => {
+    const final = movies.value.map((movie: Movie) => {
+      return {
+        ...movie,
+        scenes: JSON.parse(movie.scenes).map((sceneId: number) => {
+          return getDefaultScenes.find((scene) => {
+            return scene.id === sceneId
+          })
+        })
+      }
+    })
+    console.log('final: ', final)
+    return final
   })
 
   // const getGameStartedFlag = computed<boolean>(() => gameStartedFlag.value)
@@ -55,6 +82,7 @@ export const useMovieStore = defineStore('useMovieStore', () => {
     setPlayerNames,
     getPlayerNames,
     addNewGamePlayed,
-    resetPlayerNames
+    resetPlayerNames,
+    getMovies
   }
 })
