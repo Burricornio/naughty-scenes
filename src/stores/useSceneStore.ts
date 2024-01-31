@@ -125,6 +125,12 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     })
   }
 
+  function selectAllScenes() {
+    scenes.value.forEach((scene: Scene) => {
+      scene.selected = true
+    })
+  }
+
   return {
     playMovie,
     getCurrentScene,
@@ -146,6 +152,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     getSelectedScenes,
     unselectScene,
     unselectAllScenes,
-    getDefaultScenes
+    getDefaultScenes,
+    selectAllScenes
   }
 })

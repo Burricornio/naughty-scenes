@@ -52,14 +52,15 @@ function toggleDropdown(): void {
 function selectMovie(movie: MovieParsed): void {
   selectedMovie.value = movie
   isDropdownOpen.value = false
+  sceneStore.selectAllScenes()
   sceneStore.playMovie(movie.scenes)
 }
 
 function loadAllScenes(): void {
   isDropdownOpen.value = false
   selectedMovie.value = null
-  sceneStore.unselectAllScenes()
   sceneStore.playMovie(sceneStore.getDefaultScenes)
+  sceneStore.unselectAllScenes()
 }
 
 const handleDocumentClick = (event: MouseEvent) => {
