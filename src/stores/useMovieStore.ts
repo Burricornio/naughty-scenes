@@ -14,6 +14,13 @@ interface Movie {
   scenes: string
 }
 
+export interface MovieParsed {
+  id: number
+  title: string
+  date: string
+  scenes: Scene[]
+}
+
 export const useMovieStore = defineStore('useMovieStore', () => {
   // const gameStartedFlag = ref<boolean>(false)
   const { getDefaultScenes } = useSceneStore()
@@ -36,7 +43,6 @@ export const useMovieStore = defineStore('useMovieStore', () => {
         })
       }
     })
-    console.log('final: ', final)
     return final
   })
 

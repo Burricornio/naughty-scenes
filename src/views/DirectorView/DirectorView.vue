@@ -4,14 +4,15 @@
       v-if="!countdownStore.showCountdown"
       title="DIRECTOR MODE"
     />
+    <LoadMovieBar v-if="!startedMovieFlag" />
     <MovieContainerComponent
       v-if="startedMovieFlag"
       @repeat-again="onRepeatAgain"
     />
     <DirectorStepsComponent
+      v-else
       :changeStartedMovieFlag="changeStartedMovieFlag"
       @update-director-movie="onUpdateDirectorMovie"
-      v-else
     />
   </div>
 </template>
@@ -24,6 +25,7 @@ import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import MovieContainerComponent from '@/components/director-view/MovieContainerComponent.vue'
 import DirectorStepsComponent from '@/components/director-view/DirectorStepsComponent.vue'
+import LoadMovieBar from '@/components/director-view/LoadMovieBar.vue'
 
 // STORE
 const sceneStore = useSceneStore()
