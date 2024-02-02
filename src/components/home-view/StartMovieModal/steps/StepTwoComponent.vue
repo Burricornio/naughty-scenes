@@ -59,6 +59,7 @@ function goToView(name: string) {
     max-width: 300px;
     min-height: 150px;
     margin: 10px;
+    border-radius: $border-radius;
 
     .row {
       @include flex;

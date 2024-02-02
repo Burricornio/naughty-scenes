@@ -104,6 +104,7 @@ function goToStepTwo() {
 <style lang="scss" scoped>
 .step-one-form {
   @include flex($flex-direction: column);
+  padding: $padding-01 $padding-02 0 $padding-02;
 
   .input-container {
     &:first-of-type {

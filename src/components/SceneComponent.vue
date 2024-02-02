@@ -51,6 +51,7 @@ function selectPreviousScene() {
 
 .instructions {
   background-color: $white;
+  color: $black;
   margin: 20px;
   padding: 10px;
 }

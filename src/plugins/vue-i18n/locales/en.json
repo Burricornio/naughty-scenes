@@ -31,6 +31,6 @@
     "min": "El valor mínimo permitido es {number}.",
     "max": "El valor máximo permitido es {number}."
   },
-  "play_again": "Jugar otra vez",
+  "play_again": "Repetir",
   "turn": "Turno de"
 }

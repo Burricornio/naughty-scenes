@@ -1,6 +1,6 @@
 <template>
-  <div class="header-view">
-    <h1>{{ title }}</h1>
+  <div class="header-container">
+    <h1 class="title">{{ title }}</h1>
     <GoToHomeButtonComponent />
   </div>
 </template>
@@ -18,7 +18,12 @@ const { title } = defineProps({
 </script>
 
 <style lang="scss" scoped>
-.header-view {
+.header-container {
   @include flex;
+  height: $header-height;
+
+  .title {
+    color: $white;
+  }
 }
 </style>

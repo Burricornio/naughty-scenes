@@ -47,8 +47,7 @@ const links = [
   .nav-toolbar {
     @include flex($justify-content: space-between);
     width: 100%;
-    max-width: 73.125rem;
-    height: 80px;
+    height: $header-height;
     color: $white;
 
     .app-name {
@@ -63,13 +62,13 @@ const links = [
       width: 300px;
 
       .nav-item {
-        padding: 0.5rem 0.75rem;
+        padding: $padding-01 $padding-02;
         font-size: 16px;
         cursor: pointer;
 
         &:hover {
-          background-color: $red-02;
-          border-radius: 8px;
+          background-color: $main-color;
+          border-radius: $border-radius;
         }
 
         .nav-link {

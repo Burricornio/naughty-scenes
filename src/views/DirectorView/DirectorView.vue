@@ -59,7 +59,6 @@ function onUpdateDirectorMovie(scenes: Scene[]) {
 <style lang="scss" scoped>
 .director-view {
   @include flex($flex-direction: column);
-  width: 1500px;
   margin-bottom: 20px;
 
   .steps-container {

@@ -7,7 +7,7 @@
     "previous": "Anterior",
     "random": "Random",
     "reset": "Resetear",
-    "restart": "Jugar otra vez",
+    "restart": "Repetir",
     "start": "Iniciar",
     "stop": "Detener",
     "increment": "Up",
@@ -17,6 +17,9 @@
     "select": "Seleccionar"
   },
   "component": {
+    "countdown": {
+      "times_up": "¡Tiempo terminado!"
+    },
     "step_one": {
       "player_name": "Nombre del jugador {number}:"
     },

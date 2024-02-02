@@ -38,21 +38,21 @@ function closeModal() {
   z-index: 1000;
 
   .modal-content {
-    @include borders;
+    @include borders($width: 1px, $color: $white);
     position: relative;
-    background: $white;
+    background: $black;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
-    min-width: 500px;
+    border-radius: $border-radius;
+    min-width: 550px;
     overflow: auto;
-    padding: 20px;
+    padding: $padding-02;
 
     button {
       position: absolute;
       height: 20px;
       min-width: 0;
       right: 20px;
-      color: $main-color;
+      color: $white;
       font-size: 18px;
       background-color: transparent;
       padding: 0;

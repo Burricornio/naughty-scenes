@@ -7,14 +7,33 @@ $pink: #f495e1;
 $purple: #776fa9;
 $white: #fff;
 $gray: #676067;
+$gray-02: #b3b0b3;
 $red-01: #ee5050;
 $red-02: #cf3d3d;
+$red-03: #ab5d5d;
 $light-blue: #2d9be5;
 $dark-blue: #3579b7;
-$main-color: $light-blue;
+$main-color: $red-02;
 $secondary-color: $pink;
 $error-color: $dark-red;
+$size-01: 10px;
+$size-02: 10px;
 
 // FONTS
 $main-font: 'Montserrat', sans-serif;
-$secondary-font: Arial, Helvetica, sans-serif;
+$secondary-font: circular, sans-serif;
+
+// BORDER
+$border-radius: 8px;
+
+// PADDINGS AND MARGIN
+$padding-01: $size-01;
+$padding-02: $size-02;
+$margin-01: $size-01;
+$margin-02: $size-02;
+
+// WIDTH
+$max-width: 60%;
+
+// HEIGTH
+$header-height: 80px;
