@@ -5,7 +5,7 @@
     "instructions": "Instrucciones de la escena número 1",
     "duration": 1,
     "rndBtnOptions": ["Mano", "Lengua", "Todo vale"],
-    "type": "default"
+    "type": "custom"
   },
   {
     "id": 2,
@@ -20,7 +20,7 @@
     "instructions": "Instrucciones de la escena número 3",
     "duration": 3,
     "rndBtnOptions": ["Solo Tocamientos", "Tocamientos y penetración"],
-    "type": "default"
+    "type": "custom"
   },
   {
     "id": 4,
@@ -36,7 +36,7 @@
     "instructions": "Instrucciones de la escena número 5",
     "duration": 5,
     "rndBtnOptions": ["Solo Tocamientos", "Tocamientos y penetración"],
-    "type": "default"
+    "type": "custom"
   },
   {
     "id": 6,

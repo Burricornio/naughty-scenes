@@ -38,6 +38,7 @@ const startedMovieFlag = ref<boolean>(false)
 // HOOKS
 onMounted(() => {
   countdownStore.setCountdownStatus(false)
+  sceneStore.unselectAllScenes()
 })
 
 // METHODS
