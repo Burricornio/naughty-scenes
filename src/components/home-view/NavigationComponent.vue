@@ -16,6 +16,7 @@ import { useI18n } from 'vue-i18n'
 
 // TEXTS
 const { t } = useI18n()
+
 const text = {
   appName: t('component.navigation.app_name'),
   login: t('component.navigation.login'),
