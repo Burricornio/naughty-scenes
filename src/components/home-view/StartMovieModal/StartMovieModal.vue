@@ -13,13 +13,13 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
 import useModal from '@/composables/useModal'
-import { Step } from '@/components/home/StartMovieModal/steps/types/stepsTypes'
+import { Step } from '@/components/home-view/StartMovieModal/steps/types/stepsTypes'
 import { useResetStore } from '@/stores/useResetStore'
 import { useModalsStore } from '@/stores/useModalsStore'
-import InstructionComponent from '@/components/home/StartMovieModal/InstructionComponent.vue'
+import InstructionComponent from '@/components/home-view/StartMovieModal/InstructionComponent.vue'
 import ModalComponent from '@/components/ModalComponent.vue'
-import StepOneComponent from '@/components/home/StartMovieModal/steps/StepOneComponent.vue'
-import StepTwoComponent from '@/components/home/StartMovieModal/steps/StepTwoComponent.vue'
+import StepOneComponent from '@/components/home-view/StartMovieModal/steps/StepOneComponent.vue'
+import StepTwoComponent from '@/components/home-view/StartMovieModal/steps/StepTwoComponent.vue'
 
 // STORE
 const { resetGame } = useResetStore()
@@ -43,3 +43,4 @@ function closeStartMovieModal() {
   closeModal()
 }
 </script>
+@/components/home-view/StartMovieModal/steps/types/stepsTypes

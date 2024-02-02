@@ -29,6 +29,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+  background-color: $red-01;
+  color: $white;
 	line-height: 1;
 }
 ol, ul {
@@ -73,18 +75,18 @@ body {
 }
 
 #app {
-  @include flex($flex-direction: column);
-  max-width: 1280px;
+  width: 100%;
+  height: 100vh;
+  background-color: $red-01;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
 h1 {
+  font-family: circular,sans-serif;
   font-size: 35px;
-  color: $dark-blue;
+  color: $white;
   font-weight: bold;
-  text-transform: uppercase;
   margin: 20px;
 }
 

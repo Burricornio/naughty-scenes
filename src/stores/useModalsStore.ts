@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { Step } from '@/components/home/StartMovieModal/steps/types/stepsTypes'
+import { Step } from '@/components/home-view/StartMovieModal/steps/types/stepsTypes'
 
 export const useModalsStore = defineStore('useModalsStore', () => {
   const startMovieModalCurrentStep = ref<Step>(Step.INITIAL)
