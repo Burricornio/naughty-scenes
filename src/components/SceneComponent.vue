@@ -1,11 +1,11 @@
 <template>
-  <div v-if="scene">
+  <div class="scene-component-continer" v-if="scene">
     <NextAndPreviousButtonsComponent
       :goNext="selectNextScene"
       :goPrev="selectPreviousScene"
       :prevButtonDisabled="prevButtonDisabled"
+      :title="scene.title"
     />
-    <h2 class="title">{{ scene.title }}</h2>
     <p class="instructions">{{ scene.instructions }}</p>
     <RandomButtonComponent
       v-if="scene.rndBtnOptions && scene.rndBtnOptions.length"
@@ -44,15 +44,13 @@ function selectPreviousScene() {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  text-transform: uppercase;
-  font-size: 22px;
-}
-
-.instructions {
-  background-color: $white;
-  color: $black;
-  margin: 20px;
-  padding: 10px;
+.scene-component-continer {
+  .instructions {
+    @include flex;
+    font-family: $secondary-font;
+    height: 40px;
+    background-color: $white;
+    color: $main-color;
+  }
 }
 </style>

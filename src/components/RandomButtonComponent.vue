@@ -1,7 +1,21 @@
+<template>
+  <div class="random-button-container" v-if="options && options.length">
+    <button
+      v-if="!randomOption"
+      @click="getRandomOption(options)"
+      :title="text.random"
+    >
+      <Icon class="icon" icon="mdi:dice" />
+    </button>
+    <div v-else class="random-text">{{ randomOption }}</div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { getRandomArrayElement } from '@/helpers/array'
+import { Icon } from '@iconify/vue'
 
 // PROPS
 const props = defineProps<{
@@ -30,9 +44,28 @@ function getRandomOption(options: string[]): void {
 }
 </script>
 
-<template>
-  <div v-if="options && options.length">
-    <button @click="getRandomOption(options)">{{ text.random }}</button>
-    <div>{{ randomOption }}</div>
-  </div>
-</template>
+<style lang="scss" scoped>
+.random-button-container {
+  @include flex;
+  @include round-button;
+  height: 54px;
+  border-left: 4px solid $white;
+  border-right: 4px solid $white;
+  border-top: 2px solid $main-color;
+  border-bottom: 2px solid $main-color;
+  background-color: $white;
+
+  button {
+    border-color: $main-color;
+    color: $main-color;
+
+    &:hover {
+      border-color: $main-color;
+    }
+  }
+
+  .random-text {
+    color: $main-color;
+  }
+}
+</style>

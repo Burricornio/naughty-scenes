@@ -88,6 +88,11 @@ body {
   text-align: center;
 }
 
+.view-container {
+  background: $main-color;
+  border-radius: $border-radius;
+}
+
 h1 {
   font-family: $secondary-font;
   font-size: 35px;

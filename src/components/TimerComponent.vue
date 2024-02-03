@@ -1,16 +1,5 @@
 <template>
   <div class="timer-container">
-    <div>
-      <button @click="startTimer" :disabled="isTimerRunning">
-        {{ startButtonText }}
-      </button>
-      <button @click="stopTimer" :disabled="!isTimerRunning">
-        {{ text.stop }}
-      </button>
-      <button @click="resetTimer" :disabled="!canReset">
-        {{ text.reset }}
-      </button>
-    </div>
     <DurationComponent
       class="duration"
       @up-duration="increment"
@@ -19,6 +8,21 @@
       :seconds="seconds"
       :disabledButtons="isTimerRunning"
     />
+    <div class="timer-buttons">
+      <button
+        @click="startTimer"
+        :disabled="isTimerRunning"
+        :title="startButtonText"
+      >
+        <Icon icon="mdi:play" />
+      </button>
+      <button @click="stopTimer" :disabled="!isTimerRunning" :title="text.stop">
+        <Icon icon="mdi:stop" />
+      </button>
+      <button @click="resetTimer" :disabled="!canReset" :title="text.reset">
+        <Icon icon="mdi:restore" />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -26,6 +30,7 @@
 import { ref, watchEffect, watch } from 'vue'
 import DurationComponent from '@/components/DurationComponent.vue'
 import { useI18n } from 'vue-i18n'
+import { Icon } from '@iconify/vue'
 
 // PROPS
 const props = defineProps({
@@ -123,9 +128,20 @@ function decrement(): void {
 
 <style lang="scss" scoped>
 .timer-container {
-  margin: 20px;
-}
-.duration {
-  margin: 10px;
+  .timer-buttons {
+    @include flex;
+    height: 100px;
+    background: $white;
+    border-radius: 0 0 $border-radius $border-radius;
+
+    button {
+      color: $white;
+      font-size: 20px;
+      background-color: $main-color;
+      min-width: 60px;
+      border: none;
+      margin: 8px;
+    }
+  }
 }
 </style>

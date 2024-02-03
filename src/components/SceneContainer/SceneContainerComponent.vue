@@ -1,5 +1,8 @@
 <template>
-  <h2 v-if="!sceneStore.allScenesPlayed && sceneStore.getCurrentScene">
+  <h2
+    class="turn-text"
+    v-if="!sceneStore.allScenesPlayed && sceneStore.getCurrentScene"
+  >
     {{ text.turn }}: {{ playerTurn }}
   </h2>
   <SceneComponent
@@ -48,3 +51,16 @@ function selectPreviousScene(): void {
   sceneStore.popPlayedSceneId()
 }
 </script>
+
+<style lang="scss">
+.turn-text {
+  @include flex;
+  width: 100%;
+  background: $white;
+  height: 40px;
+  color: $main-color;
+  font-weight: bold;
+  margin: 0;
+  border-radius: $border-radius $border-radius 0 0;
+}
+</style>

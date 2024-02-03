@@ -8,3 +8,31 @@
   align-items: $align-items;
   flex-direction: $flex-direction;
 }
+
+@mixin round-button {
+
+  button {
+    @include flex;
+    @include borders($color: $white, $width: 2px);
+    position: relative;
+    background-color: transparent;
+    min-width: 40px;
+    border-radius: 50%;
+    margin: 0;
+
+    &:disabled {
+      border-color: $disabled-color;
+      background-color: $disabled-color;
+    }
+
+    &:hover {
+      border-color: $action-color;
+    }
+
+    .icon {
+      position: absolute;
+      top: 4px;
+      font-size: 25px;
+    }
+  }
+}

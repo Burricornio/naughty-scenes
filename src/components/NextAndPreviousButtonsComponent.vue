@@ -1,5 +1,22 @@
+<template>
+  <div class="next-and-previous-container">
+    <button
+      @click="props.goPrev"
+      :disabled="prevButtonDisabled"
+      :title="text.previous"
+    >
+      <Icon class="icon" icon="mdi:chevron-double-left" />
+    </button>
+    <span class="title">{{ title }}</span>
+    <button @click="props.goNext" :title="text.next">
+      <Icon class="icon" icon="mdi:chevron-double-right" />
+    </button>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { Icon } from '@iconify/vue'
 
 // PROPS
 const props = defineProps({
@@ -14,6 +31,10 @@ const props = defineProps({
   prevButtonDisabled: {
     type: Boolean,
     default: false
+  },
+  title: {
+    type: String,
+    required: true
   }
 })
 
@@ -26,13 +47,20 @@ const text = {
 }
 </script>
 
-<template>
-  <div>
-    <button @click="props.goPrev" :disabled="prevButtonDisabled">
-      {{ text.previous }}
-    </button>
-    <button @click="props.goNext">
-      {{ text.next }}
-    </button>
-  </div>
-</template>
+<style lang="scss" scoped>
+.next-and-previous-container {
+  @include flex;
+  @include round-button;
+  background: $main-color;
+  height: 54px;
+  border-left: 4px solid $white;
+  border-right: 4px solid $white;
+  .title {
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: bold;
+    color: $white;
+    margin: 0 80px;
+  }
+}
+</style>

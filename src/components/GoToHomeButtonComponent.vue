@@ -1,8 +1,10 @@
 <template>
-  <button class="go-home-button-container" @click="goToHome">
-    <span>Ir a inicio</span>
-    <Icon class="icon" icon="material-symbols:home" />
-  </button>
+  <div class="go-home-button-container">
+    <button @click="goToHome" title="inicio">
+      <!-- <span>Ir a inicio</span> -->
+      <Icon class="icon" icon="material-symbols:home" />
+    </button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -26,12 +28,7 @@ function goToHome() {
 <style lang="scss" scoped>
 .go-home-button-container {
   @include flex;
-  padding: 10px;
-  margin-left: 20px;
-
-  .icon {
-    margin-left: 4px;
-    font-size: 25px;
-  }
+  @include round-button;
+  position: relative;
 }
 </style>
