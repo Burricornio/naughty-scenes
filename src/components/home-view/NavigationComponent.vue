@@ -68,7 +68,8 @@ const links = [
         cursor: pointer;
 
         &:hover {
-          background-color: $main-color;
+          border: 1px solid $white;
+          background-color: $action-color;
           border-radius: $border-radius;
         }
 

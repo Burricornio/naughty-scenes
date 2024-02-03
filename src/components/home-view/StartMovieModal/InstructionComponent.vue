@@ -1,9 +1,7 @@
 <template>
   <div class="instruction-container">
-    <h1>- PASO {{ modalsStore.currentStep }} -</h1>
-    <p>{{ intructionText }}.</p>
+    <p class="instruction-text">{{ intructionText }}</p>
   </div>
-  <hr />
 </template>
 
 <script setup lang="ts">
@@ -18,9 +16,9 @@ const modalsStore = useModalsStore()
 const intructionText = computed<string>(() => {
   switch (modalsStore.currentStep) {
     case Step.INSERT_PLAYER_NAMES:
-      return 'Introduce el nombre de los participantes'
+      return 'Introduce el nombre de los actores'
     case Step.SELECT_MOVIE_MODE:
-      return 'Selecciona el modo de película que quieres'
+      return 'Selecciona el modo de película'
     default:
       return ''
   }
@@ -30,10 +28,15 @@ const intructionText = computed<string>(() => {
 <style lang="scss" scoped>
 .instruction-container {
   @include flex($flex-direction: column);
-  margin-top: 30px;
+  margin-top: 20px;
 
-  p {
+  .instruction-text {
+    color: $modal-color;
+    font-size: 20px;
+    font-weight: bold;
     margin: 10px;
+    text-transform: uppercase;
+    padding-top: 10px;
   }
 }
 </style>

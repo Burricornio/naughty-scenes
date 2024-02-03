@@ -1,3 +1,14 @@
+// PALLETE
+$fuchsia-molon: #E833A0;
+$pink-molon: #ff3859;
+$blue-molon: #3628b8;
+$purple-molon: #9E5AD7;
+$blue-molon-02: #0075EB;
+$blue-molon-03: #007FD4;
+$green-molon: #158f15;
+$yellow-molon: #acb328;
+$orange-molon: #f2a702;
+
 // COLORS
 $black: #211227;
 $dark-red: #9e0140;
@@ -13,11 +24,16 @@ $red-02: #cf3d3d;
 $red-03: #ab5d5d;
 $light-blue: #2d9be5;
 $dark-blue: #3579b7;
-$main-color: $red-02;
-$secondary-color: $pink;
-$error-color: $dark-red;
+$main-color: $pink-molon;
+$secondary-color: $blue-molon;
+$action-color: $light-blue;
+$error-color: #d80c0c;
 $size-01: 10px;
 $size-02: 10px;
+$modal-color: $light-blue;
+$disabled-color: #e9e9e9;
+
+// ea039d
 
 // FONTS
 $main-font: 'Montserrat', sans-serif;

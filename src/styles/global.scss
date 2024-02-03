@@ -29,7 +29,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-  background-color: $red-01;
+  background-color: $main-color;
   color: $white;
 	line-height: 1;
 }
@@ -74,11 +74,16 @@ body {
   min-height: 100vh;
 }
 
+::placeholder {
+  color: #999;
+  opacity: 1; /* Firefox */
+}
+
 #app {
   width: 100%;
   max-width: $max-width;
   height: 100vh;
-  background-color: $red-01;
+  background-color: $main-color;
   margin: 0 auto;
   text-align: center;
 }
@@ -86,45 +91,45 @@ body {
 h1 {
   font-family: $secondary-font;
   font-size: 35px;
-  color: $white;
+  color: $green-molon;
+  font-weight: bold;
   margin: 20px;
 }
 
 h2 {
   font-family: $secondary-font;
   font-size: 20px;
-  color: $white;
+  color: $green-molon;
   margin: 20px;
 }
 
 p {
   font-family: $secondary-font;
-  color: $white;
+  color: $black;
   font-size: 16px;
 }
 
 label {
   font-size: 14px;
-  color: $white;
+  color: $black;
   margin: 6px 0;
 }
 
 input {
+  @include borders($color: lightgray);
   width: 100%;
   height: 40px;
-  color: $red-02;
+  color: $black;
   box-sizing: border-box;
   padding: 0 $padding-01;
   font-size: 16px;
-  font-weight: bold;
-  border: none;
-  background-color: $white;
+  background-color: $disabled-color;
   border-radius: $border-radius;
 
   &:focus,
   &:hover {
     outline: none;
-    border: 1px solid $red-01;
+    border: 1px solid $modal-color;
   }
 }
 
@@ -150,27 +155,29 @@ hr {
 
 button {
   font-family: $secondary-font;
+  font-weight: bold;
   min-width: 110px;
   height: 40px;
-  color: #fff;
+  color: $white;
   padding: 5px 10px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 2px solid $black;
-  background-color: $black;
+  border: 2px solid $modal-color;
+  background-color: $modal-color;
   text-transform: uppercase;
   margin: 10px;
   border-radius: $border-radius;
 
   &:disabled {
     border: none;
-    background: $gray;
+    background: $disabled-color;
+    color: $black;
     pointer-events: none;
   }
 
   &:hover {
-    background: #fff;
-    color: $main-color;
-    border-color: $main-color;
+    background: $white;
+    color: $modal-color;
+    border-color: $modal-color;
   }
 }

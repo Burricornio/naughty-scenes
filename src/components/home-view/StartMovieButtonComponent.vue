@@ -34,56 +34,55 @@ const startTextButton = computed<string>(() =>
 
 <style lang="scss" scoped>
 .start-movie-btn {
-  width: 150px;
-  height: 150px;
-  background-color: $black;
+  width: 145px;
+  height: 145px;
+  color: $white;
+  background-color: $blue-molon;
   border-radius: 50%;
   text-transform: uppercase;
   font-size: 26px;
   animation: pulse 2s infinite;
   font-weight: bold;
   outline: none;
-  border: 2px solid $black;
+  border: 1px solid $white;
   cursor: pointer;
 
   &:hover {
-    color: $red-02;
-    background-color: $white;
-    box-shadow: 0 0 0 0 $red-02;
-    border-color: $red-02;
+    color: $white;
+    background-color: $light-blue;
     animation: pulseHover 2s infinite;
   }
 }
 
 @keyframes pulse {
   0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 $red-02;
+    transform: scale(0.98);
+    box-shadow: 0 0 0 0 $white;
   }
 
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 4px $red-02;
+    box-shadow: 0 0 0 1px $white;
   }
 
   100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 $red-02;
+    transform: scale(0.98);
+    box-shadow: 0 0 0 0 $white;
   }
 }
 
 @keyframes pulseHover {
   0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 $red-02;
+    transform: scale(0.98);
+    box-shadow: 0 0 0 0 $white;
   }
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 4px $red-02;
+    box-shadow: 0 0 0 1px $white;
   }
   100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 $red-02;
+    transform: scale(0.98);
+    box-shadow: 0 0 0 0 $white;
   }
 }
 </style>

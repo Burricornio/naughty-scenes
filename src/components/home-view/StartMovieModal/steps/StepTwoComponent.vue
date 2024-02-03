@@ -23,19 +23,19 @@ const router = useRouter()
 
 const modes = [
   {
-    name: 'Impro mode',
+    name: 'Impro',
     action: () => goToView('Impro'),
     explanation:
       'En este modo de juego las escenas van apareciendo aleatoriamente de una a una'
   },
   {
-    name: 'Actor mode',
+    name: 'Actor',
     action: () => goToView('Actor'),
     explanation:
-      'En este modo de juego seelciionas el número de escenas que quieres rodar'
+      'En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar'
   },
   {
-    name: 'Director mode',
+    name: 'Director',
     action: () => goToView('Director'),
     explanation:
       'En este modo de juego lo configuras todo como quieras y puedes cargar y grabar escenas'
@@ -55,16 +55,12 @@ function goToView(name: string) {
 
   .mode-container {
     @include flex($flex-direction: column);
-    @include borders;
+    @include borders($color: $modal-color);
     max-width: 300px;
     min-height: 150px;
     margin: 10px;
     border-radius: $border-radius;
-
-    .row {
-      @include flex;
-      height: 50px;
-    }
+    align-self: flex-start;
 
     .explanation {
       align-self: flex-start;

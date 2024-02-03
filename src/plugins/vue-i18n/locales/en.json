@@ -17,7 +17,7 @@
   },
   "component": {
     "step_one": {
-      "player_name": "Nombre del jugador {number}:"
+      "player_name": "actor {number}:"
     },
     "step_two": {
       "choose_cards_number": "Elige el número de cartas",

@@ -1,26 +1,32 @@
 <template>
   <form class="step-one-form" autocomplete="off">
     <div class="input-container">
-      <label>{{ text.playerName1 }}</label>
-      <input
-        type="text"
-        v-bind="player1"
-        :id="PLAYER_1"
-        :name="PLAYER_1"
-        @change="($event) => saveName($event, PLAYER_1)"
-      />
-      <p class="errors">{{ errors.player1 }}</p>
+      <!-- <label>{{ text.playerName1 }}</label> -->
+      <div class="input-error">
+        <input
+          type="text"
+          v-bind="player1"
+          :id="PLAYER_1"
+          :name="PLAYER_1"
+          @change="($event) => saveName($event, PLAYER_1)"
+          :placeholder="text.playerName1"
+        />
+        <p class="errors">{{ errors.player1 }}</p>
+      </div>
     </div>
     <div class="input-container">
-      <label>{{ text.playerName2 }}</label>
-      <input
-        type="text"
-        v-bind="player2"
-        :id="PLAYER_2"
-        :name="PLAYER_2"
-        @change="($event) => saveName($event, PLAYER_2)"
-      />
-      <p class="errors">{{ errors.player2 }}</p>
+      <!-- <label>{{ text.playerName2 }}</label> -->
+      <div class="input-error">
+        <input
+          type="text"
+          v-bind="player2"
+          :id="PLAYER_2"
+          :name="PLAYER_2"
+          @change="($event) => saveName($event, PLAYER_2)"
+          :placeholder="text.playerName2"
+        />
+        <p class="errors">{{ errors.player2 }}</p>
+      </div>
     </div>
     <button :disabled="disabledButton" @click="goToStepTwo">SIGUIENTE</button>
   </form>
@@ -105,10 +111,26 @@ function goToStepTwo() {
 .step-one-form {
   @include flex($flex-direction: column);
   padding: $padding-01 $padding-02 0 $padding-02;
+  margin-top: 10px;
 
   .input-container {
+    @include flex;
+
     &:first-of-type {
       margin-bottom: 20px;
+    }
+
+    label {
+      align-self: flex-start;
+      width: 60px;
+      line-height: 23px;
+      margin-right: 4px;
+      text-align: left;
+    }
+
+    .input-error {
+      @include flex($flex-direction: column, $align-items: flex-start);
+      width: 100%;
     }
     .errors {
       min-height: 20px;
@@ -120,8 +142,7 @@ function goToStepTwo() {
 
   button {
     align-self: flex-end;
-    margin-top: 20px;
+    margin-right: 0;
   }
 }
 </style>
-@/components/home-view/StartMovieModal/steps/types/stepsTypes

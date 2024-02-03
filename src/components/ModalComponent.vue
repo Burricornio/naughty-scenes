@@ -38,30 +38,27 @@ function closeModal() {
   z-index: 1000;
 
   .modal-content {
-    @include borders($width: 1px, $color: $white);
+    @include borders($width: 5px, $color: $modal-color);
     position: relative;
-    background: $black;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    top: -10%;
+    background: $white;
     border-radius: $border-radius;
     min-width: 550px;
     overflow: auto;
-    padding: $padding-02;
+    padding: $padding-01;
 
     button {
       position: absolute;
       height: 20px;
       min-width: 0;
+      top: 14px;
       right: 20px;
-      color: $white;
-      font-size: 18px;
+      color: $modal-color;
+      font-size: 16px;
       background-color: transparent;
       padding: 0;
       border: none;
       margin: 0;
-    }
-
-    button:hover {
-      color: $secondary-color;
       cursor: pointer;
     }
   }

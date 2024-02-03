@@ -46,8 +46,17 @@ onMounted(() => {
 
 <style lang="scss">
 .countdown-container {
+  @include borders;
   @include flex;
   height: 100vh;
+
+  .numbers {
+    @include borders($color: $white, $width: 4px);
+    @include flex;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+  }
 
   .numbers,
   .timesup {
