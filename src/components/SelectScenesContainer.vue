@@ -15,8 +15,8 @@
             <h2>Open: {{ scene.isOpenAccordion }}</h2>
             <Icon
               v-if="scene.type === 'custom'"
-              icon="ion:close-round"
-              @click.stop="deleteScene(scene.id)"
+              icon="mdi:delete"
+              @click.stop="deleteScene(scene)"
             />
           </div>
           <h2>Selected: {{ scene.selected }}</h2>
@@ -28,20 +28,26 @@
       </li>
     </ul>
   </section>
+  <RemoveCustomSceneModal :scene="selectedCustomSceneToRemove" />
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { Scene, useSceneStore } from '@/stores/useSceneStore'
+import { computed, ref } from 'vue'
+import { Scene } from '@/stores/useSceneStore'
+import RemoveCustomSceneModal from '@/components/director-view/RemoveCustomSceneModal.vue'
 import { Icon } from '@iconify/vue'
+import useModal from '@/composables/useModal'
 
 // PROPS
 const props = defineProps<{
   scenes: Scene[]
 }>()
 
+// DATA
+const selectedCustomSceneToRemove = ref<Scene | null>(null)
+
 // STORE
-const sceneStore = useSceneStore()
+const { openRemoveCustomSceneModal } = useModal()
 
 // COMPUTED
 const modifiedScenes = computed(() => props.scenes)
@@ -51,8 +57,9 @@ function addSceneToMovie(scene: Scene) {
   scene.selected = !scene.selected
 }
 
-function deleteScene(sceneId: number) {
-  sceneStore.deleteCustomScene(sceneId)
+function deleteScene(scene: Scene) {
+  selectedCustomSceneToRemove.value = scene
+  openRemoveCustomSceneModal()
 }
 </script>
 

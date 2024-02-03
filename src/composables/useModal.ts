@@ -4,6 +4,8 @@ const open = ref<boolean>(false)
 
 const openAddNewScene = ref<boolean>(false)
 
+const openRemoveCustomScene = ref<boolean>(false)
+
 export default function useModal() {
   const openModal = () => {
     open.value = true
@@ -22,12 +24,24 @@ export default function useModal() {
     openAddNewScene.value = false
   }
 
+  // ADD NEW MODAL
+  const openRemoveCustomSceneModal = () => {
+    openRemoveCustomScene.value = true
+  }
+
+  const closeRemoveCustomSceneModal = () => {
+    openRemoveCustomScene.value = false
+  }
+
   return {
     open,
     openModal,
     closeModal,
     openAddNewSceneModal,
     openAddNewScene,
-    closeAddNewSceneModal
+    closeAddNewSceneModal,
+    openRemoveCustomSceneModal,
+    closeRemoveCustomSceneModal,
+    openRemoveCustomScene
   }
 }
