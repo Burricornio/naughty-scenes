@@ -48,9 +48,8 @@ function getRandomOption(options: string[]): void {
 .random-button-container {
   @include flex;
   @include round-button;
+  width: 100%;
   height: 54px;
-  border-left: 4px solid $white;
-  border-right: 4px solid $white;
   border-top: 2px solid $main-color;
   border-bottom: 2px solid $main-color;
   background-color: $white;

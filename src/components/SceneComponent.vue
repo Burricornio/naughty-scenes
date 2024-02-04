@@ -1,5 +1,5 @@
 <template>
-  <div class="scene-component-continer" v-if="scene">
+  <div class="scene-component-container" v-if="scene">
     <NextAndPreviousButtonsComponent
       :goNext="selectNextScene"
       :goPrev="selectPreviousScene"
@@ -44,9 +44,14 @@ function selectPreviousScene() {
 </script>
 
 <style lang="scss" scoped>
-.scene-component-continer {
+.scene-component-container {
+  @include flex($flex-direction: column);
+  width: 100%;
+  flex: 1;
   .instructions {
     @include flex;
+    width: 100%;
+    flex: 1;
     font-family: $secondary-font;
     height: 40px;
     background-color: $white;

@@ -47,7 +47,7 @@ const links = [
 
   .nav-toolbar {
     @include flex($justify-content: space-between);
-    width: $max-width;
+    width: 80%;
     max-width: 1300px;
     height: $header-height;
     color: $white;

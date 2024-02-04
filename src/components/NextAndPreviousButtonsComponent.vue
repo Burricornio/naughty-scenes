@@ -53,6 +53,7 @@ const text = {
   @include round-button;
   background: $main-color;
   height: 54px;
+  width: 100%;
   .title {
     text-transform: uppercase;
     font-size: 22px;

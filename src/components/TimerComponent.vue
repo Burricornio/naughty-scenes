@@ -128,11 +128,11 @@ function decrement(): void {
 
 <style lang="scss" scoped>
 .timer-container {
+  width: 100%;
   .timer-buttons {
     @include flex;
     height: 100px;
     background: $white;
-    border-radius: 0 0 $border-radius $border-radius;
 
     button {
       color: $white;

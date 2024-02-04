@@ -88,10 +88,12 @@ body {
 }
 
 .view-container {
-  margin: 2% auto;
+  @include flex($flex-direction: column);
+  margin: 30px auto;
   max-width: $max-width;
   background: $main-color;
   border-radius: $border-radius;
+  height: calc(100% - 60px);
 }
 
 h1 {
