@@ -145,7 +145,7 @@ function decrement(): void {
       &:disabled {
         border: none;
         background: $disabled-color;
-        color: $black;
+        color: $disabled-text;
         pointer-events: none;
       }
 

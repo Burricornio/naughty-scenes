@@ -51,7 +51,7 @@ function goToView(name: string) {
 <style lang="scss" scoped>
 .step-two-container {
   @include flex;
-  margin-bottom: 20px;
+  margin: 10px 0 20px 0;
 
   .mode-container {
     @include flex($flex-direction: column);

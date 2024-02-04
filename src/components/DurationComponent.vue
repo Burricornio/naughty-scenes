@@ -113,6 +113,11 @@ function formatTime(value: number): string {
           background-color: $action-color;
         }
 
+        &:disabled {
+          background-color: $disabled-color;
+          color: $disabled-text;
+        }
+
         &:first-of-type {
           border-bottom: 1px solid $white;
         }

@@ -18,7 +18,7 @@ const intructionText = computed<string>(() => {
     case Step.INSERT_PLAYER_NAMES:
       return 'Introduce el nombre de los actores'
     case Step.SELECT_MOVIE_MODE:
-      return 'Selecciona el modo de película'
+      return 'Selecciona el modo de juego'
     default:
       return ''
   }

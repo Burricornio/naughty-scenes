@@ -3,7 +3,8 @@
     class="turn-text"
     v-if="!sceneStore.allScenesPlayed && sceneStore.getCurrentScene"
   >
-    {{ text.turn }}: {{ playerTurn }}
+    {{ text.turn }}:
+    <span class="player-name">{{ playerTurn }}</span>
   </h2>
   <SceneComponent
     :scene="sceneStore.getCurrentScene"
@@ -57,9 +58,15 @@ function selectPreviousScene(): void {
   @include flex;
   width: 100%;
   background: $white;
-  height: 40px;
+  height: 54px;
   color: $main-color;
   font-weight: bold;
   margin: 0;
+
+  .player-name {
+    color: $black;
+    margin-left: 5px;
+    text-transform: uppercase;
+  }
 }
 </style>
