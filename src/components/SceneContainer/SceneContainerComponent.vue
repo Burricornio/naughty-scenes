@@ -12,7 +12,6 @@
     @select-next-scene="selectNextScene"
     @select-previous-scene="selectPreviousScene"
   />
-  <BannerComponent />
 </template>
 
 <script setup lang="ts">
@@ -21,7 +20,6 @@ import { useI18n } from 'vue-i18n'
 import { useMovieStore } from '@/stores/useMovieStore'
 import { useSceneStore } from '@/stores/useSceneStore'
 import SceneComponent from '@/components/SceneComponent.vue'
-import BannerComponent from '@/components/BannerComponent.vue'
 
 // STORE
 const sceneStore = useSceneStore()

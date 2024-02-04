@@ -9,6 +9,7 @@
       :playedSceneIds="sceneStore.getPlayedSceneIds"
       :currentScene="sceneStore.getCurrentScene"
     />
+    <BannerComponent />
     <MovieEndedComponent @repeat-again="onRepeatAgain" />
   </div>
 </template>
@@ -22,6 +23,7 @@ import MovieEndedComponent from '@/components/MovieEndedComponent.vue'
 import SceneContainerComponent from '@/components/SceneContainer/SceneContainerComponent.vue'
 import SceneMiniaturesComponent from '@/components/SceneMiniaturesComponent.vue'
 import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
+import BannerComponent from '@/components/BannerComponent.vue'
 
 // STORE
 const sceneStore = useSceneStore()

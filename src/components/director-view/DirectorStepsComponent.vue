@@ -14,9 +14,15 @@
       <button @click="playMovie">START MOVIE</button>
     </div>
     <!-- STEP 1 -->
-    <div v-if="step === DirectorStep.SELECT_SCENES">
-      <p>Selecciona las escenas que quieras rodar</p>
-      <span>{{ numberOfSelectedScenes }}</span>
+    <div
+      class="selected-scenes-info-bar"
+      v-if="step === DirectorStep.SELECT_SCENES"
+    >
+      <div class="info-text">
+        <p>Selecciona las escenas que quieras rodar</p>
+        <span class="selected-number">{{ numberOfSelectedScenes }}</span>
+      </div>
+
       <!-- <SelectScenesNumberInputComponent
         :scenesNumber="numberOfScenes"
         @change-scenes-number-length="selectRandomScenes"
@@ -35,6 +41,7 @@
       A configurar pelicula
     </div>
   </section>
+  <BannerComponent />
   <AddNewSceneModal />
 </template>
 
@@ -48,6 +55,7 @@ import { Scene, useSceneStore } from '@/stores/useSceneStore'
 import useModal from '@/composables/useModal'
 import { EmittedEvent } from '@/events'
 import { useCountdownStore } from '@/stores/useCountdownStore'
+import BannerComponent from '@/components/BannerComponent.vue'
 
 // PROPS
 const props = defineProps<{
@@ -105,3 +113,30 @@ function playMovie() {
   setCountdownStatus(true)
 }
 </script>
+
+<style lang="scss" scoped>
+.director-steps {
+  @include flex($flex-direction: column);
+  width: 100%;
+  flex: 1;
+
+  .selected-scenes-info-bar {
+    background-color: $white;
+    width: 100%;
+    flex: 1;
+    .info-text {
+      @include flex;
+      color: $main-color;
+      padding: 20px;
+
+      p {
+        color: $main-color;
+      }
+
+      .selected-number {
+        margin-left: 8px;
+      }
+    }
+  }
+}
+</style>

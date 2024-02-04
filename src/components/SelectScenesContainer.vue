@@ -69,6 +69,7 @@ function deleteScene(scene: Scene) {
   .scene-list {
     @include flex;
     flex-wrap: wrap;
+    flex: 1;
     justify-content: flex-start;
     width: 100%;
     margin-bottom: 20px;

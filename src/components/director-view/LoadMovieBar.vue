@@ -26,7 +26,8 @@ function setLoadedCustomMovieFlag(status: boolean): void {
 <style lang="scss" scoped>
 .load-movie-bar-component {
   @include flex;
+  width: 100%;
+  height: 100px;
   background-color: white;
-  padding: 20px;
 }
 </style>

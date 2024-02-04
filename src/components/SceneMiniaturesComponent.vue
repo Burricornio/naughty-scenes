@@ -52,9 +52,8 @@ function showSceneInfoModal(scene: Scene) {
 
 <style lang="scss" scoped>
 .scene-miniatures-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex($justify-content: space-between);
+  width: 100%;
   list-style-type: none;
   background: lightpink;
   margin-top: 20px;
@@ -72,12 +71,13 @@ function showSceneInfoModal(scene: Scene) {
   }
 
   .current-scene {
-    background: red;
+    background: $action-color;
   }
 
   .played-scene {
     position: relative;
-    background: green;
+    background: $black;
+    color: $white;
   }
 }
 
