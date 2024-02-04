@@ -1,6 +1,6 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
-  <div v-else>
+  <div class="view-container" v-else>
     <HeaderViewComponent title="ACTOR MODE" />
     <SceneContainerComponent />
     <SceneMiniaturesComponent

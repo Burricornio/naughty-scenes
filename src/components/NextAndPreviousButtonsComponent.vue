@@ -53,14 +53,12 @@ const text = {
   @include round-button;
   background: $main-color;
   height: 54px;
-  border-left: 4px solid $white;
-  border-right: 4px solid $white;
   .title {
     text-transform: uppercase;
     font-size: 22px;
     font-weight: bold;
     color: $white;
-    margin: 0 80px;
+    margin: 0 10%;
   }
 }
 </style>

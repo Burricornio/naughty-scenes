@@ -61,6 +61,5 @@ function selectPreviousScene(): void {
   color: $main-color;
   font-weight: bold;
   margin: 0;
-  border-radius: $border-radius $border-radius 0 0;
 }
 </style>

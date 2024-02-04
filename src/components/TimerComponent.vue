@@ -141,6 +141,17 @@ function decrement(): void {
       min-width: 60px;
       border: none;
       margin: 8px;
+
+      &:disabled {
+        border: none;
+        background: $disabled-color;
+        color: $black;
+        pointer-events: none;
+      }
+
+      &:hover {
+        background-color: $action-color;
+      }
     }
   }
 }

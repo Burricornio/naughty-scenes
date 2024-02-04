@@ -109,6 +109,10 @@ function formatTime(value: number): string {
         background: $main-color;
         border: none;
 
+        &:hover {
+          background-color: $action-color;
+        }
+
         &:first-of-type {
           border-bottom: 1px solid $white;
         }

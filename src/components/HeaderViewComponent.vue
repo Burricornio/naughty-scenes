@@ -22,6 +22,7 @@ const { title } = defineProps({
   @include flex;
   height: $header-height;
   background-color: $main-color;
+  border-radius: $border-radius;
 
   .title {
     color: $white;

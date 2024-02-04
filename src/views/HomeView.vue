@@ -32,13 +32,14 @@ const text = {
 <style lang="scss" scoped>
 .home-view-content {
   @include flex;
+  height: calc(100% - 150px);
+  padding-bottom: 70px;
 
   .slogan-container {
     @include flex($flex-direction: column);
-    margin-top: 180px;
+    height: 100%;
     .slogan {
       align-self: flex-start;
-      width: 1100px;
       font-size: 48px;
       font-weight: 600;
       color: $white;

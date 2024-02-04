@@ -1,6 +1,7 @@
 // PALLETE
 $fuchsia-molon: #E833A0;
 $pink-molon: #ff3859;
+$pink-light: #ff385933;
 $blue-molon: #3628b8;
 $purple-molon: #9E5AD7;
 $blue-molon-02: #0075EB;
@@ -10,7 +11,7 @@ $yellow-molon: #acb328;
 $orange-molon: #f2a702;
 
 // COLORS
-$black: #211227;
+$black: #131313;
 $dark-red: #9e0140;
 $fuchsia: #dc01b4;
 $gold: #a48254;
@@ -26,12 +27,13 @@ $light-blue: #2d9be5;
 $dark-blue: #3579b7;
 $main-color: $pink-molon;
 $secondary-color: $blue-molon;
-$action-color: $light-blue;
+$action-color: #caa406;
 $error-color: #d80c0c;
 $size-01: 10px;
 $size-02: 10px;
-$modal-color: $light-blue;
-$disabled-color: #e9e9e9;
+$modal-color: $main-color;
+$disabled-color: $pink-light;
+$disabled-text: #7b7777;
 
 // ea039d
 
@@ -49,7 +51,7 @@ $margin-01: $size-01;
 $margin-02: $size-02;
 
 // WIDTH
-$max-width: 60%;
+$max-width: 80%;
 
 // HEIGTH
 $header-height: 80px;

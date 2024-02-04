@@ -65,20 +65,23 @@ function deleteScene(scene: Scene) {
 
 <style lang="scss" scoped>
 .select-scenes-container {
+  @include flex;
   .scene-list {
     @include flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    width: 1500px;
+    width: 100%;
     margin-bottom: 20px;
+    align-self: center;
 
     .scene-item {
       @include borders($color: gold);
+      flex-wrap: wrap;
       margin: 10px;
-      width: calc(25% - 30px);
+      width: calc(25% - 22px);
       cursor: pointer;
       &.selected {
-        border-color: red;
+        border-color: blue;
       }
 
       &.custom header {

@@ -1,5 +1,6 @@
 <template>
-  <div class="director-view">
+  <CountdownComponent v-if="countdownStore.showCountdown" />
+  <div class="view-container">
     <HeaderViewComponent
       v-if="!countdownStore.showCountdown"
       title="DIRECTOR MODE"
@@ -26,6 +27,7 @@ import { useCountdownStore } from '@/stores/useCountdownStore'
 import MovieContainerComponent from '@/components/director-view/MovieContainerComponent.vue'
 import DirectorStepsComponent from '@/components/director-view/DirectorStepsComponent.vue'
 import LoadMovieBar from '@/components/director-view/LoadMovieBar.vue'
+import CountdownComponent from '@/components/CountdownComponent.vue'
 
 // STORE
 const sceneStore = useSceneStore()

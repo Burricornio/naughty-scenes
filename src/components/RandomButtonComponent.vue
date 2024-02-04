@@ -60,7 +60,7 @@ function getRandomOption(options: string[]): void {
     color: $main-color;
 
     &:hover {
-      border-color: $main-color;
+      border-color: $action-color;
     }
   }
 

@@ -26,7 +26,8 @@
     }
 
     &:hover {
-      border-color: $action-color;
+      color: $white;
+      background-color: $action-color;
     }
 
     .icon {

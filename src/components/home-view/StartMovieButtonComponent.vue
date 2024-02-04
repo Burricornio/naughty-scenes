@@ -37,7 +37,7 @@ const startTextButton = computed<string>(() =>
   width: 145px;
   height: 145px;
   color: $white;
-  background-color: $blue-molon;
+  background-color: $main-color;
   border-radius: 50%;
   text-transform: uppercase;
   font-size: 26px;
@@ -49,7 +49,7 @@ const startTextButton = computed<string>(() =>
 
   &:hover {
     color: $white;
-    background-color: $light-blue;
+    background-color: #caa406;
     animation: pulseHover 2s infinite;
   }
 }
