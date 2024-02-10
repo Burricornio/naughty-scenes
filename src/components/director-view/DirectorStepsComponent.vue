@@ -1,17 +1,16 @@
 <template>
   <section class="director-steps">
     <div class="steps-container">
-      <button @click="setStep(DirectorStep.SELECT_SCENES)">
-        SELECT YOUR SCENES
+      <button
+        v-for="(button, index) in stepButtons"
+        :key="index"
+        class="step-button"
+        :class="{ 'current-step': step === button.stepNumber }"
+        @click="button.action"
+        :disabled="button.disabled"
+      >
+        {{ button.text }}
       </button>
-      <button :disabled="numberOfSelectedScenes === 0" @click="setStep(2)">
-        ORDER YOUR SCENES
-      </button>
-      <button @click="setStep(DirectorStep.CONFIGURE_MOVIE)">
-        CONFIGURE MOVIE
-      </button>
-      <button @click="addNewScene">ADD YOUR OWN SCENE</button>
-      <button @click="playMovie">START MOVIE</button>
     </div>
     <!-- STEP 1 -->
     <div
@@ -27,8 +26,8 @@
         :scenesNumber="numberOfScenes"
         @change-scenes-number-length="selectRandomScenes"
       /> -->
-      <div v-if="scenes.length">
-        <SelectScenesContainerComponent :scenes="scenes" />
+      <div v-if="allScenes.length">
+        <SelectScenesContainerComponent :scenes="allScenes" />
       </div>
     </div>
     <!-- STEP 2 -->
@@ -57,6 +56,13 @@ import { EmittedEvent } from '@/events'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import BannerComponent from '@/components/BannerComponent.vue'
 
+interface StepButton {
+  stepNumber: DirectorStep
+  text: string
+  action: () => void
+  disabled: boolean
+}
+
 // PROPS
 const props = defineProps<{
   changeStartedMovieFlag: () => void
@@ -69,13 +75,39 @@ const { setCountdownStatus } = useCountdownStore()
 
 // DATA
 const step = ref<number>(DirectorStep.SELECT_SCENES)
-const sortedScenes = ref<Scene[]>([])
+const selectedScenes = computed<Scene[]>(() => sceneStore.getSelectedScenes)
 
 // COMPUTED
-const scenes = computed<Scene[]>(() => sceneStore.getScenes)
+const allScenes = computed<Scene[]>(() => sceneStore.getScenes)
 const numberOfSelectedScenes = computed<number>(
   () => sceneStore.getSelectedScenesLength
 )
+const stepButtons = computed<StepButton[]>(() => [
+  {
+    stepNumber: DirectorStep.SELECT_SCENES,
+    text: 'SELECT YOUR SCENES',
+    action: () => setStep(DirectorStep.SELECT_SCENES),
+    disabled: false
+  },
+  {
+    stepNumber: DirectorStep.ORDER_SCENES,
+    text: 'ORDER YOUR SCENES',
+    action: () => setStep(DirectorStep.ORDER_SCENES),
+    disabled: numberOfSelectedScenes.value === 0
+  },
+  {
+    stepNumber: DirectorStep.CONFIGURE_MOVIE,
+    text: 'CONFIGURE MOVIE',
+    action: () => setStep(DirectorStep.CONFIGURE_MOVIE),
+    disabled: numberOfSelectedScenes.value === 0
+  },
+  {
+    stepNumber: DirectorStep.START_MOVIE,
+    text: 'PLAY MOVIE',
+    action: () => playMovie(),
+    disabled: numberOfSelectedScenes.value === 0
+  }
+])
 
 // HOOKS
 onMounted(() => {
@@ -89,7 +121,7 @@ onMounted(() => {
 const emit = defineEmits([EmittedEvent.UPDATE_DIRECTOR_MOVIE])
 
 function setDirectorMovie() {
-  emit(EmittedEvent.UPDATE_DIRECTOR_MOVIE, sortedScenes.value)
+  emit(EmittedEvent.UPDATE_DIRECTOR_MOVIE, selectedScenes.value)
 }
 
 // METHODS
@@ -102,11 +134,11 @@ function setStep(stepNumber: DirectorStep) {
 }
 
 function updateMovie(scenes: Scene[]) {
-  sortedScenes.value = scenes
+  sceneStore.updateScenesOrder(scenes)
 }
 
 function playMovie() {
-  sceneStore.playMovie(sortedScenes.value)
+  sceneStore.playMovie(selectedScenes.value)
   sceneStore.unselectAllScenes()
   setDirectorMovie()
   props.changeStartedMovieFlag()
@@ -119,6 +151,20 @@ function playMovie() {
   @include flex($flex-direction: column);
   width: 100%;
   flex: 1;
+
+  .steps-container {
+    @include flex($justify-content: space-between);
+
+    .step-button {
+      margin: 10px 40px;
+
+      &.current-step {
+        background-color: $white;
+        color: $main-color;
+        cursor: initial;
+      }
+    }
+  }
 
   .selected-scenes-info-bar {
     background-color: $white;
