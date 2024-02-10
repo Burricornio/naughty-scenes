@@ -51,7 +51,6 @@ import AddNewSceneModal from '@/components/AddNewSceneModal.vue'
 import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
 import OrderCurrentDirectorMovieAccordion from '@/components/OrderCurrentDirectorMovieAccordion.vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
-import useModal from '@/composables/useModal'
 import { EmittedEvent } from '@/events'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import BannerComponent from '@/components/BannerComponent.vue'
@@ -70,7 +69,6 @@ const props = defineProps<{
 
 // STORE
 const sceneStore = useSceneStore()
-const { openAddNewSceneModal } = useModal()
 const { setCountdownStatus } = useCountdownStore()
 
 // DATA
@@ -125,10 +123,6 @@ function setDirectorMovie() {
 }
 
 // METHODS
-function addNewScene() {
-  openAddNewSceneModal()
-}
-
 function setStep(stepNumber: DirectorStep) {
   step.value = stepNumber
 }

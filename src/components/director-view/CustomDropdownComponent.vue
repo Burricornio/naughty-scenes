@@ -71,7 +71,7 @@ function executeAction(action: () => void) {
 <style lang="scss" scoped>
 .custom-dropdown {
   position: relative;
-  width: 250px;
+  width: 280px;
 }
 
 .selected-option {
