@@ -28,3 +28,11 @@ function repeatAgain() {
   emit(EmittedEvent.REPEAT_AGAIN)
 }
 </script>
+
+<style lang="scss" scoped>
+.movie-container {
+  @include flex($flex-direction: column);
+  width: 100%;
+  flex: 1;
+}
+</style>
