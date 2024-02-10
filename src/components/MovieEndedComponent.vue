@@ -1,13 +1,18 @@
 <template>
   <div v-if="sceneStore.allScenesPlayed" class="movie-ended-container">
-    <p>{{ text.allPlayed }}</p>
-    <div class="icons-container">
-      <button class="icon-container" @click="repeatAgain">
-        <span>Repetir</span>
-        <Icon class="icon" icon="material-symbols:repeat" />
-      </button>
-      <GoToHomeButtonComponent />
+    <div class="actions-container">
+      <p>{{ text.allPlayed }}</p>
+      <div class="icons-container">
+        <button class="icon-container" @click="repeatAgain">
+          <span>Repetir</span>
+          <Icon class="icon" icon="material-symbols:repeat" />
+        </button>
+        <GoToHomeButtonComponent />
+      </div>
     </div>
+    <BannerComponent />
+    <BannerComponent />
+    <BannerComponent />
   </div>
 </template>
 
@@ -15,6 +20,7 @@
 import { EmittedEvent } from '@/events'
 import { useI18n } from 'vue-i18n'
 import { useSceneStore } from '@/stores/useSceneStore'
+import BannerComponent from '@/components/BannerComponent.vue'
 import GoToHomeButtonComponent from '@/components/GoToHomeButtonComponent.vue'
 import { Icon } from '@iconify/vue'
 
@@ -35,24 +41,31 @@ function repeatAgain() {
 
 <style lang="scss" scoped>
 .movie-ended-container {
-  @include flex($flex-direction: column);
+  @include flex($flex-direction: column, $justify-content: flex-start);
   @include borders;
+  width: 100%;
   background: $white;
-  padding: 20px;
-  margin: 10px;
+  padding: 20px 0;
+  height: 100%;
+  border-radius: $border-radius;
 
-  .icons-container {
-    @include flex;
-    margin: 10px;
-
-    .icon-container {
+  .actions-container {
+    @include flex($flex-direction: column);
+    width: 100%;
+    flex: 1;
+    .icons-container {
       @include flex;
-      padding: 10px;
-      margin-left: 20px;
+      margin: 10px;
 
-      .icon {
-        margin-left: 4px;
-        font-size: 25px;
+      .icon-container {
+        @include flex;
+        padding: 10px;
+        margin-left: 20px;
+
+        .icon {
+          margin-left: 4px;
+          font-size: 25px;
+        }
       }
     }
   }

@@ -10,5 +10,6 @@
   width: 100%;
   background: $main-color;
   color: $white;
+  margin: 1px 0;
 }
 </style>
