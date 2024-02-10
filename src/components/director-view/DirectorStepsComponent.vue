@@ -153,6 +153,7 @@ function playMovie() {
       margin: 10px 40px;
 
       &:disabled {
+        @include borders($width: 2px);
         color: $white;
       }
 
