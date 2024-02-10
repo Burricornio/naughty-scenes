@@ -57,22 +57,27 @@ function removeScene(sceneId: number): void {
 </script>
 
 <style lang="scss" scoped>
-.accordion-container {
-  background: white;
-  padding: 20px;
+.current-director-movie-accordion {
+  width: 100%;
+  .accordion-container {
+    background: white;
+    padding: 20px;
+    max-height: 500px;
+    overflow: scroll;
 
-  .acordeon-item {
-    background: green;
-    color: white;
-    margin: 10px;
-    padding: 0 20px 20px 20px;
-    cursor: move;
+    .acordeon-item {
+      background: green;
+      color: white;
+      margin: 10px;
+      padding: 0 20px 20px 20px;
+      cursor: move;
 
-    header {
-      @include flex($justify-content: space-between);
+      header {
+        @include flex($justify-content: space-between);
 
-      .remove-icon {
-        cursor: pointer;
+        .remove-icon {
+          cursor: pointer;
+        }
       }
     }
   }

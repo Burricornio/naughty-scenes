@@ -5,8 +5,10 @@
 <style lang="scss">
 .banner-section {
   @include flex;
+  height: 100px;
+  min-height: 100px;
+  width: 100%;
   background: $main-color;
   color: $white;
-  height: 100px;
 }
 </style>

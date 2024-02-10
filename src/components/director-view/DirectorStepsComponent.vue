@@ -142,12 +142,15 @@ function playMovie() {
 
 <style lang="scss" scoped>
 .director-steps {
-  @include flex($flex-direction: column);
+  @include flex($flex-direction: column, $justify-content: flex-start);
   width: 100%;
+  background-color: $white;
   flex: 1;
 
   .steps-container {
     @include flex($justify-content: space-between);
+    background-color: $main-color;
+    width: 100%;
 
     .step-button {
       margin: 10px 40px;
