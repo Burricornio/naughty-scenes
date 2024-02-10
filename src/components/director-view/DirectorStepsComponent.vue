@@ -152,6 +152,10 @@ function playMovie() {
     .step-button {
       margin: 10px 40px;
 
+      &:disabled {
+        color: $white;
+      }
+
       &.current-step {
         background-color: $white;
         color: $main-color;
