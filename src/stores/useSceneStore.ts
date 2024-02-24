@@ -72,7 +72,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   function selectScenes({ numberOfScenes, shuffle }: SelectScenesObject) {
     let selectedScenes: Scene[] = []
     if (shuffle) {
-      const shuffleScenes = shuffleArray(defaultScenes.value)
+      const shuffleScenes = shuffleArray([...defaultScenes.value])
       selectedScenes = getElementsArray(shuffleScenes, numberOfScenes)
     } else {
       selectedScenes = defaultScenes.value
