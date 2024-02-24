@@ -3,7 +3,19 @@
     <div class="actions-container">
       <p>{{ text.allPlayed }}</p>
       <div class="icons-container">
-        <button class="icon-container" @click="repeatAgain">
+        <button class="icon-container" @click="repeatAgain(true)">
+          <span>Repetir la misma partida</span>
+          <Icon class="icon" icon="material-symbols:repeat" />
+        </button>
+        <button
+          v-if="getGameMode === GameMode.DIRECTOR"
+          class="icon-container"
+          @click="repeatAgain(false)"
+        >
+          <span>Jugar nueva película</span>
+          <Icon class="icon" icon="material-symbols:repeat" />
+        </button>
+        <button v-else class="icon-container" @click="repeatAgain(false)">
           <span>Repetir</span>
           <Icon class="icon" icon="material-symbols:repeat" />
         </button>
@@ -23,9 +35,11 @@ import { useSceneStore } from '@/stores/useSceneStore'
 import BannerComponent from '@/components/BannerComponent.vue'
 import GoToHomeButtonComponent from '@/components/GoToHomeButtonComponent.vue'
 import { Icon } from '@iconify/vue'
+import { GameMode, useMovieStore } from '@/stores/useMovieStore'
 
 // STORE
 const sceneStore = useSceneStore()
+const { getGameMode } = useMovieStore()
 
 // TEXTS
 const { t } = useI18n()
@@ -34,8 +48,8 @@ const text = { allPlayed: t('all_played') }
 // EMITS
 const emit = defineEmits([EmittedEvent.REPEAT_AGAIN])
 
-function repeatAgain() {
-  emit(EmittedEvent.REPEAT_AGAIN)
+function repeatAgain(repeatSameGameFlag: boolean) {
+  emit(EmittedEvent.REPEAT_AGAIN, repeatSameGameFlag)
 }
 </script>
 

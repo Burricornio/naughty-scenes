@@ -24,8 +24,8 @@ const sceneStore = useSceneStore()
 // EMITS
 const emit = defineEmits([EmittedEvent.REPEAT_AGAIN])
 
-function repeatAgain() {
-  emit(EmittedEvent.REPEAT_AGAIN)
+function repeatAgain(repeatSameGameFlag: boolean) {
+  emit(EmittedEvent.REPEAT_AGAIN, repeatSameGameFlag)
 }
 </script>
 

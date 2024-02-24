@@ -21,8 +21,16 @@ export interface MovieParsed {
   scenes: Scene[]
 }
 
+export enum GameMode {
+  UNSELECTED = 0,
+  IMPRO = 1,
+  ACTOR = 2,
+  DIRECTOR = 3
+}
+
 export const useMovieStore = defineStore('useMovieStore', () => {
   // const gameStartedFlag = ref<boolean>(false)
+  const gameMode = ref<GameMode>(GameMode.UNSELECTED)
   const { getDefaultScenes } = useSceneStore()
 
   const playedMoviesNumber = ref<number>(0)
@@ -45,6 +53,8 @@ export const useMovieStore = defineStore('useMovieStore', () => {
     })
     return final
   })
+
+  const getGameMode = computed<GameMode | null>(() => gameMode.value)
 
   // const getGameStartedFlag = computed<boolean>(() => gameStartedFlag.value)
   // const getPlayedMoviesNumber = computed<number>(() => playedMoviesNumber.value)
@@ -76,6 +86,10 @@ export const useMovieStore = defineStore('useMovieStore', () => {
     playerNames.player2 = ''
   }
 
+  function setGameMode(mode: GameMode) {
+    gameMode.value = mode
+  }
+
   return {
     // setPlayerNames,
     // addNewGamePlayed,
@@ -89,6 +103,8 @@ export const useMovieStore = defineStore('useMovieStore', () => {
     getPlayerNames,
     addNewGamePlayed,
     resetPlayerNames,
-    getMovies
+    getMovies,
+    getGameMode,
+    setGameMode
   }
 })

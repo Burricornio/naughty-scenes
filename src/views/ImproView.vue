@@ -17,13 +17,16 @@ import CountdownComponent from '@/components/CountdownComponent.vue'
 import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 import MovieEndedComponent from '@/components/MovieEndedComponent.vue'
 import SceneContainerComponent from '@/components/SceneContainer/SceneContainerComponent.vue'
+import { GameMode, useMovieStore } from '@/stores/useMovieStore'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
+const { setGameMode } = useMovieStore()
 
 // HOOKS
 onMounted(() => {
+  setGameMode(GameMode.IMPRO)
   selectRandomScenes()
 })
 
@@ -35,8 +38,12 @@ function selectRandomScenes() {
   })
 }
 
-function onRepeatAgain() {
+function onRepeatAgain(repeatSameGameFlag: boolean) {
   countdownStore.setCountdownStatus(true)
-  selectRandomScenes()
+  if (repeatSameGameFlag) {
+    sceneStore.playMovie(sceneStore.getScenes)
+  } else {
+    selectRandomScenes()
+  }
 }
 </script>

@@ -28,10 +28,12 @@ import MovieContainerComponent from '@/components/director-view/MovieContainerCo
 import DirectorStepsComponent from '@/components/director-view/DirectorStepsComponent.vue'
 import LoadMovieBar from '@/components/director-view/LoadMovieBar.vue'
 import CountdownComponent from '@/components/CountdownComponent.vue'
+import { GameMode, useMovieStore } from '@/stores/useMovieStore'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
+const { setGameMode } = useMovieStore()
 
 // DATA
 const movie = ref<Scene[]>([])
@@ -39,14 +41,19 @@ const startedMovieFlag = ref<boolean>(false)
 
 // HOOKS
 onMounted(() => {
+  setGameMode(GameMode.DIRECTOR)
   countdownStore.setCountdownStatus(false)
   sceneStore.unselectAllScenes()
 })
 
 // METHODS
-function onRepeatAgain() {
-  countdownStore.setCountdownStatus(true)
-  sceneStore.playMovie(movie.value)
+function onRepeatAgain(repeatSameGameFlag: boolean) {
+  if (repeatSameGameFlag) {
+    countdownStore.setCountdownStatus(true)
+    sceneStore.playMovie(sceneStore.getScenes)
+  } else {
+    startedMovieFlag.value = false
+  }
 }
 
 function changeStartedMovieFlag() {
