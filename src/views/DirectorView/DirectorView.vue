@@ -52,6 +52,7 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
     countdownStore.setCountdownStatus(true)
     sceneStore.playMovie(sceneStore.getScenes)
   } else {
+    sceneStore.resetSelectedScenes()
     startedMovieFlag.value = false
   }
 }

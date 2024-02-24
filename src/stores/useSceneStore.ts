@@ -27,13 +27,17 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   const playedSceneIds = ref<number[]>([])
   const currentScene = ref<Scene | null>(null)
 
+  const selectedScenes = ref<Scene[]>([])
+
   const getSceneIndex = computed<number>(() => sceneIndex.value)
 
   const getScenes = computed<Scene[]>(() => scenes.value)
 
-  const getSelectedScenes = computed<Scene[]>(() =>
-    scenes.value.filter((scene: Scene) => scene.selected)
-  )
+  // const getSelectedScenes = computed<Scene[]>(() =>
+  //   scenes.value.filter((scene: Scene) => scene.selected)
+  // )
+
+  const getSelectedScenes = computed<Scene[]>(() => selectedScenes.value)
 
   const getSelectedScenesLength = computed<number>(
     () => getSelectedScenes.value.length
@@ -59,7 +63,8 @@ export const useSceneStore = defineStore('useSceneStore', () => {
   )
 
   function updateScenesOrder(newOrder: Scene[]) {
-    scenes.value = newOrder
+    console.log(newOrder)
+    selectedScenes.value = newOrder
   }
 
   function playMovie(movie: Scene[]): void {
@@ -109,6 +114,7 @@ export const useSceneStore = defineStore('useSceneStore', () => {
 
   function addNewScene(scene: Scene) {
     scenes.value.unshift(scene)
+    selectedScenes.value.unshift(scene)
   }
 
   function unselectScene(id: number) {
@@ -129,6 +135,14 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     scenes.value.forEach((scene: Scene) => {
       scene.selected = true
     })
+  }
+
+  function selectScene(scene: Scene) {
+    selectedScenes.value.push(scene)
+  }
+
+  function resetSelectedScenes() {
+    selectedScenes.value = []
   }
 
   function deleteCustomScene(sceneId: number) {
@@ -164,6 +178,8 @@ export const useSceneStore = defineStore('useSceneStore', () => {
     unselectAllScenes,
     getDefaultScenes,
     selectAllScenes,
-    deleteCustomScene
+    deleteCustomScene,
+    selectScene,
+    resetSelectedScenes
   }
 })

@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Scene } from '@/stores/useSceneStore'
+import { Scene, useSceneStore } from '@/stores/useSceneStore'
 import RemoveCustomSceneModal from '@/components/director-view/RemoveCustomSceneModal.vue'
 import { Icon } from '@iconify/vue'
 import useModal from '@/composables/useModal'
@@ -48,6 +48,7 @@ const selectedCustomSceneToRemove = ref<Scene | null>(null)
 
 // STORE
 const { openRemoveCustomSceneModal } = useModal()
+const { selectScene } = useSceneStore()
 
 // COMPUTED
 const modifiedScenes = computed(() => props.scenes)
@@ -55,6 +56,7 @@ const modifiedScenes = computed(() => props.scenes)
 // METHODS
 function addSceneToMovie(scene: Scene) {
   scene.selected = !scene.selected
+  selectScene(scene)
 }
 
 function deleteScene(scene: Scene) {
