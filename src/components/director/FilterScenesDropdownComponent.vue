@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
 import { computed } from 'vue'
-import CustomDropdownComponent from '@/components/director-view/CustomDropdownComponent.vue'
+import CustomDropdownComponent from '@/components/director/CustomDropdownComponent.vue'
 import { EmittedEvent } from '@/events'
 
 // PROPS

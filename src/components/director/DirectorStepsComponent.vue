@@ -37,7 +37,7 @@
     />
     <!-- STEP 3 -->
     <div v-if="step === DirectorStep.CONFIGURE_MOVIE">
-      A configurar pelicula
+      <DirectorSetUpComponent />
     </div>
   </section>
   <BannerComponent />
@@ -50,6 +50,7 @@ import { DirectorStep } from '@/views/DirectorView/types/directorViewTypes'
 import AddNewSceneModal from '@/components/AddNewSceneModal.vue'
 import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
 import OrderCurrentDirectorMovieAccordion from '@/components/OrderCurrentDirectorMovieAccordion.vue'
+import DirectorSetUpComponent from '@/components/director/DirectorSetUpComponent.vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
 import { EmittedEvent } from '@/events'
 import { useCountdownStore } from '@/stores/useCountdownStore'

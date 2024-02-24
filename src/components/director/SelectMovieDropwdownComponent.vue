@@ -10,7 +10,7 @@
 import { useMovieStore, MovieParsed } from '@/stores/useMovieStore'
 import { useSceneStore } from '@/stores/useSceneStore'
 import { computed } from 'vue'
-import CustomDropdownComponent from '@/components/director-view/CustomDropdownComponent.vue'
+import CustomDropdownComponent from '@/components/director/CustomDropdownComponent.vue'
 import { EmittedEvent } from '@/events'
 
 // STORE

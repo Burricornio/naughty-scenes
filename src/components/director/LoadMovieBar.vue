@@ -16,8 +16,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import useModal from '@/composables/useModal'
-import SelectMovieDropwdownComponent from '@/components/director-view/SelectMovieDropwdownComponent.vue'
-import FilterScenesDropdownComponent from '@/components/director-view/FilterScenesDropdownComponent.vue'
+import SelectMovieDropwdownComponent from '@/components/director/SelectMovieDropwdownComponent.vue'
+import FilterScenesDropdownComponent from '@/components/director/FilterScenesDropdownComponent.vue'
 
 // STORE
 const { openAddNewSceneModal } = useModal()

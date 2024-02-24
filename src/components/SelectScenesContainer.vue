@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
-import RemoveCustomSceneModal from '@/components/director-view/RemoveCustomSceneModal.vue'
+import RemoveCustomSceneModal from '@/components/director/RemoveCustomSceneModal.vue'
 import { Icon } from '@iconify/vue'
 import useModal from '@/composables/useModal'
 
