@@ -23,11 +23,13 @@ import { GameMode, useMovieStore } from '@/stores/useMovieStore'
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
 const { setGameMode } = useMovieStore()
+const { setViewTimer } = useMovieStore()
 
 // HOOKS
 onMounted(() => {
   setGameMode(GameMode.IMPRO)
   selectRandomScenes()
+  setViewTimer(false)
 })
 
 // METHODS

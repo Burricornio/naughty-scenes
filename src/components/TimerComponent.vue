@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-container">
+  <div v-if="getViewTimer" class="timer-container">
     <DurationComponent
       class="duration"
       @up-duration="increment"
@@ -31,6 +31,7 @@ import { ref, watchEffect, watch } from 'vue'
 import DurationComponent from '@/components/DurationComponent.vue'
 import { useI18n } from 'vue-i18n'
 import { Icon } from '@iconify/vue'
+import { useMovieStore } from '@/stores/useMovieStore'
 
 // PROPS
 const props = defineProps({
@@ -39,6 +40,9 @@ const props = defineProps({
     default: 1
   }
 })
+
+// STORE
+const { getViewTimer } = useMovieStore()
 
 // DATA
 const { t } = useI18n()

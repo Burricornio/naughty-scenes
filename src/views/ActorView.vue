@@ -29,7 +29,7 @@ import { GameMode, useMovieStore } from '@/stores/useMovieStore'
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
-const { setGameMode } = useMovieStore()
+const { setGameMode, setViewTimer } = useMovieStore()
 
 // DATA
 // ¿Dejar que el jugador escoja el número de escenas?
@@ -39,6 +39,7 @@ const numberOfScenes = 3
 onMounted(() => {
   setGameMode(GameMode.ACTOR)
   selectRandomScenes()
+  setViewTimer(true)
 })
 
 // METHODS

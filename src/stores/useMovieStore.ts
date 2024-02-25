@@ -1,10 +1,14 @@
-import { computed, reactive, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import moviesJSON from '@/assets/movies.json'
 import { Scene, useSceneStore } from './useSceneStore'
 
-interface Players {
-  playerNames: { player1: string; player2: string }
+export interface PlayersObject {
+  player1: string
+  player2: string
+}
+export interface Players {
+  playerNames: PlayersObject
 }
 
 interface Movie {
@@ -30,15 +34,16 @@ export enum GameMode {
 
 export const useMovieStore = defineStore('useMovieStore', () => {
   // const gameStartedFlag = ref<boolean>(false)
-  const gameMode = ref<GameMode>(GameMode.UNSELECTED)
   const { getDefaultScenes } = useSceneStore()
 
+  const gameMode = ref<GameMode>(GameMode.UNSELECTED)
   const playedMoviesNumber = ref<number>(0)
-  const playerNames = reactive<{ player1: string; player2: string }>({
+  const playerNames = ref<PlayersObject>({
     player1: '',
     player2: ''
   })
   const movies = ref<Movie[]>(moviesJSON)
+  const viewTimer = ref<boolean>(false)
 
   const getMovies = computed(() => {
     const final = movies.value.map((movie: Movie) => {
@@ -56,12 +61,12 @@ export const useMovieStore = defineStore('useMovieStore', () => {
 
   const getGameMode = computed<GameMode | null>(() => gameMode.value)
 
+  const getViewTimer = computed<boolean>(() => viewTimer.value)
+
   // const getGameStartedFlag = computed<boolean>(() => gameStartedFlag.value)
   // const getPlayedMoviesNumber = computed<number>(() => playedMoviesNumber.value)
 
-  const getPlayerNames = computed<{ player1: string; player2: string }>(
-    () => playerNames
-  )
+  const getPlayerNames = computed<PlayersObject>(() => playerNames.value)
 
   // function setGameStartedFlag(value: boolean) {
   //   gameStartedFlag.value = value
@@ -76,18 +81,25 @@ export const useMovieStore = defineStore('useMovieStore', () => {
     name: string
   }) {
     const { player, name } = payload
-    playerNames[player] = name
+    playerNames.value[player] = name
+  }
+
+  function setPlayersOrder(payload: PlayersObject) {
+    playerNames.value = payload
   }
 
   function resetPlayerNames() {
     // gameStartedFlag.value = false
     // playedGamesNumber.value = 0
-    playerNames.player1 = ''
-    playerNames.player2 = ''
+    playerNames.value.player1 = ''
+    playerNames.value.player2 = ''
   }
 
   function setGameMode(mode: GameMode) {
     gameMode.value = mode
+  }
+  function setViewTimer(value: boolean) {
+    viewTimer.value = value
   }
 
   return {
@@ -105,6 +117,9 @@ export const useMovieStore = defineStore('useMovieStore', () => {
     resetPlayerNames,
     getMovies,
     getGameMode,
-    setGameMode
+    setGameMode,
+    setPlayersOrder,
+    getViewTimer,
+    setViewTimer
   }
 })
