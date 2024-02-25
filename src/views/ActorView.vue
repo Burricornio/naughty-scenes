@@ -38,7 +38,9 @@ const numberOfScenes = 3
 // HOOKS
 onMounted(() => {
   setGameMode(GameMode.ACTOR)
-  selectRandomScenes()
+  if (!sceneStore.getScenesLength) {
+    selectRandomScenes()
+  }
   setViewTimer(true)
 })
 
@@ -50,11 +52,16 @@ function selectRandomScenes() {
   })
 }
 
+// TODO VER SI PUEDO EXTRAER ESTE METODO DE LAS TRES VISTAS
+// TODO ME QUDA VER LA PERSISTENCIA EN LA VISTA DIRECTORE
+// VER SI RESETEAR TODOS LOS STORES CON $RESET Y CARGARME LOS RESET NO SE QUÉ
+// REPETIR EN BOTON STRAT CON ghamestratedflag?
 function onRepeatAgain(repeatSameGameFlag: boolean) {
   countdownStore.setCountdownStatus(true)
   if (repeatSameGameFlag) {
     sceneStore.playMovie(sceneStore.getScenes)
   } else {
+    sceneStore.$reset()
     selectRandomScenes()
   }
 }

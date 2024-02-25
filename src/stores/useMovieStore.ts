@@ -124,7 +124,8 @@ export const useMovieStore = defineStore(
       getViewTimer,
       setViewTimer,
       // Save in localstorage
-      playerNames
+      playerNames,
+      viewTimer
     }
   },
   {
