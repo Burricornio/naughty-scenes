@@ -43,4 +43,3 @@ function closeStartMovieModal() {
   closeModal()
 }
 </script>
-@/components/home-view/StartMovieModal/steps/types/stepsTypes
