@@ -28,7 +28,9 @@ const { setViewTimer } = useMovieStore()
 // HOOKS
 onMounted(() => {
   setGameMode(GameMode.IMPRO)
-  selectRandomScenes()
+  if (!sceneStore.getScenesLength) {
+    selectRandomScenes()
+  }
   setViewTimer(false)
 })
 
@@ -45,6 +47,7 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
   if (repeatSameGameFlag) {
     sceneStore.playMovie(sceneStore.getScenes)
   } else {
+    sceneStore.$reset()
     selectRandomScenes()
   }
 }

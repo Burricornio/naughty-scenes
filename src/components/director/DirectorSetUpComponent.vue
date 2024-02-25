@@ -64,7 +64,6 @@ function updatePlayerOrder(): void {
       (name) => name !== selectedPlayer.value
     )
   }
-  console.log(orderedPlayers)
   setPlayersOrder(orderedPlayers)
 }
 

@@ -32,94 +32,102 @@ export enum GameMode {
   DIRECTOR = 3
 }
 
-export const useMovieStore = defineStore('useMovieStore', () => {
-  // const gameStartedFlag = ref<boolean>(false)
-  const { getDefaultScenes } = useSceneStore()
+export const useMovieStore = defineStore(
+  'useMovieStore',
+  () => {
+    // const gameStartedFlag = ref<boolean>(false)
+    const { getDefaultScenes } = useSceneStore()
 
-  const gameMode = ref<GameMode>(GameMode.UNSELECTED)
-  const playedMoviesNumber = ref<number>(0)
-  const playerNames = ref<PlayersObject>({
-    player1: '',
-    player2: ''
-  })
-  const movies = ref<Movie[]>(moviesJSON)
-  const viewTimer = ref<boolean>(false)
-
-  const getMovies = computed(() => {
-    const final = movies.value.map((movie: Movie) => {
-      return {
-        ...movie,
-        scenes: JSON.parse(movie.scenes).map((sceneId: number) => {
-          return getDefaultScenes.find((scene) => {
-            return scene.id === sceneId
-          })
-        })
-      }
+    const gameMode = ref<GameMode>(GameMode.UNSELECTED)
+    const playedMoviesNumber = ref<number>(0)
+    const playerNames = ref<PlayersObject>({
+      player1: '',
+      player2: ''
     })
-    return final
-  })
+    const movies = ref<Movie[]>(moviesJSON)
+    const viewTimer = ref<boolean>(false)
 
-  const getGameMode = computed<GameMode | null>(() => gameMode.value)
+    const getMovies = computed(() => {
+      const final = movies.value.map((movie: Movie) => {
+        return {
+          ...movie,
+          scenes: JSON.parse(movie.scenes).map((sceneId: number) => {
+            return getDefaultScenes.find((scene) => {
+              return scene.id === sceneId
+            })
+          })
+        }
+      })
+      return final
+    })
 
-  const getViewTimer = computed<boolean>(() => viewTimer.value)
+    const getGameMode = computed<GameMode | null>(() => gameMode.value)
 
-  // const getGameStartedFlag = computed<boolean>(() => gameStartedFlag.value)
-  // const getPlayedMoviesNumber = computed<number>(() => playedMoviesNumber.value)
+    const getViewTimer = computed<boolean>(() => viewTimer.value)
 
-  const getPlayerNames = computed<PlayersObject>(() => playerNames.value)
+    // const getGameStartedFlag = computed<boolean>(() => gameStartedFlag.value)
+    // const getPlayedMoviesNumber = computed<number>(() => playedMoviesNumber.value)
 
-  // function setGameStartedFlag(value: boolean) {
-  //   gameStartedFlag.value = value
-  // }
+    const getPlayerNames = computed<PlayersObject>(() => playerNames.value)
 
-  function addNewGamePlayed() {
-    playedMoviesNumber.value++
+    // function setGameStartedFlag(value: boolean) {
+    //   gameStartedFlag.value = value
+    // }
+
+    function addNewGamePlayed() {
+      playedMoviesNumber.value++
+    }
+
+    function setPlayerNames(payload: {
+      player: keyof Players['playerNames']
+      name: string
+    }) {
+      const { player, name } = payload
+      playerNames.value[player] = name
+    }
+
+    function setPlayersOrder(payload: PlayersObject) {
+      playerNames.value = payload
+    }
+
+    function resetPlayerNames() {
+      // gameStartedFlag.value = false
+      // playedGamesNumber.value = 0
+      playerNames.value.player1 = ''
+      playerNames.value.player2 = ''
+    }
+
+    function setGameMode(mode: GameMode) {
+      gameMode.value = mode
+    }
+    function setViewTimer(value: boolean) {
+      viewTimer.value = value
+    }
+
+    return {
+      // setPlayerNames,
+      // addNewGamePlayed,
+      // setGameStartedFlag,
+      // $reset,
+      // gameStartedFlag,
+      // playerNames,
+      // getGameStartedFlag,
+      // getPlayedGamesNumber,
+      setPlayerNames,
+      getPlayerNames,
+      addNewGamePlayed,
+      resetPlayerNames,
+      getMovies,
+      getGameMode,
+      setGameMode,
+      setPlayersOrder,
+      getViewTimer,
+      setViewTimer,
+      // Save in localstorage
+      playerNames
+    }
+  },
+  {
+    persist: true
   }
-
-  function setPlayerNames(payload: {
-    player: keyof Players['playerNames']
-    name: string
-  }) {
-    const { player, name } = payload
-    playerNames.value[player] = name
-  }
-
-  function setPlayersOrder(payload: PlayersObject) {
-    playerNames.value = payload
-  }
-
-  function resetPlayerNames() {
-    // gameStartedFlag.value = false
-    // playedGamesNumber.value = 0
-    playerNames.value.player1 = ''
-    playerNames.value.player2 = ''
-  }
-
-  function setGameMode(mode: GameMode) {
-    gameMode.value = mode
-  }
-  function setViewTimer(value: boolean) {
-    viewTimer.value = value
-  }
-
-  return {
-    // setPlayerNames,
-    // addNewGamePlayed,
-    // setGameStartedFlag,
-    // $reset,
-    // gameStartedFlag,
-    // playerNames,
-    // getGameStartedFlag,
-    // getPlayedGamesNumber,
-    setPlayerNames,
-    getPlayerNames,
-    addNewGamePlayed,
-    resetPlayerNames,
-    getMovies,
-    getGameMode,
-    setGameMode,
-    setPlayersOrder,
-    getViewTimer,
-    setViewTimer
-  }
-})
+)

@@ -43,7 +43,11 @@ function selectNextScene(): void {
   if (sceneStore.getSceneIndex === sceneStore.getScenesLength) {
     movieStore.addNewGamePlayed()
   }
-  sceneStore.setCurrentScene(sceneStore.getScenes[sceneStore.getSceneIndex])
+  if (sceneStore.getScenes[sceneStore.getSceneIndex]) {
+    sceneStore.setCurrentScene(sceneStore.getScenes[sceneStore.getSceneIndex])
+  } else {
+    sceneStore.setCurrentScene(null)
+  }
 }
 
 function selectPreviousScene(): void {
