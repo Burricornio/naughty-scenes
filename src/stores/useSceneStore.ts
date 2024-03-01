@@ -139,7 +139,11 @@ export const useSceneStore = defineStore(
     }
 
     function selectScene(scene: Scene) {
-      selectedScenes.value.push(scene)
+      const index = selectedScenes.value.indexOf(scene)
+
+      index !== -1
+        ? selectedScenes.value.splice(index, 1)
+        : selectedScenes.value.push(scene)
     }
 
     function resetSelectedScenes() {
@@ -147,7 +151,6 @@ export const useSceneStore = defineStore(
     }
 
     function setSelectedScenes(scenes: Scene[]) {
-      console.log('eeee', scenes)
       selectedScenes.value = scenes
     }
 
