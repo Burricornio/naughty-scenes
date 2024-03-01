@@ -16,9 +16,12 @@ import { useI18n } from 'vue-i18n'
 import NavigationComponent from '@/components/home-view/NavigationComponent.vue'
 import StartMovieButtonComponent from '@/components/home-view/StartMovieButtonComponent.vue'
 import StartMovieModal from '@/components/home-view/StartMovieModal/StartMovieModal.vue'
+import { onMounted } from 'vue'
+import { useResetStore } from '@/stores/useResetStore'
 
 // STORE
 const { open } = useModal()
+const { resetLocalStorage } = useResetStore()
 
 // TEXTS
 const { t } = useI18n()
@@ -27,6 +30,11 @@ const text = {
   slogan_1: t('view.home.slogan_1'),
   slogan_2: t('view.home.slogan_2')
 }
+
+// HOOKS
+onMounted(() => {
+  resetLocalStorage()
+})
 </script>
 
 <style lang="scss" scoped>

@@ -12,10 +12,14 @@ export const useResetStore = defineStore('useResetStore', () => {
   const movieStore = useMovieStore()
   const sceneStore = useSceneStore()
 
+  function resetLocalStorage() {
+    const stores = ['useSceneStore', 'useMovieStore']
+    stores.forEach((key: string) => localStorage.removeItem(key))
+  }
+
   function resetGame() {
     // TODO - resetear
     // TODO - ¿Vaciar localstorage?
-    console.log('reset')
     sceneStore.$reset()
     movieStore.$reset()
     // cardsStore.$reset()
@@ -24,6 +28,7 @@ export const useResetStore = defineStore('useResetStore', () => {
   }
 
   return {
-    resetGame
+    resetGame,
+    resetLocalStorage
   }
 })
