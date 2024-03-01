@@ -33,7 +33,9 @@
     <!-- STEP 2 -->
     <OrderCurrentDirectorMovieAccordion
       v-if="step === DirectorStep.ORDER_SCENES"
+      :key="orderDirectorMovieKey"
       @update-director-movie="updateMovie"
+      @reload-component="onReloadComponent"
     />
     <!-- STEP 3 -->
     <div v-if="step === DirectorStep.CONFIGURE_MOVIE">
@@ -75,6 +77,7 @@ const { setCountdownStatus } = useCountdownStore()
 // DATA
 const step = ref<number>(DirectorStep.SELECT_SCENES)
 const selectedScenes = computed<Scene[]>(() => sceneStore.getSelectedScenes)
+const orderDirectorMovieKey = ref<number>(0)
 
 // COMPUTED
 const allScenes = computed<Scene[]>(() => sceneStore.getScenes)
@@ -138,6 +141,10 @@ function playMovie() {
   setDirectorMovie()
   props.changeStartedMovieFlag()
   setCountdownStatus(true)
+}
+
+function onReloadComponent() {
+  orderDirectorMovieKey.value += 1
 }
 </script>
 

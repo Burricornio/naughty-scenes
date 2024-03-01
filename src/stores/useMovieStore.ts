@@ -35,7 +35,7 @@ export enum GameMode {
 export const useMovieStore = defineStore(
   'useMovieStore',
   () => {
-    // const gameStartedFlag = ref<boolean>(false)
+    const gameStartedFlag = ref<boolean>(false)
     const { getDefaultScenes } = useSceneStore()
 
     const gameMode = ref<GameMode>(GameMode.UNSELECTED)
@@ -65,14 +65,14 @@ export const useMovieStore = defineStore(
 
     const getViewTimer = computed<boolean>(() => viewTimer.value)
 
-    // const getGameStartedFlag = computed<boolean>(() => gameStartedFlag.value)
+    const getGameStartedFlag = computed<boolean>(() => gameStartedFlag.value)
     // const getPlayedMoviesNumber = computed<number>(() => playedMoviesNumber.value)
 
     const getPlayerNames = computed<PlayersObject>(() => playerNames.value)
 
-    // function setGameStartedFlag(value: boolean) {
-    //   gameStartedFlag.value = value
-    // }
+    function setGameStartedFlag(value: boolean) {
+      gameStartedFlag.value = value
+    }
 
     function addNewGamePlayed() {
       playedMoviesNumber.value++
@@ -104,14 +104,24 @@ export const useMovieStore = defineStore(
       viewTimer.value = value
     }
 
+    function $reset() {
+      gameStartedFlag.value = false
+      gameMode.value = GameMode.UNSELECTED
+      playerNames.value = {
+        player1: '',
+        player2: ''
+      }
+    }
+
     return {
       // setPlayerNames,
       // addNewGamePlayed,
-      // setGameStartedFlag,
+      setGameStartedFlag,
       // $reset,
-      // gameStartedFlag,
+      gameStartedFlag,
+      $reset,
       // playerNames,
-      // getGameStartedFlag,
+      getGameStartedFlag,
       // getPlayedGamesNumber,
       setPlayerNames,
       getPlayerNames,

@@ -1,7 +1,7 @@
 <template>
   <button
     class="start-movie-btn"
-    v-if="!sceneStore.getCurrentScene"
+    v-if="!useMovie.getGameStartedFlag"
     @click="openModal"
   >
     {{ startTextButton }}
@@ -13,9 +13,11 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import useModal from '@/composables/useModal'
 import { useSceneStore } from '@/stores/useSceneStore'
+import { useMovieStore } from '@/stores/useMovieStore'
 
 // STORE
 const sceneStore = useSceneStore()
+const useMovie = useMovieStore()
 
 // TEXTS
 const { t } = useI18n()

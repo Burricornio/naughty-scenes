@@ -42,6 +42,7 @@ function selectMovie(movieId: number): void {
   )
   sceneStore.selectAllScenes()
   sceneStore.playMovie(selectedMovieScenes[0].scenes)
+  sceneStore.setSelectedScenes(selectedMovieScenes[0].scenes)
   emitLoadedCustomMovieFlag()
 }
 </script>

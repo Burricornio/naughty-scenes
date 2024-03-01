@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import draggable from 'vuedraggable'
 import { Icon } from '@iconify/vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
@@ -43,8 +43,19 @@ const scenes = computed(() => sceneStore.getSelectedScenes)
 
 const movie = ref<Scene[]>(scenes.value)
 
+// WATCH
+watch(
+  () => scenes.value,
+  () => {
+    emit(EmittedEvent.RELOAD_COMPONENT)
+  }
+)
+
 // EMITS
-const emit = defineEmits([EmittedEvent.UPDATE_DIRECTOR_MOVIE])
+const emit = defineEmits([
+  EmittedEvent.UPDATE_DIRECTOR_MOVIE,
+  EmittedEvent.RELOAD_COMPONENT
+])
 
 function setNewOrder() {
   emit(EmittedEvent.UPDATE_DIRECTOR_MOVIE, movie.value)

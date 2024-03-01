@@ -5,5 +5,6 @@ export enum EmittedEvent {
   REPEAT_AGAIN = 'repeat-again',
   CHANGE_SCENES_NUMBER_LENGTH = 'change-scenes-number-length',
   UPDATE_DIRECTOR_MOVIE = 'update-director-movie',
-  LOADED_CUSTOM_MOVIE_FLAG = 'loaded-custom-movie-flag'
+  LOADED_CUSTOM_MOVIE_FLAG = 'loaded-custom-movie-flag',
+  RELOAD_COMPONENT = 'reload-component'
 }

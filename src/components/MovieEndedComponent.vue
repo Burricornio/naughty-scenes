@@ -8,7 +8,7 @@
           <Icon class="icon" icon="material-symbols:repeat" />
         </button>
         <button
-          v-if="getGameMode === GameMode.DIRECTOR"
+          v-if="movieStore.getGameMode === GameMode.DIRECTOR"
           class="icon-container"
           @click="repeatAgain(false)"
         >
@@ -39,7 +39,7 @@ import { GameMode, useMovieStore } from '@/stores/useMovieStore'
 
 // STORE
 const sceneStore = useSceneStore()
-const { getGameMode } = useMovieStore()
+const movieStore = useMovieStore()
 
 // TEXTS
 const { t } = useI18n()

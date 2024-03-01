@@ -9,15 +9,15 @@ export const useResetStore = defineStore('useResetStore', () => {
   // const buttonsStore = useButtonsStore()
   // const gameStore = useGameStore()
   // const cardsStore = useCardsStore()
-  const { resetPlayerNames, setGameMode } = useMovieStore()
+  const movieStore = useMovieStore()
   const sceneStore = useSceneStore()
 
   function resetGame() {
     // TODO - resetear
+    // TODO - ¿Vaciar localstorage?
     console.log('reset')
-    resetPlayerNames()
-    setGameMode(GameMode.UNSELECTED)
     sceneStore.$reset()
+    movieStore.$reset()
     // cardsStore.$reset()
     // gameStore.$reset()
     // buttonsStore.$reset()

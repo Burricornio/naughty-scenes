@@ -5,9 +5,9 @@
       v-if="!countdownStore.showCountdown"
       title="DIRECTOR MODE"
     />
-    <LoadMovieBar v-if="!startedMovieFlag" />
+    <LoadMovieBar v-if="!movieStore.getGameStartedFlag" />
     <MovieContainerComponent
-      v-if="startedMovieFlag"
+      v-if="movieStore.getGameStartedFlag"
       @repeat-again="onRepeatAgain"
     />
     <DirectorStepsComponent
@@ -33,15 +33,16 @@ import { GameMode, useMovieStore } from '@/stores/useMovieStore'
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
-const { setGameMode } = useMovieStore()
+// const { setGameMode, setGameStartedFlag, getGameStartedFlag } = useMovieStore()
+const movieStore = useMovieStore()
 
 // DATA
 const movie = ref<Scene[]>([])
-const startedMovieFlag = ref<boolean>(false)
+// const startedMovieFlag = ref<boolean>(false)
 
 // HOOKS
 onMounted(() => {
-  setGameMode(GameMode.DIRECTOR)
+  movieStore.setGameMode(GameMode.DIRECTOR)
   countdownStore.setCountdownStatus(false)
   sceneStore.unselectAllScenes()
 })
@@ -52,13 +53,13 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
     countdownStore.setCountdownStatus(true)
     sceneStore.playMovie(sceneStore.getScenes)
   } else {
+    movieStore.setGameStartedFlag(false)
     sceneStore.resetSelectedScenes()
-    startedMovieFlag.value = false
   }
 }
 
 function changeStartedMovieFlag() {
-  startedMovieFlag.value = true
+  movieStore.setGameStartedFlag(true)
 }
 
 function onUpdateDirectorMovie(scenes: Scene[]) {

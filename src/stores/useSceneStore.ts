@@ -146,6 +146,11 @@ export const useSceneStore = defineStore(
       selectedScenes.value = []
     }
 
+    function setSelectedScenes(scenes: Scene[]) {
+      console.log('eeee', scenes)
+      selectedScenes.value = scenes
+    }
+
     function deleteCustomScene(sceneId: number) {
       const sceneIndex = scenes.value.findIndex(
         (scene: Scene) => scene.id === sceneId
@@ -183,6 +188,7 @@ export const useSceneStore = defineStore(
       selectScene,
       resetSelectedScenes,
       $reset,
+      setSelectedScenes,
       // Save in localstorage
       sceneIndex,
       scenes,
