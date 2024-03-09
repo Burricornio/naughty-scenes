@@ -6,17 +6,16 @@
   >
     {{ startTextButton }}
   </button>
+  <h1>{{ useGame.getGamesPlayedNumber }}</h1>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import useModal from '@/composables/useModal'
-import { useSceneStore } from '@/stores/useSceneStore'
 import { useGameStore } from '@/stores/useGameStore'
 
 // STORE
-const sceneStore = useSceneStore()
 const useGame = useGameStore()
 
 // TEXTS
@@ -30,7 +29,7 @@ const { openModal } = useModal()
 
 // COMPUTED
 const startTextButton = computed<string>(() =>
-  sceneStore.getScenesLength ? text.playAgain : text.play
+  useGame.getGamesPlayedNumber ? text.playAgain : text.play
 )
 </script>
 

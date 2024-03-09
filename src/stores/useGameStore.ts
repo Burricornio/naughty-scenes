@@ -21,7 +21,7 @@ export const useGameStore = defineStore(
   () => {
     const gameStartedFlag = ref<boolean>(false)
     const gameMode = ref<GameMode>(GameMode.UNSELECTED)
-    const playedMoviesNumber = ref<number>(0)
+    const gamesPlayedNumber = ref<number>(0)
     const playerNames = ref<PlayersObject>({
       player1: '',
       player2: ''
@@ -34,7 +34,8 @@ export const useGameStore = defineStore(
     const getViewTimer = computed<boolean>(() => viewTimer.value)
 
     const getGameStartedFlag = computed<boolean>(() => gameStartedFlag.value)
-    // const getPlayedMoviesNumber = computed<number>(() => playedMoviesNumber.value)
+
+    const getGamesPlayedNumber = computed<number>(() => gamesPlayedNumber.value)
 
     const getPlayerNames = computed<PlayersObject>(() => playerNames.value)
 
@@ -43,7 +44,7 @@ export const useGameStore = defineStore(
     }
 
     function addNewGamePlayed() {
-      playedMoviesNumber.value++
+      gamesPlayedNumber.value++
     }
 
     function setPlayerNames(payload: {
@@ -80,27 +81,24 @@ export const useGameStore = defineStore(
     }
 
     return {
-      // setPlayerNames,
-      // addNewGamePlayed,
-      setGameStartedFlag,
-      // $reset,
-      gameStartedFlag,
       $reset,
-      // playerNames,
-      getGameStartedFlag,
-      // getPlayedGamesNumber,
-      setPlayerNames,
-      getPlayerNames,
       addNewGamePlayed,
-      resetPlayerNames,
+      gameStartedFlag,
       getGameMode,
-      setGameMode,
-      setPlayersOrder,
+      getGameStartedFlag,
+      getGamesPlayedNumber,
+      getPlayerNames,
       getViewTimer,
+      resetPlayerNames,
+      setGameMode,
+      setGameStartedFlag,
+      setPlayerNames,
+      setPlayersOrder,
       setViewTimer,
       // Save in localstorage
       playerNames,
-      viewTimer
+      viewTimer,
+      gamesPlayedNumber
     }
   },
   {
