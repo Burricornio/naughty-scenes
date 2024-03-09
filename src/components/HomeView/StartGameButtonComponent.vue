@@ -6,7 +6,6 @@
   >
     {{ startTextButton }}
   </button>
-  <h1>{{ useGame.getGamesPlayedNumber }}</h1>
 </template>
 
 <script setup lang="ts">
