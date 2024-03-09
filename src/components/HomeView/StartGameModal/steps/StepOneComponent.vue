@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { Step } from '@/components/home-view/StartMovieModal/steps/types/stepsTypes'
+import { Step } from '@/components/HomeView/StartGameModal/steps/types/stepsTypes'
 import { useMovieStore } from '@/stores/useMovieStore'
 import { useModalsStore } from '@/stores/useModalsStore'
 import { useI18n } from 'vue-i18n'
