@@ -12,18 +12,17 @@
 import { onMounted } from 'vue'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import { useSceneStore } from '@/stores/useSceneStore'
+import { useGameStore, GameMode } from '@/stores/useGameStore'
 import BannerComponent from '@/components/BannerComponent.vue'
 import CountdownComponent from '@/components/CountdownComponent.vue'
 import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 import MovieEndedComponent from '@/components/MovieEndedComponent.vue'
 import SceneContainerComponent from '@/components/SceneContainer/SceneContainerComponent.vue'
-import { GameMode, useMovieStore } from '@/stores/useMovieStore'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
-const { setGameMode } = useMovieStore()
-const { setViewTimer } = useMovieStore()
+const { setGameMode, setViewTimer } = useGameStore()
 
 // HOOKS
 onMounted(() => {

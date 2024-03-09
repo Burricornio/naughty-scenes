@@ -5,9 +5,9 @@
       v-if="!countdownStore.showCountdown"
       title="DIRECTOR MODE"
     />
-    <LoadMovieBar v-if="!movieStore.getGameStartedFlag" />
+    <LoadMovieBar v-if="!gameStore.getGameStartedFlag" />
     <MovieContainerComponent
-      v-if="movieStore.getGameStartedFlag"
+      v-if="gameStore.getGameStartedFlag"
       @repeat-again="onRepeatAgain"
     />
     <DirectorStepsComponent
@@ -28,13 +28,12 @@ import MovieContainerComponent from '@/components/director/MovieContainerCompone
 import DirectorStepsComponent from '@/components/director/DirectorStepsComponent.vue'
 import LoadMovieBar from '@/components/director/LoadMovieBar.vue'
 import CountdownComponent from '@/components/CountdownComponent.vue'
-import { GameMode, useMovieStore } from '@/stores/useMovieStore'
+import { useGameStore, GameMode } from '@/stores/useGameStore'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
-// const { setGameMode, setGameStartedFlag, getGameStartedFlag } = useMovieStore()
-const movieStore = useMovieStore()
+const gameStore = useGameStore()
 
 // DATA
 const movie = ref<Scene[]>([])
@@ -42,7 +41,7 @@ const movie = ref<Scene[]>([])
 
 // HOOKS
 onMounted(() => {
-  movieStore.setGameMode(GameMode.DIRECTOR)
+  gameStore.setGameMode(GameMode.DIRECTOR)
   countdownStore.setCountdownStatus(false)
   sceneStore.unselectAllScenes()
 })
@@ -53,13 +52,13 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
     countdownStore.setCountdownStatus(true)
     sceneStore.playMovie(sceneStore.getScenes)
   } else {
-    movieStore.setGameStartedFlag(false)
+    gameStore.setGameStartedFlag(false)
     sceneStore.resetSelectedScenes()
   }
 }
 
 function changeStartedMovieFlag() {
-  movieStore.setGameStartedFlag(true)
+  gameStore.setGameStartedFlag(true)
 }
 
 function onUpdateDirectorMovie(scenes: Scene[]) {

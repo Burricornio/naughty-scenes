@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { GameMode, useMovieStore } from './useMovieStore'
 import { useSceneStore } from './useSceneStore'
+import { useGameStore } from './useGameStore'
 // import { useCardsStore } from './useCardsStore'
 // import { useButtonsStore } from './useButtonsStore'
 // import { useGameStore } from './useGameStore'
@@ -9,11 +9,11 @@ export const useResetStore = defineStore('useResetStore', () => {
   // const buttonsStore = useButtonsStore()
   // const gameStore = useGameStore()
   // const cardsStore = useCardsStore()
-  const movieStore = useMovieStore()
   const sceneStore = useSceneStore()
+  const gameStore = useGameStore()
 
   function resetLocalStorage() {
-    const stores = ['useSceneStore', 'useMovieStore']
+    const stores = ['useSceneStore', 'useGameStore']
     stores.forEach((key: string) => localStorage.removeItem(key))
   }
 
@@ -21,7 +21,7 @@ export const useResetStore = defineStore('useResetStore', () => {
     // TODO - resetear
     // TODO - ¿Vaciar localstorage?
     sceneStore.$reset()
-    movieStore.$reset()
+    gameStore.$reset()
     // cardsStore.$reset()
     // gameStore.$reset()
     // buttonsStore.$reset()

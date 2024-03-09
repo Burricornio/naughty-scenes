@@ -1,0 +1,109 @@
+import { computed, ref } from 'vue'
+import { defineStore } from 'pinia'
+
+export interface PlayersObject {
+  player1: string
+  player2: string
+}
+export interface Players {
+  playerNames: PlayersObject
+}
+
+export enum GameMode {
+  UNSELECTED = 0,
+  IMPRO = 1,
+  ACTOR = 2,
+  DIRECTOR = 3
+}
+
+export const useGameStore = defineStore(
+  'useGameStore',
+  () => {
+    const gameStartedFlag = ref<boolean>(false)
+    const gameMode = ref<GameMode>(GameMode.UNSELECTED)
+    const playedMoviesNumber = ref<number>(0)
+    const playerNames = ref<PlayersObject>({
+      player1: '',
+      player2: ''
+    })
+
+    const viewTimer = ref<boolean>(false)
+
+    const getGameMode = computed<GameMode | null>(() => gameMode.value)
+
+    const getViewTimer = computed<boolean>(() => viewTimer.value)
+
+    const getGameStartedFlag = computed<boolean>(() => gameStartedFlag.value)
+    // const getPlayedMoviesNumber = computed<number>(() => playedMoviesNumber.value)
+
+    const getPlayerNames = computed<PlayersObject>(() => playerNames.value)
+
+    function setGameStartedFlag(value: boolean) {
+      gameStartedFlag.value = value
+    }
+
+    function addNewGamePlayed() {
+      playedMoviesNumber.value++
+    }
+
+    function setPlayerNames(payload: {
+      player: keyof Players['playerNames']
+      name: string
+    }) {
+      const { player, name } = payload
+      playerNames.value[player] = name
+    }
+
+    function setPlayersOrder(payload: PlayersObject) {
+      playerNames.value = payload
+    }
+
+    function resetPlayerNames() {
+      playerNames.value.player1 = ''
+      playerNames.value.player2 = ''
+    }
+
+    function setGameMode(mode: GameMode) {
+      gameMode.value = mode
+    }
+    function setViewTimer(value: boolean) {
+      viewTimer.value = value
+    }
+
+    function $reset() {
+      gameStartedFlag.value = false
+      gameMode.value = GameMode.UNSELECTED
+      playerNames.value = {
+        player1: '',
+        player2: ''
+      }
+    }
+
+    return {
+      // setPlayerNames,
+      // addNewGamePlayed,
+      setGameStartedFlag,
+      // $reset,
+      gameStartedFlag,
+      $reset,
+      // playerNames,
+      getGameStartedFlag,
+      // getPlayedGamesNumber,
+      setPlayerNames,
+      getPlayerNames,
+      addNewGamePlayed,
+      resetPlayerNames,
+      getGameMode,
+      setGameMode,
+      setPlayersOrder,
+      getViewTimer,
+      setViewTimer,
+      // Save in localstorage
+      playerNames,
+      viewTimer
+    }
+  },
+  {
+    persist: true
+  }
+)

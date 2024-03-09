@@ -17,20 +17,20 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useMovieStore } from '@/stores/useMovieStore'
+import { useGameStore } from '@/stores/useGameStore'
 import { useSceneStore } from '@/stores/useSceneStore'
 import SceneComponent from '@/components/SceneComponent.vue'
 
 // STORE
 const sceneStore = useSceneStore()
-const movieStore = useMovieStore()
+const gameStore = useGameStore()
 
 // TEXTS
 const { t } = useI18n()
 const text = { allPlayed: t('all_played'), turn: t('turn') }
 
 const playerTurn = computed<string>(() => {
-  const playerNames = Object.values(movieStore.getPlayerNames)
+  const playerNames = Object.values(gameStore.getPlayerNames)
   return playerNames[sceneStore.getSceneIndex % playerNames.length]
 })
 
@@ -41,7 +41,7 @@ function selectNextScene(): void {
   }
   sceneStore.increaseIndex()
   if (sceneStore.getSceneIndex === sceneStore.getScenesLength) {
-    movieStore.addNewGamePlayed()
+    gameStore.addNewGamePlayed()
   }
   if (sceneStore.getScenes[sceneStore.getSceneIndex]) {
     sceneStore.setCurrentScene(sceneStore.getScenes[sceneStore.getSceneIndex])

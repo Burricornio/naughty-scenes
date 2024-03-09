@@ -24,7 +24,7 @@ export default function useModal() {
     openAddNewScene.value = false
   }
 
-  // ADD NEW MODAL
+  // ADD CUSTOM SCENE MODAL
   const openRemoveCustomSceneModal = () => {
     openRemoveCustomScene.value = true
   }

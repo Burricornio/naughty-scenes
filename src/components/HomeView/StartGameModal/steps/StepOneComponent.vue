@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { Step } from '@/components/HomeView/StartGameModal/steps/types/stepsTypes'
-import { useMovieStore } from '@/stores/useMovieStore'
+import { useGameStore } from '@/stores/useGameStore'
 import { useModalsStore } from '@/stores/useModalsStore'
 import { useI18n } from 'vue-i18n'
 import { useForm } from 'vee-validate'
@@ -47,7 +47,7 @@ const PLAYER_2 = 'player2'
 const disabledButton = ref<boolean>(true)
 
 // STORE
-const movieStore = useMovieStore()
+const useGame = useGameStore()
 const modalsStore = useModalsStore()
 
 // TEXTS
@@ -61,8 +61,8 @@ const text = {
 
 const { errors, defineInputBinds } = useForm({
   initialValues: {
-    player1: movieStore.getPlayerNames[PLAYER_1],
-    player2: movieStore.getPlayerNames[PLAYER_2]
+    player1: useGame.getPlayerNames[PLAYER_1],
+    player2: useGame.getPlayerNames[PLAYER_2]
   },
   validationSchema: yup.object({
     player1: requiredField(),
@@ -75,10 +75,7 @@ const player2 = defineInputBinds(PLAYER_2)
 
 // WATCHER
 watch(
-  [
-    () => movieStore.getPlayerNames.player1,
-    () => movieStore.getPlayerNames.player2
-  ],
+  [() => useGame.getPlayerNames.player1, () => useGame.getPlayerNames.player2],
   ([value1, value2]) => {
     disabledButton.value = !(value1.length >= 3 && value2.length >= 3)
   }
@@ -87,10 +84,10 @@ watch(
 // METHODS
 async function saveName(e: Event, fieldname: 'player1' | 'player2') {
   const name = (e.target as HTMLInputElement).value
-  movieStore.setPlayerNames({ player: fieldname, name: '' })
+  useGame.setPlayerNames({ player: fieldname, name: '' })
   setTimeout(() => {
     if (!errors.value[fieldname]) {
-      movieStore.setPlayerNames({ player: fieldname, name })
+      useGame.setPlayerNames({ player: fieldname, name })
     }
   }, 100)
 }

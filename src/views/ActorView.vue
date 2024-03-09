@@ -24,12 +24,12 @@ import SceneContainerComponent from '@/components/SceneContainer/SceneContainerC
 import SceneMiniaturesComponent from '@/components/SceneMiniaturesComponent.vue'
 import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 import BannerComponent from '@/components/BannerComponent.vue'
-import { GameMode, useMovieStore } from '@/stores/useMovieStore'
+import { useGameStore, GameMode } from '@/stores/useGameStore'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
-const { setGameMode, setViewTimer } = useMovieStore()
+const { setGameMode, setViewTimer } = useGameStore()
 
 // DATA
 // ¿Dejar que el jugador escoja el número de escenas?

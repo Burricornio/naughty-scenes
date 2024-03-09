@@ -8,7 +8,7 @@
           <Icon class="icon" icon="material-symbols:repeat" />
         </button>
         <button
-          v-if="movieStore.getGameMode === GameMode.DIRECTOR"
+          v-if="gameStore.getGameMode === GameMode.DIRECTOR"
           class="icon-container"
           @click="repeatAgain(false)"
         >
@@ -32,14 +32,14 @@
 import { EmittedEvent } from '@/events'
 import { useI18n } from 'vue-i18n'
 import { useSceneStore } from '@/stores/useSceneStore'
+import { Icon } from '@iconify/vue'
+import { useGameStore, GameMode } from '@/stores/useGameStore'
 import BannerComponent from '@/components/BannerComponent.vue'
 import GoToHomeButtonComponent from '@/components/GoToHomeButtonComponent.vue'
-import { Icon } from '@iconify/vue'
-import { GameMode, useMovieStore } from '@/stores/useMovieStore'
 
 // STORE
 const sceneStore = useSceneStore()
-const movieStore = useMovieStore()
+const gameStore = useGameStore()
 
 // TEXTS
 const { t } = useI18n()

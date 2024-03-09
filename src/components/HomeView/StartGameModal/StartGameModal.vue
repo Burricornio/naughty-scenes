@@ -1,5 +1,5 @@
 <template>
-  <ModalComponent :open="open" @close-modal="closeStartMovieModal">
+  <ModalComponent :open="open" @close-modal="closeStartGameModal">
     <InstructionComponent />
     <StepOneComponent
       v-if="modalsStore.currentStep === Step.INSERT_PLAYER_NAMES"
@@ -38,7 +38,7 @@ onUnmounted(() => {
   }
 })
 
-function closeStartMovieModal() {
+function closeStartGameModal() {
   resetGame()
   closeModal()
 }
