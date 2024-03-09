@@ -1,7 +1,6 @@
 <template>
   <form class="step-one-form" autocomplete="off">
     <div class="input-container">
-      <!-- <label>{{ text.playerName1 }}</label> -->
       <div class="input-error">
         <input
           type="text"
@@ -15,7 +14,6 @@
       </div>
     </div>
     <div class="input-container">
-      <!-- <label>{{ text.playerName2 }}</label> -->
       <div class="input-error">
         <input
           type="text"
@@ -28,7 +26,9 @@
         <p class="errors">{{ errors.player2 }}</p>
       </div>
     </div>
-    <button :disabled="disabledButton" @click="goToStepTwo">SIGUIENTE</button>
+    <button :disabled="disabledButton" @click="goToStepTwo">
+      {{ text.next }}
+    </button>
   </form>
 </template>
 
@@ -54,6 +54,7 @@ const modalsStore = useModalsStore()
 const { t } = useI18n()
 const text = {
   minRule: t('rule.min', { number: minCharacters }),
+  next: t('button.next'),
   playerName1: t('component.step_one.player_name', { number: 1 }),
   playerName2: t('component.step_one.player_name', { number: 2 }),
   requiredRule: t('rule.required')
