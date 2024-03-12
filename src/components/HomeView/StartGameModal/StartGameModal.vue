@@ -1,10 +1,10 @@
 <template>
   <ModalComponent :open="open" @close-modal="closeStartGameModal">
     <InstructionComponent />
-    <StepOneComponent
+    <EnterPlayersNameStepComponent
       v-if="modalsStore.currentStep === Step.INSERT_PLAYER_NAMES"
     />
-    <StepTwoComponent
+    <ChooseGameModeStepComponent
       v-if="modalsStore.currentStep === Step.SELECT_MOVIE_MODE"
     />
   </ModalComponent>
@@ -18,8 +18,8 @@ import { useResetStore } from '@/stores/useResetStore'
 import { useModalsStore } from '@/stores/useModalsStore'
 import InstructionComponent from '@/components/HomeView/StartGameModal/InstructionComponent.vue'
 import ModalComponent from '@/components/ModalComponent.vue'
-import StepOneComponent from '@/components/HomeView/StartGameModal/steps/StepOneComponent.vue'
-import StepTwoComponent from '@/components/HomeView/StartGameModal/steps/StepTwoComponent.vue'
+import EnterPlayersNameStepComponent from '@/components/HomeView/StartGameModal/steps/EnterPlayersNameStepComponent.vue'
+import ChooseGameModeStepComponent from '@/components/HomeView/StartGameModal/steps/ChooseGameModeStepComponent.vue'
 
 // STORE
 const { resetGame } = useResetStore()
