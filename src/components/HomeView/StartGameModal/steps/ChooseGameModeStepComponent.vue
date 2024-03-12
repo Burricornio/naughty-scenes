@@ -14,6 +14,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useCountdownStore } from '@/stores/useCountdownStore'
+import { GameModeName } from '@/stores/useGameStore'
 
 // STORE
 const countdownStore = useCountdownStore()
@@ -23,20 +24,20 @@ const router = useRouter()
 
 const modes = [
   {
-    name: 'Impro',
-    action: () => goToView('Impro'),
+    name: GameModeName.IMPRO,
+    action: () => goToView(GameModeName.IMPRO),
     explanation:
       'En este modo de juego las escenas van apareciendo aleatoriamente de una a una'
   },
   {
-    name: 'Actor',
-    action: () => goToView('Actor'),
+    name: GameModeName.ACTOR,
+    action: () => goToView(GameModeName.ACTOR),
     explanation:
       'En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar'
   },
   {
-    name: 'Director',
-    action: () => goToView('Director'),
+    name: GameModeName.DIRECTOR,
+    action: () => goToView(GameModeName.DIRECTOR),
     explanation:
       'En este modo de juego lo configuras todo como quieras y puedes cargar y grabar escenas'
   }

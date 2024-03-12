@@ -16,6 +16,12 @@ export enum GameMode {
   DIRECTOR = 3
 }
 
+export enum GameModeName {
+  IMPRO = 'Impro',
+  ACTOR = 'Actor',
+  DIRECTOR = 'Director'
+}
+
 export const useGameStore = defineStore(
   'useGameStore',
   () => {
