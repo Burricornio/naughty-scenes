@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useCountdownStore } from '@/stores/useCountdownStore'
-import { GameModeName } from '@/stores/useGameStore'
+import { GameModeName } from '@/stores/useGame/types'
 
 // STORE
 const countdownStore = useCountdownStore()
@@ -96,3 +96,4 @@ function goToView(name: string) {
   // }
 }
 </style>
+@/stores/useGame

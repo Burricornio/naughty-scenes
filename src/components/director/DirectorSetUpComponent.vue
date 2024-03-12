@@ -49,11 +49,12 @@
 </template>
 
 <script setup lang="ts">
-import { PlayersObject, useMovieStore } from '@/stores/useMovieStore'
+import { PlayersObject } from '@/stores/useGame/types'
+import { useGameStore } from '@/stores/useGame'
 import { ref } from 'vue'
 
 // STORE
-const { getPlayerNames, setPlayersOrder, setViewTimer } = useMovieStore()
+const { getPlayerNames, setPlayersOrder, setViewTimer } = useGameStore()
 
 const selectedPlayer = ref<string>('')
 

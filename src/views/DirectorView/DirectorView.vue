@@ -28,7 +28,7 @@ import MovieContainerComponent from '@/components/director/MovieContainerCompone
 import DirectorStepsComponent from '@/components/director/DirectorStepsComponent.vue'
 import LoadMovieBar from '@/components/director/LoadMovieBar.vue'
 import CountdownComponent from '@/components/CountdownComponent.vue'
-import { useGameStore, GameMode } from '@/stores/useGameStore'
+import { useGameStore, GameMode } from '@/stores/useGame'
 
 // STORE
 const sceneStore = useSceneStore()
@@ -80,3 +80,4 @@ function onUpdateDirectorMovie(scenes: Scene[]) {
   }
 }
 </style>
+@/stores/useGame

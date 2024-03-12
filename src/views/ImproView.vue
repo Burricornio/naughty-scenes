@@ -12,7 +12,8 @@
 import { onMounted } from 'vue'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import { useSceneStore } from '@/stores/useSceneStore'
-import { useGameStore, GameMode } from '@/stores/useGameStore'
+import { useGameStore } from '@/stores/useGame'
+import { GameMode } from '@/stores/useGame/types'
 import BannerComponent from '@/components/BannerComponent.vue'
 import CountdownComponent from '@/components/CountdownComponent.vue'
 import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
@@ -51,3 +52,4 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
   }
 }
 </script>
+@/stores/useGame

@@ -24,7 +24,7 @@ import SceneContainerComponent from '@/components/SceneContainer/SceneContainerC
 import SceneMiniaturesComponent from '@/components/SceneMiniaturesComponent.vue'
 import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 import BannerComponent from '@/components/BannerComponent.vue'
-import { useGameStore, GameMode } from '@/stores/useGameStore'
+import { useGameStore, GameMode } from '@/stores/useGame'
 
 // STORE
 const sceneStore = useSceneStore()
@@ -66,3 +66,4 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
   }
 }
 </script>
+@/stores/useGame

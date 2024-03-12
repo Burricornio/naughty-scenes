@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { useSceneStore } from './useSceneStore'
-import { useGameStore } from './useGameStore'
+import { useGameStore } from './useGame'
 // import { useCardsStore } from './useCardsStore'
 // import { useButtonsStore } from './useButtonsStore'
-// import { useGameStore } from './useGameStore'
+// import { useGameStore } from '.'
 
 export const useResetStore = defineStore('useResetStore', () => {
   // const buttonsStore = useButtonsStore()

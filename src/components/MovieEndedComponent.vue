@@ -33,7 +33,8 @@ import { EmittedEvent } from '@/events'
 import { useI18n } from 'vue-i18n'
 import { useSceneStore } from '@/stores/useSceneStore'
 import { Icon } from '@iconify/vue'
-import { useGameStore, GameMode } from '@/stores/useGameStore'
+import { useGameStore } from '@/stores/useGame'
+import { GameMode } from '@/stores/useGame/types'
 import BannerComponent from '@/components/BannerComponent.vue'
 import GoToHomeButtonComponent from '@/components/GoToHomeButtonComponent.vue'
 
@@ -85,3 +86,4 @@ function repeatAgain(repeatSameGameFlag: boolean) {
   }
 }
 </style>
+@/stores/useGame

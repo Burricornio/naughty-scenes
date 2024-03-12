@@ -1,4 +1,4 @@
-import { GameModeName } from '@/stores/useGameStore'
+import { GameModeName } from '@/stores/useGame/types'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [

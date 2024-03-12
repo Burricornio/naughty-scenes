@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { Step } from '@/components/HomeView/StartGameModal/steps/types/stepsTypes'
-import { useGameStore } from '@/stores/useGameStore'
+import { useGameStore } from '@/stores/useGame'
 import { useModalsStore } from '@/stores/useModalsStore'
 import { useI18n } from 'vue-i18n'
 import { useForm } from 'vee-validate'
@@ -143,4 +143,4 @@ function goToStepTwo() {
     margin-right: 0;
   }
 }
-</style>
+</style>@/stores/useGame

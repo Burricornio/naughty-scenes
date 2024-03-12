@@ -12,7 +12,7 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import useModal from '@/composables/useModal'
-import { useGameStore } from '@/stores/useGameStore'
+import { useGameStore } from '@/stores/useGame'
 
 // STORE
 const useGame = useGameStore()
@@ -86,3 +86,4 @@ const startTextButton = computed<string>(() =>
   }
 }
 </style>
+@/stores/useGame

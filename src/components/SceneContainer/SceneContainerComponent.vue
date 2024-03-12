@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useGameStore } from '@/stores/useGameStore'
+import { useGameStore } from '@/stores/useGame'
 import { useSceneStore } from '@/stores/useSceneStore'
 import SceneComponent from '@/components/SceneComponent.vue'
 
@@ -74,3 +74,4 @@ function selectPreviousScene(): void {
   }
 }
 </style>
+@/stores/useGame
