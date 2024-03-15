@@ -26,7 +26,7 @@
         <p class="errors">{{ errors.player2 }}</p>
       </div>
     </div>
-    <button :disabled="disabledButton" @click="goToStepTwo">
+    <button :disabled="disabledButton" @click="goToSelectModeStep">
       {{ text.next }}
     </button>
   </form>
@@ -100,7 +100,7 @@ function requiredField() {
     .min(minCharacters, text.minRule)
 }
 
-function goToStepTwo() {
+function goToSelectModeStep() {
   modalsStore.setStartMovieModalCurrentStep(Step.SELECT_MOVIE_MODE)
 }
 </script>
@@ -143,4 +143,4 @@ function goToStepTwo() {
     margin-right: 0;
   }
 }
-</style>@/stores/useGame
+</style>

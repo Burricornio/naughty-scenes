@@ -7,6 +7,9 @@
     <ChooseGameModeStepComponent
       v-if="modalsStore.currentStep === Step.SELECT_MOVIE_MODE"
     />
+    <SelectScenesNumberStepComponent
+      v-if="modalsStore.currentStep === Step.SELECTE_SCENES_NUMBER"
+    />
   </ModalComponent>
 </template>
 
@@ -20,6 +23,7 @@ import InstructionComponent from '@/components/HomeView/StartGameModal/Instructi
 import ModalComponent from '@/components/ModalComponent.vue'
 import EnterPlayersNameStepComponent from '@/components/HomeView/StartGameModal/steps/EnterPlayersNameStepComponent.vue'
 import ChooseGameModeStepComponent from '@/components/HomeView/StartGameModal/steps/ChooseGameModeStepComponent.vue'
+import SelectScenesNumberStepComponent from '@/components/HomeView/StartGameModal/steps/SelectScenesNumberStepComponent.vue'
 
 // STORE
 const { resetGame } = useResetStore()

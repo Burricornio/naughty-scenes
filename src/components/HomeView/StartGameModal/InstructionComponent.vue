@@ -19,6 +19,8 @@ const intructionText = computed<string>(() => {
       return 'Introduce el nombre de los actores'
     case Step.SELECT_MOVIE_MODE:
       return 'Selecciona el modo de juego'
+    case Step.SELECTE_SCENES_NUMBER:
+      return 'Selecciona el numero de escenas'
     default:
       return ''
   }

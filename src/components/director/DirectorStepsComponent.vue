@@ -22,10 +22,6 @@
         <span class="selected-number">{{ numberOfSelectedScenes }}</span>
       </div>
 
-      <!-- <SelectScenesNumberInputComponent
-        :scenesNumber="numberOfScenes"
-        @change-scenes-number-length="selectRandomScenes"
-      /> -->
       <div v-if="allScenes.length">
         <SelectScenesContainerComponent :scenes="allScenes" />
       </div>

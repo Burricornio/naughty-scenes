@@ -24,16 +24,13 @@ import SceneContainerComponent from '@/components/SceneContainer/SceneContainerC
 import SceneMiniaturesComponent from '@/components/SceneMiniaturesComponent.vue'
 import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 import BannerComponent from '@/components/BannerComponent.vue'
-import { useGameStore, GameMode } from '@/stores/useGame'
+import { useGameStore } from '@/stores/useGame'
+import { GameMode } from '@/stores/useGame/types'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
 const { setGameMode, setViewTimer } = useGameStore()
-
-// DATA
-// ¿Dejar que el jugador escoja el número de escenas?
-const numberOfScenes = 3
 
 // HOOKS
 onMounted(() => {
@@ -47,7 +44,7 @@ onMounted(() => {
 // METHODS
 function selectRandomScenes() {
   sceneStore.selectScenes({
-    numberOfScenes: numberOfScenes,
+    numberOfScenes: sceneStore.getActorModeScenesNumber,
     shuffle: true
   })
 }
@@ -66,4 +63,3 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
   }
 }
 </script>
-@/stores/useGame

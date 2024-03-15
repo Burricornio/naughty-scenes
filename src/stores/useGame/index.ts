@@ -1,12 +1,13 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { GameMode, Players, PlayersObject } from './types'
+import { GameMode, GameModeName, Players, PlayersObject } from './types'
 
 export const useGameStore = defineStore(
   'useGameStore',
   () => {
     const gameStartedFlag = ref<boolean>(false)
     const gameMode = ref<GameMode>(GameMode.UNSELECTED)
+    const gameModeName = ref<GameModeName>()
     const gamesPlayedNumber = ref<number>(0)
     const playerNames = ref<PlayersObject>({
       player1: '',
@@ -16,6 +17,10 @@ export const useGameStore = defineStore(
     const viewTimer = ref<boolean>(false)
 
     const getGameMode = computed<GameMode | null>(() => gameMode.value)
+
+    const getGameModeName = computed<GameModeName | undefined>(
+      () => gameModeName.value
+    )
 
     const getViewTimer = computed<boolean>(() => viewTimer.value)
 
@@ -53,6 +58,11 @@ export const useGameStore = defineStore(
     function setGameMode(mode: GameMode) {
       gameMode.value = mode
     }
+
+    function setGameModeName(name: GameModeName) {
+      gameModeName.value = name
+    }
+
     function setViewTimer(value: boolean) {
       viewTimer.value = value
     }
@@ -74,6 +84,7 @@ export const useGameStore = defineStore(
       getGameStartedFlag,
       getGamesPlayedNumber,
       getPlayerNames,
+      getGameModeName,
       getViewTimer,
       resetPlayerNames,
       setGameMode,
@@ -81,6 +92,7 @@ export const useGameStore = defineStore(
       setPlayerNames,
       setPlayersOrder,
       setViewTimer,
+      setGameModeName,
       // Save in localstorage
       playerNames,
       viewTimer,

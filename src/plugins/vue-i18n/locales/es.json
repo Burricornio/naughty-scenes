@@ -14,7 +14,8 @@
     "decrement": "Down",
     "close": "Cerrar",
     "save": "Guardar",
-    "select": "Seleccionar"
+    "select": "Seleccionar",
+    "begin": "Empezar"
   },
   "component": {
     "countdown": {
@@ -41,9 +42,6 @@
   "view": {
     "actor": {
       "random_deck": "Baraja aleatoria"
-    },
-    "director": {
-      "scenes_number_label": "Número de escenas"
     },
     "home": {
       "slogan_1": "¿Quieres rodar tu propia película XXX?",

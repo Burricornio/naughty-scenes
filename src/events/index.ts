@@ -6,5 +6,6 @@ export enum EmittedEvent {
   CHANGE_SCENES_NUMBER_LENGTH = 'change-scenes-number-length',
   UPDATE_DIRECTOR_MOVIE = 'update-director-movie',
   LOADED_CUSTOM_MOVIE_FLAG = 'loaded-custom-movie-flag',
-  RELOAD_COMPONENT = 'reload-component'
+  RELOAD_COMPONENT = 'reload-component',
+  SELECTED_GAME_MODE = 'selected-game-mode'
 }

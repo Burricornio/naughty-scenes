@@ -20,7 +20,6 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-// import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
 import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 import { useCountdownStore } from '@/stores/useCountdownStore'
@@ -80,4 +79,3 @@ function onUpdateDirectorMovie(scenes: Scene[]) {
   }
 }
 </style>
-@/stores/useGame

@@ -2,7 +2,9 @@
   <div class="step-two-container">
     <div v-for="mode in modes" :key="mode.name" class="mode-container">
       <div class="row">
-        <button class="mode-btn" @click="mode.action">{{ mode.name }}</button>
+        <button class="mode-btn" @click="mode.action">
+          {{ mode.name }}
+        </button>
       </div>
       <div class="row">
         <p class="explanation">{{ mode.explanation }}</p>
@@ -12,12 +14,17 @@
 </template>
 
 <script setup lang="ts">
+import { useModalsStore } from '@/stores/useModalsStore'
 import { useRouter } from 'vue-router'
+import { useGameStore } from '@/stores/useGame'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import { GameModeName } from '@/stores/useGame/types'
+import { Step } from './types/stepsTypes'
 
 // STORE
 const countdownStore = useCountdownStore()
+const modalsStore = useModalsStore()
+const { setGameModeName } = useGameStore()
 
 // ROUTER
 const router = useRouter()
@@ -25,27 +32,32 @@ const router = useRouter()
 const modes = [
   {
     name: GameModeName.IMPRO,
-    action: () => goToView(GameModeName.IMPRO),
     explanation:
-      'En este modo de juego las escenas van apareciendo aleatoriamente de una a una'
+      'En este modo de juego las escenas van apareciendo aleatoriamente de una a una',
+    action: () => goToView(GameModeName.IMPRO)
   },
   {
     name: GameModeName.ACTOR,
-    action: () => goToView(GameModeName.ACTOR),
     explanation:
-      'En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar'
+      'En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar',
+    action: () => goToSelectNumberOfScenesStep(GameModeName.ACTOR)
   },
   {
     name: GameModeName.DIRECTOR,
-    action: () => goToView(GameModeName.DIRECTOR),
     explanation:
-      'En este modo de juego lo configuras todo como quieras y puedes cargar y grabar escenas'
+      'En este modo de juego lo configuras todo como quieras y puedes cargar y grabar escenas',
+    action: () => goToView(GameModeName.DIRECTOR)
   }
 ]
 
 function goToView(name: string) {
   countdownStore.setCountdownStatus(true)
   router.push({ name })
+}
+
+function goToSelectNumberOfScenesStep(name: GameModeName) {
+  modalsStore.setStartMovieModalCurrentStep(Step.SELECTE_SCENES_NUMBER)
+  setGameModeName(name)
 }
 </script>
 
@@ -70,30 +82,5 @@ function goToView(name: string) {
       padding: 10px;
     }
   }
-
-  // .input-container {
-  //   margin-bottom: 10px;
-  // }
-
-  // .chooose-cards-container {
-  //   @include flex($justify-content: space-between);
-  //   width: 100%;
-
-  //   button {
-  //     @include flex;
-  //     width: 240px;
-  //     height: 250px;
-  //     text-transform: uppercase;
-  //     background-color: $purple;
-  //     border: none;
-  //     font-size: 20px;
-  //     padding: 20px;
-
-  //     &:hover {
-  //       background-color: $fuchsia;
-  //     }
-  //   }
-  // }
 }
 </style>
-@/stores/useGame

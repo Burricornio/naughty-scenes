@@ -52,4 +52,3 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
   }
 }
 </script>
-@/stores/useGame
