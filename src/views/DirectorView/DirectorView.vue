@@ -21,13 +21,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
-import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 import { useCountdownStore } from '@/stores/useCountdownStore'
-import MovieContainerComponent from '@/components/director/MovieContainerComponent.vue'
-import DirectorStepsComponent from '@/components/director/DirectorStepsComponent.vue'
-import LoadMovieBar from '@/components/director/LoadMovieBar.vue'
+import { useGameStore } from '@/stores/useGame'
 import CountdownComponent from '@/components/CountdownComponent.vue'
-import { useGameStore, GameMode } from '@/stores/useGame'
+import DirectorStepsComponent from '@/components/director/DirectorStepsComponent.vue'
+import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
+import LoadMovieBar from '@/components/director/LoadMovieBar.vue'
+import MovieContainerComponent from '@/components/director/MovieContainerComponent.vue'
+import { GameMode } from '@/stores/useGame/types'
 
 // STORE
 const sceneStore = useSceneStore()
@@ -36,7 +37,6 @@ const gameStore = useGameStore()
 
 // DATA
 const movie = ref<Scene[]>([])
-// const startedMovieFlag = ref<boolean>(false)
 
 // HOOKS
 onMounted(() => {

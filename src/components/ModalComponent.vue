@@ -38,7 +38,7 @@ function closeModal() {
   z-index: 1000;
 
   .modal-content {
-    @include borders($width: 6px, $color: $modal-color);
+    @include borders($width: 5px, $color: $modal-color);
     position: relative;
     top: -8%;
     background: $white;

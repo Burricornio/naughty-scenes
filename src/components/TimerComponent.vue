@@ -28,10 +28,10 @@
 
 <script setup lang="ts">
 import { ref, watchEffect, watch } from 'vue'
+import { useGameStore } from '@/stores/useGame'
 import DurationComponent from '@/components/DurationComponent.vue'
 import { useI18n } from 'vue-i18n'
 import { Icon } from '@iconify/vue'
-import { useMovieStore } from '@/stores/useMovieStore'
 
 // PROPS
 const props = defineProps({
@@ -42,7 +42,7 @@ const props = defineProps({
 })
 
 // STORE
-const { getViewTimer } = useMovieStore()
+const { getViewTimer } = useGameStore()
 
 // DATA
 const { t } = useI18n()

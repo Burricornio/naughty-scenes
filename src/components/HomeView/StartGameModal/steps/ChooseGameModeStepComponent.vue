@@ -1,14 +1,15 @@
 <template>
-  <div class="step-two-container">
-    <div v-for="mode in modes" :key="mode.name" class="mode-container">
-      <div class="row">
-        <button class="mode-btn" @click="mode.action">
-          {{ mode.name }}
-        </button>
+  <div class="choose-game-mode-container">
+    <div
+      v-for="mode in modes"
+      :key="mode.name"
+      class="mode-container"
+      @click="mode.action"
+    >
+      <div class="title">
+        {{ mode.name }}
       </div>
-      <div class="row">
-        <p class="explanation">{{ mode.explanation }}</p>
-      </div>
+      <div class="explanation" v-html="mode.explanation" />
     </div>
   </div>
 </template>
@@ -17,9 +18,16 @@
 import { useModalsStore } from '@/stores/useModalsStore'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '@/stores/useGame'
+import { useI18n } from 'vue-i18n'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import { GameModeName } from '@/stores/useGame/types'
 import { Step } from './types/stepsTypes'
+
+interface Mode {
+  name: string
+  explanation: string
+  action: () => void
+}
 
 // STORE
 const countdownStore = useCountdownStore()
@@ -29,23 +37,37 @@ const { setGameModeName } = useGameStore()
 // ROUTER
 const router = useRouter()
 
-const modes = [
+// TEXT
+const { t } = useI18n()
+
+const text = {
+  improModeExplanation: t(
+    'component.choose_game_mode_step.impro_mode_explanation'
+  ),
+  actorModeExplanation: t(
+    'component.choose_game_mode_step.actor_mode_explanation'
+  ),
+  directorModeExplanation: t(
+    'component.choose_game_mode_step.director_mode_explanation'
+  ),
+  selectButton: t('button.select')
+}
+
+// DATA
+const modes: Mode[] = [
   {
     name: GameModeName.IMPRO,
-    explanation:
-      'En este modo de juego las escenas van apareciendo aleatoriamente de una a una',
+    explanation: text.improModeExplanation,
     action: () => goToView(GameModeName.IMPRO)
   },
   {
     name: GameModeName.ACTOR,
-    explanation:
-      'En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar En este modo de juego seelciionas el número de escenas que quieres rodar',
+    explanation: text.actorModeExplanation,
     action: () => goToSelectNumberOfScenesStep(GameModeName.ACTOR)
   },
   {
     name: GameModeName.DIRECTOR,
-    explanation:
-      'En este modo de juego lo configuras todo como quieras y puedes cargar y grabar escenas',
+    explanation: text.directorModeExplanation,
     action: () => goToView(GameModeName.DIRECTOR)
   }
 ]
@@ -62,24 +84,59 @@ function goToSelectNumberOfScenesStep(name: GameModeName) {
 </script>
 
 <style lang="scss" scoped>
-.step-two-container {
+.choose-game-mode-container {
   @include flex;
   margin: 10px 0 20px 0;
 
   .mode-container {
-    @include flex($flex-direction: column);
+    @include flex($flex-direction: column, $justify-content: flex-start);
     @include borders($color: $modal-color);
-    max-width: 300px;
-    min-height: 150px;
+    max-width: 350px;
     margin: 10px;
     border-radius: $border-radius;
-    align-self: flex-start;
+    padding: 14px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #f6e3e6;
+    }
+
+    .title {
+      @include flex;
+      font-family: circular, sans-serif;
+      font-weight: bold;
+      height: 40px;
+      width: 100%;
+      color: #fff;
+      border: 2px solid #ff3859;
+      background-color: #ff3859;
+      text-transform: uppercase;
+      border-radius: 8px;
+    }
 
     .explanation {
-      align-self: flex-start;
-      text-align: left;
-      margin-top: 10px;
-      padding: 10px;
+      padding: 20px;
+      height: 110px;
+      font-size: 16px;
+
+      :deep(ul) {
+        padding: 0 10px;
+        list-style-type: initial;
+
+        li {
+          text-align: left;
+          margin-bottom: 14px;
+
+          &::marker {
+            color: red;
+          }
+        }
+      }
+    }
+
+    .mode-btn {
+      align-self: flex-end;
+      margin: 0;
     }
   }
 }
