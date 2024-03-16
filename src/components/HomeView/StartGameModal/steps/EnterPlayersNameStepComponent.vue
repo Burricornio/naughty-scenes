@@ -4,7 +4,8 @@
       <div class="input-error">
         <input
           type="text"
-          v-bind="player1"
+          v-model="player1"
+          v-bind="player1Attrs"
           :id="PLAYER_1"
           :name="PLAYER_1"
           @change="($event) => saveName($event, PLAYER_1)"
@@ -17,7 +18,8 @@
       <div class="input-error">
         <input
           type="text"
-          v-bind="player2"
+          v-model="player2"
+          v-bind="player2Attrs"
           :id="PLAYER_2"
           :name="PLAYER_2"
           @change="($event) => saveName($event, PLAYER_2)"
@@ -33,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { Step } from '@/components/HomeView/StartGameModal/steps/types/stepsTypes'
 import { useGameStore } from '@/stores/useGame'
 import { useModalsStore } from '@/stores/useModalsStore'
@@ -60,7 +62,7 @@ const text = {
   requiredRule: t('rule.required')
 }
 
-const { errors, defineInputBinds } = useForm({
+const { errors, defineField } = useForm({
   initialValues: {
     player1: useGame.getPlayerNames[PLAYER_1],
     player2: useGame.getPlayerNames[PLAYER_2]
@@ -71,16 +73,17 @@ const { errors, defineInputBinds } = useForm({
   })
 })
 
-const player1 = defineInputBinds(PLAYER_1)
-const player2 = defineInputBinds(PLAYER_2)
+const [player1, player1Attrs] = defineField(PLAYER_1)
+const [player2, player2Attrs] = defineField(PLAYER_2)
+
+const isFormValid = computed(
+  () => player1.value.length >= 3 && player2.value.length >= 3
+)
 
 // WATCHER
-watch(
-  [() => useGame.getPlayerNames.player1, () => useGame.getPlayerNames.player2],
-  ([value1, value2]) => {
-    disabledButton.value = !(value1.length >= 3 && value2.length >= 3)
-  }
-)
+watch([player1, player2], () => {
+  disabledButton.value = !isFormValid.value
+})
 
 // METHODS
 async function saveName(e: Event, fieldname: 'player1' | 'player2') {
