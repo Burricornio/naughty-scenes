@@ -124,7 +124,7 @@ label {
 }
 
 input {
-  @include borders($color: rgb(203, 203, 203));
+  @include borders($color: $input-gray);
   width: 100%;
   height: 40px;
   color: $black;

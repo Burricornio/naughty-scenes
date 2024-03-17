@@ -1,32 +1,46 @@
 <template>
-  <form class="step-one-form" autocomplete="off">
+  <form class="enter-players-name-container" autocomplete="off">
     <div class="input-container">
-      <div class="input-error">
+      <div class="input-wrapper">
         <input
           type="text"
           v-model="player1"
           v-bind="player1Attrs"
+          class="input-field"
           :id="PLAYER_1"
           :name="PLAYER_1"
           @change="($event) => saveName($event, PLAYER_1)"
           :placeholder="text.playerName1"
         />
-        <p class="errors">{{ errors.player1 }}</p>
+        <Icon
+          v-if="player1.length"
+          class="close-icon"
+          icon="ion:close-round"
+          @click="player1 = ''"
+        />
       </div>
+      <p class="errors">{{ errors.player1 }}</p>
     </div>
     <div class="input-container">
-      <div class="input-error">
+      <div class="input-wrapper">
         <input
           type="text"
           v-model="player2"
           v-bind="player2Attrs"
+          class="input-field"
           :id="PLAYER_2"
           :name="PLAYER_2"
           @change="($event) => saveName($event, PLAYER_2)"
           :placeholder="text.playerName2"
         />
-        <p class="errors">{{ errors.player2 }}</p>
+        <Icon
+          v-if="player2.length"
+          class="close-icon"
+          icon="ion:close-round"
+          @click="player2 = ''"
+        />
       </div>
+      <p class="errors">{{ errors.player2 }}</p>
     </div>
     <button :disabled="disabledButton" @click="goToSelectModeStep">
       {{ text.next }}
@@ -41,6 +55,7 @@ import { useGameStore } from '@/stores/useGame'
 import { useModalsStore } from '@/stores/useModalsStore'
 import { useI18n } from 'vue-i18n'
 import { useForm } from 'vee-validate'
+import { Icon } from '@iconify/vue'
 import * as yup from 'yup'
 
 const minCharacters = 3
@@ -76,13 +91,13 @@ const { errors, defineField } = useForm({
 const [player1, player1Attrs] = defineField(PLAYER_1)
 const [player2, player2Attrs] = defineField(PLAYER_2)
 
-const isFormValid = computed(
-  () => player1.value.length >= 3 && player2.value.length >= 3
+const isFormInValid = computed(
+  () => !(player1.value.length >= 3 && player2.value.length >= 3)
 )
 
 // WATCHER
 watch([player1, player2], () => {
-  disabledButton.value = !isFormValid.value
+  disabledButton.value = isFormInValid.value
 })
 
 // METHODS
@@ -109,35 +124,47 @@ function goToSelectModeStep() {
 </script>
 
 <style lang="scss" scoped>
-.step-one-form {
+.enter-players-name-container {
   @include flex($flex-direction: column);
   padding: $padding-01 $padding-02 0 $padding-02;
   margin-top: 10px;
 
   .input-container {
-    @include flex;
+    @include flex($flex-direction: column, $align-items: flex-start);
+    position: relative;
 
     &:first-of-type {
       margin-bottom: 20px;
     }
 
-    label {
-      align-self: flex-start;
-      width: 60px;
-      line-height: 23px;
-      margin-right: 4px;
-      text-align: left;
-    }
-
-    .input-error {
-      @include flex($flex-direction: column, $align-items: flex-start);
+    .input-wrapper {
+      @include flex;
       width: 100%;
-    }
-    .errors {
-      min-height: 20px;
-      color: $error-color;
-      font-size: 14px;
-      margin-top: 3px;
+
+      .input-field {
+        width: 100%;
+        padding-right: 30px;
+
+        &:hover + .close-icon,
+        &:focus + .close-icon {
+          opacity: 1;
+        }
+      }
+
+      .close-icon {
+        position: absolute;
+        font-size: 12px;
+        right: 10px;
+        top: 13px;
+        color: $main-color;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
 
