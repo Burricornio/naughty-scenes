@@ -87,7 +87,7 @@ function formatTime(value: number): string {
     @include flex;
     @include borders($width: 2px);
     color: $main-color;
-    padding: $padding-01;
+    padding: $size-01;
     width: 110px;
     border-radius: $border-radius;
 
@@ -97,7 +97,7 @@ function formatTime(value: number): string {
     }
     .buttons-container {
       @include flex($flex-direction: column);
-      margin-left: $margin-02;
+      margin-left: $size-02;
 
       button {
         height: 30px;

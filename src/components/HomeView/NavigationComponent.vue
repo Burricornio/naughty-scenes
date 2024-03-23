@@ -64,7 +64,7 @@ const links = [
       width: 300px;
 
       .nav-item {
-        padding: $padding-01 $padding-02;
+        padding: $size-01 $size-02;
         font-size: 16px;
         width: 200px;
         cursor: pointer;

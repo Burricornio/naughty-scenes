@@ -42,7 +42,7 @@ function addNewScene() {
   background-color: white;
 
   .filter {
-    margin: $margin-01;
+    margin: $size-01;
   }
 }
 </style>

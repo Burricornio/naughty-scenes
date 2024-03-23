@@ -126,7 +126,7 @@ function goToSelectModeStep() {
 <style lang="scss" scoped>
 .enter-players-name-container {
   @include flex($flex-direction: column);
-  padding: $padding-01 $padding-02 0 $padding-02;
+  padding: $size-01 $size-02 0 $size-02;
   margin-top: 10px;
 
   .input-container {

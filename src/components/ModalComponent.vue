@@ -45,7 +45,7 @@ function closeModal() {
     border-radius: $border-radius;
     min-width: 550px;
     overflow: auto;
-    padding: $padding-01;
+    padding: $size-01;
 
     button {
       position: absolute;

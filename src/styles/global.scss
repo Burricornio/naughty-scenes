@@ -99,7 +99,7 @@ body {
 h1 {
   font-family: $secondary-font;
   font-size: 35px;
-  color: $green-molon;
+  color: $green;
   font-weight: bold;
   margin: 20px;
 }
@@ -107,7 +107,7 @@ h1 {
 h2 {
   font-family: $secondary-font;
   font-size: 20px;
-  color: $green-molon;
+  color: $green;
   margin: 20px;
 }
 
@@ -129,7 +129,7 @@ input {
   height: 40px;
   color: $black;
   box-sizing: border-box;
-  padding: 0 $padding-01;
+  padding: 0 $size-01;
   font-size: 16px;
   background-color: $white;
   border-radius: $border-radius;
