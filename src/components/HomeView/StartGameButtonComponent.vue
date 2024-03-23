@@ -4,32 +4,19 @@
     v-if="!useGame.getGameStartedFlag"
     @click="openModal"
   >
-    {{ startTextButton }}
+    <Icon icon="material-symbols:play-arrow" class="play-icon" />
   </button>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 import useModal from '@/composables/useModal'
 import { useGameStore } from '@/stores/useGame'
+import { Icon } from '@iconify/vue'
 
 // STORE
 const useGame = useGameStore()
 
-// TEXTS
-const { t } = useI18n()
-const text = {
-  playAgain: t('play_again'),
-  play: t('button.play')
-}
-
 const { openModal } = useModal()
-
-// COMPUTED
-const startTextButton = computed<string>(() =>
-  useGame.getGamesPlayedNumber ? text.playAgain : text.play
-)
 </script>
 
 <style lang="scss" scoped>
@@ -39,18 +26,19 @@ const startTextButton = computed<string>(() =>
   color: $white;
   background-color: $main-color;
   border-radius: 50%;
-  text-transform: uppercase;
-  font-size: 26px;
   animation: pulse 2s infinite;
-  font-weight: bold;
   outline: none;
   border: 1px solid $white;
   cursor: pointer;
 
   &:hover {
     color: $white;
-    background-color: #caa406;
+    background-color: $green-02;
     animation: pulseHover 2s infinite;
+  }
+
+  .play-icon {
+    font-size: 90px;
   }
 }
 
@@ -86,4 +74,3 @@ const startTextButton = computed<string>(() =>
   }
 }
 </style>
-@/stores/useGame

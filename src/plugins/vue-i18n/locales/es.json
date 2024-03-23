@@ -3,7 +3,6 @@
   "button": {
     "continue": "Continuar",
     "next": "Siguiente",
-    "play": "Jugar",
     "previous": "Anterior",
     "random": "Random",
     "reset": "Resetear",
@@ -59,6 +58,5 @@
       "slogan_2": "Pulsa el botón y prepárate para disfrutar."
     }
   },
-  "play_again": "Repetir",
   "turn": "Turno de"
 }
