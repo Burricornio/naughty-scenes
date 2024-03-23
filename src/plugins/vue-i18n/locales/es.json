@@ -18,9 +18,21 @@
   },
   "component": {
     "choose_game_mode_step": {
-      "impro_mode_explanation": "<ul><li>Las escenas aparecen aleatoriamente sin límite de tiempo.</li><li>Tú decides cuando pasar a la siguiente escena.</li><li>¿Serás capaz de jugarlas todas?</li><ul/>",
-      "actor_mode_explanation": "<ul><li>Selecciona el número de escenas que quieres jugar.</li><li>Completa el tiempo del cronómetro para pasar a la siguiente escena.</li><li>¿Podrás acabar la película?</li><ul/>",
-      "director_mode_explanation": "<ul><li>Configurar tus propias películas como un director profesional.</li><li>Podrás crear nuevas escenas o elegirlas entre las disponibles.</li><li>Guardalas y podrás repetir tu película en cualquier momento</li><ul/>"
+      "impro_mode_explanation": {
+        "p1": "Las escenas aparecen aleatoriamente sin límite de tiempo.",
+        "p2": "Tú decides cuando pasar a la siguiente escena.",
+        "p3": "¿Serás capaz de jugarlas todas?"
+      },
+      "actor_mode_explanation": {
+        "p1": "Selecciona el número de escenas que quieres jugar.",
+        "p2": "Completa el tiempo del cronómetro para pasar a la siguiente escena.",
+        "p3": "¿Podrás acabar la película?"
+      },
+      "director_mode_explanation": {
+        "p1": "Configurar tus propias películas como un director profesional.",
+        "p2": "Podrás crear nuevas escenas o elegirlas entre las disponibles.",
+        "p3": "Guardalas y podrás repetir tu película en cualquier momento."
+      }
     },
     "instruction_title": {
       "enter_player_names": "Introduce el nombre de los actores",

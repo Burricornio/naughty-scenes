@@ -9,7 +9,15 @@
       <div class="title">
         {{ mode.name }}
       </div>
-      <div class="explanation" v-html="mode.explanation" />
+      <ul class="explanation-list">
+        <li
+          v-for="p in Object.values(mode.explanation)"
+          :key="p"
+          class="explanation-item"
+        >
+          {{ p }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -25,7 +33,11 @@ import { Step } from './types/stepsTypes'
 
 interface Mode {
   name: string
-  explanation: string
+  explanation: {
+    p1: string
+    p2: string
+    p3: string
+  }
   action: () => void
 }
 
@@ -41,15 +53,21 @@ const router = useRouter()
 const { t } = useI18n()
 
 const text = {
-  improModeExplanation: t(
-    'component.choose_game_mode_step.impro_mode_explanation'
-  ),
-  actorModeExplanation: t(
-    'component.choose_game_mode_step.actor_mode_explanation'
-  ),
-  directorModeExplanation: t(
-    'component.choose_game_mode_step.director_mode_explanation'
-  ),
+  improModeExplanation: {
+    p1: t('component.choose_game_mode_step.impro_mode_explanation.p1'),
+    p2: t('component.choose_game_mode_step.impro_mode_explanation.p2'),
+    p3: t('component.choose_game_mode_step.impro_mode_explanation.p3')
+  },
+  actorModeExplanation: {
+    p1: t('component.choose_game_mode_step.actor_mode_explanation.p1'),
+    p2: t('component.choose_game_mode_step.actor_mode_explanation.p2'),
+    p3: t('component.choose_game_mode_step.actor_mode_explanation.p3')
+  },
+  directorModeExplanation: {
+    p1: t('component.choose_game_mode_step.director_mode_explanation.p1'),
+    p2: t('component.choose_game_mode_step.director_mode_explanation.p2'),
+    p3: t('component.choose_game_mode_step.director_mode_explanation.p3')
+  },
   selectButton: t('button.select')
 }
 
@@ -57,17 +75,29 @@ const text = {
 const modes: Mode[] = [
   {
     name: GameModeName.IMPRO,
-    explanation: text.improModeExplanation,
+    explanation: {
+      p1: text.improModeExplanation.p1,
+      p2: text.improModeExplanation.p2,
+      p3: text.improModeExplanation.p3
+    },
     action: () => goToView(GameModeName.IMPRO)
   },
   {
     name: GameModeName.ACTOR,
-    explanation: text.actorModeExplanation,
+    explanation: {
+      p1: text.actorModeExplanation.p1,
+      p2: text.actorModeExplanation.p2,
+      p3: text.actorModeExplanation.p3
+    },
     action: () => goToSelectNumberOfScenesStep(GameModeName.ACTOR)
   },
   {
     name: GameModeName.DIRECTOR,
-    explanation: text.directorModeExplanation,
+    explanation: {
+      p1: text.directorModeExplanation.p1,
+      p2: text.directorModeExplanation.p2,
+      p3: text.directorModeExplanation.p3
+    },
     action: () => goToView(GameModeName.DIRECTOR)
   }
 ]
@@ -110,10 +140,8 @@ function goToSelectNumberOfScenesStep(name: GameModeName) {
         background-color: $impro-color;
       }
 
-      :deep(ul) {
-        li::marker {
-          color: $impro-color;
-        }
+      .explanation-item::marker {
+        color: $impro-color;
       }
     }
 
@@ -128,10 +156,8 @@ function goToSelectNumberOfScenesStep(name: GameModeName) {
         background-color: $actor-color;
       }
 
-      :deep(ul) {
-        li::marker {
-          color: $actor-color;
-        }
+      .explanation-item::marker {
+        color: $actor-color;
       }
     }
 
@@ -146,10 +172,8 @@ function goToSelectNumberOfScenesStep(name: GameModeName) {
         background-color: $director-color;
       }
 
-      :deep(ul) {
-        li::marker {
-          color: $director-color;
-        }
+      .explanation-item::marker {
+        color: $director-color;
       }
     }
 
@@ -164,19 +188,16 @@ function goToSelectNumberOfScenesStep(name: GameModeName) {
       border-radius: 8px;
     }
 
-    .explanation {
+    .explanation-list {
       padding: 20px;
       height: 110px;
       font-size: 16px;
+      text-align: left;
+      list-style-type: initial;
 
-      :deep(ul) {
-        padding: 0 10px;
-        list-style-type: initial;
-
-        li {
-          text-align: left;
-          margin-bottom: 14px;
-        }
+      .explanation-item {
+        text-align: left;
+        margin-bottom: 14px;
       }
     }
 
