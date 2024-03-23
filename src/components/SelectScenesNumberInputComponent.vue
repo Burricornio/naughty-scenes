@@ -79,7 +79,7 @@ function emitSelectedScenesNumber() {
 .select-scenes-number {
   .errors {
     min-height: 20px;
-    color: $error-color;
+    color: $warning-color;
     font-size: 14px;
     margin-top: 3px;
     text-align: left;
