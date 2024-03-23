@@ -74,4 +74,3 @@ function selectPreviousScene(): void {
   }
 }
 </style>
-@/stores/useGame

@@ -71,7 +71,7 @@ const links = [
 
         &:hover {
           border: 1px solid $white;
-          background-color: $action-color;
+          background-color: $action-color-hover;
           border-radius: $border-radius;
         }
 

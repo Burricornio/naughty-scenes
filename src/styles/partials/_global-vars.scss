@@ -6,20 +6,27 @@ $gray-02: #CBCBCB;
 $gray: #7b7777;
 $green: #528232;
 $green-02: #caa406;
+$green-03: #e3fad3;
 $orange-02: #caa406;
 $orange: #e58111;
+$orange-02: #ffe9cf;
 $pink-02: #ff385933;
 $pink: #ff3859;
 $purple: #5b22d0;
+$purple-02: #eee8fb;
 $white: #fff;
 
 // MODE COLORS
 $actor-color: $orange;
+$actor-color-hover: $orange-02;
 $director-color: $green;
+$director-color-hover: $green-03;
 $impro-color: $purple;
+$impro-color-hover: $purple-02;
 
 // GLOBAL COLORS
 $action-color: $orange-02;
+$action-color-hover: $green-02;
 $disabled-color: $pink-02;
 $disabled-text: $gray;
 $warning-color: $pink;

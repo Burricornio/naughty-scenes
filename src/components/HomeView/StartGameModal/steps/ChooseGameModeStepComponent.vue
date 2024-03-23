@@ -3,7 +3,7 @@
     <div
       v-for="mode in modes"
       :key="mode.name"
-      class="mode-container"
+      :class="['mode-container', mode.name.toLowerCase()]"
       @click="mode.action"
     >
       <div class="title">
@@ -90,7 +90,6 @@ function goToSelectNumberOfScenesStep(name: GameModeName) {
 
   .mode-container {
     @include flex($flex-direction: column, $justify-content: flex-start);
-    @include borders($color: $modal-color);
     max-width: 350px;
     margin: 10px;
     border-radius: $border-radius;
@@ -98,7 +97,60 @@ function goToSelectNumberOfScenesStep(name: GameModeName) {
 
     &:hover {
       cursor: pointer;
-      background-color: #f6e3e6;
+    }
+
+    &.impro {
+      @include borders($color: $impro-color);
+
+      &:hover {
+        background-color: $impro-color-hover;
+      }
+
+      .title {
+        background-color: $impro-color;
+      }
+
+      :deep(ul) {
+        li::marker {
+          color: $impro-color;
+        }
+      }
+    }
+
+    &.actor {
+      @include borders($color: $actor-color);
+
+      &:hover {
+        background-color: $actor-color-hover;
+      }
+
+      .title {
+        background-color: $actor-color;
+      }
+
+      :deep(ul) {
+        li::marker {
+          color: $actor-color;
+        }
+      }
+    }
+
+    &.director {
+      @include borders($color: $director-color);
+
+      &:hover {
+        background-color: $director-color-hover;
+      }
+
+      .title {
+        background-color: $director-color;
+      }
+
+      :deep(ul) {
+        li::marker {
+          color: $director-color;
+        }
+      }
     }
 
     .title {
@@ -108,8 +160,6 @@ function goToSelectNumberOfScenesStep(name: GameModeName) {
       height: 40px;
       width: 100%;
       color: #fff;
-      border: 2px solid #ff3859;
-      background-color: #ff3859;
       text-transform: uppercase;
       border-radius: 8px;
     }
@@ -126,10 +176,6 @@ function goToSelectNumberOfScenesStep(name: GameModeName) {
         li {
           text-align: left;
           margin-bottom: 14px;
-
-          &::marker {
-            color: red;
-          }
         }
       }
     }

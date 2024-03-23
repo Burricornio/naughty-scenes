@@ -33,7 +33,7 @@ const { openModal } = useModal()
 
   &:hover {
     color: $white;
-    background-color: $green-02;
+    background-color: $action-color-hover;
     animation: pulseHover 2s infinite;
   }
 
