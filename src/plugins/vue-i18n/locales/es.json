@@ -1,4 +1,10 @@
 {
+  "modes": {
+    "impro": "impro",
+    "actor": "actor",
+    "director": "director",
+    "mode_literal": "modo"
+  },
   "all_played": "¡¡¡Todas jugadas!!!",
   "button": {
     "continue": "Continuar",
