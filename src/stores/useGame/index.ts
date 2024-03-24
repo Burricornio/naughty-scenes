@@ -74,6 +74,8 @@ export const useGameStore = defineStore(
         player1: '',
         player2: ''
       }
+      gameMode.value = GameMode.UNSELECTED
+      gameModeName.value = undefined
     }
 
     return {
@@ -96,7 +98,9 @@ export const useGameStore = defineStore(
       // Save in localstorage
       playerNames,
       viewTimer,
-      gamesPlayedNumber
+      gamesPlayedNumber,
+      gameModeName,
+      gameMode
     }
   },
   {

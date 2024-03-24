@@ -14,7 +14,7 @@ export enum GameMode {
 }
 
 export enum GameModeName {
-  IMPRO = 'Impro',
-  ACTOR = 'Actor',
-  DIRECTOR = 'Director'
+  IMPRO = 'impro',
+  ACTOR = 'actor',
+  DIRECTOR = 'director'
 }
