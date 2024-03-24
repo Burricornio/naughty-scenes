@@ -55,7 +55,6 @@ function selectPreviousScene() {
     font-family: $secondary-font;
     height: 40px;
     background-color: $white;
-    color: $main-color;
   }
 }
 </style>
