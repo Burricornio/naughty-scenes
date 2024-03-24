@@ -102,7 +102,8 @@ const modes: Mode[] = [
   }
 ]
 
-function goToView(name: string) {
+function goToView(name: GameModeName) {
+  setGameModeName(name)
   countdownStore.setCountdownStatus(true)
   router.push({ name })
 }
