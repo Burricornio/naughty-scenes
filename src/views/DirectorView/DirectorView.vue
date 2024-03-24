@@ -1,7 +1,7 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
   <div class="view-container">
-    <HeaderViewComponent
+    <HeaderModeComponent
       v-if="!countdownStore.showCountdown"
       title="DIRECTOR MODE"
     />
@@ -25,7 +25,7 @@ import { useCountdownStore } from '@/stores/useCountdownStore'
 import { useGameStore } from '@/stores/useGame'
 import CountdownComponent from '@/components/CountdownComponent.vue'
 import DirectorStepsComponent from '@/components/director/DirectorStepsComponent.vue'
-import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
+import HeaderModeComponent from '@/components/HeaderModeComponent.vue'
 import LoadMovieBar from '@/components/director/LoadMovieBar.vue'
 import MovieContainerComponent from '@/components/director/MovieContainerComponent.vue'
 import { GameMode } from '@/stores/useGame/types'
