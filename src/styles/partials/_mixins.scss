@@ -37,3 +37,49 @@
     }
   }
 }
+
+@mixin mode-button-hover {
+  button.impro:hover {
+    color: $impro-color;
+    background-color: $impro-color-hover;
+  }
+
+  button.actor:hover {
+    color: $actor-color;
+    background-color: $actor-color-hover;
+  }
+
+  button.director:hover {
+    color: $director-color;
+    background-color: $director-color-hover;
+  }
+}
+
+@mixin mode-text-color {
+  p.impro {
+    color: $impro-color;
+  }
+
+  p.actor {
+    color: $actor-color;
+  }
+
+  p.director {
+    color: $director-color;
+  }
+}
+
+@mixin mode-backgorund-color {
+  &.impro {
+    background-color: $impro-color;
+  }
+
+  &.actor {
+    background-color: $actor-color;
+  }
+
+  &.director {
+    background-color: $director-color;
+  }
+}
+

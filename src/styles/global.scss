@@ -91,9 +91,12 @@ body {
   @include flex($flex-direction: column, $justify-content: space-between);
   margin: 30px auto;
   max-width: $max-width;
-  background: $main-color;
   border-radius: $border-radius;
   height: calc(100% - 60px);
+
+  &.impro {
+    background-color: $impro-color;
+  }
 }
 
 h1 {
