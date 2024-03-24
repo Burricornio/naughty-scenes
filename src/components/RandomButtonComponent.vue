@@ -1,5 +1,9 @@
 <template>
-  <div class="random-button-container" v-if="options && options.length">
+  <div
+    v-if="options && options.length"
+    class="random-button-container"
+    :style="styles"
+  >
     <button
       v-if="!randomOption"
       @click="getRandomOption(options)"
@@ -12,7 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
+import { useGameStore } from '@/stores/useGame'
+import { GameModeName } from '@/stores/useGame/types'
 import { useI18n } from 'vue-i18n'
 import { getRandomArrayElement } from '@/helpers/array'
 import { Icon } from '@iconify/vue'
@@ -22,14 +28,39 @@ const props = defineProps<{
   options: string[]
 }>()
 
-// DATA
+// STORE
+const gameStore = useGameStore()
+
+// TEXT
 const { t } = useI18n()
 
 const text = {
   random: t('button.random')
 }
 
+// DATA
 const randomOption = ref<string>('')
+
+// COMPUTED
+const modeColor = computed(() => {
+  modeColor
+  switch (gameStore.getGameModeName) {
+    case GameModeName.IMPRO:
+      return '#5b22d0'
+    case GameModeName.ACTOR:
+      return '#e58111'
+    case GameModeName.DIRECTOR:
+      return '#528232'
+    default:
+      return 'vlack'
+  }
+})
+
+const styles = computed(() => {
+  return {
+    '--mode-color': modeColor.value
+  }
+})
 
 // WATCH
 watch(
@@ -50,21 +81,18 @@ function getRandomOption(options: string[]): void {
   @include round-button;
   width: 100%;
   height: 54px;
-  border-top: 2px solid $main-color;
-  border-bottom: 2px solid $main-color;
+  border-top: 2px solid var(--mode-color, $main-color);
+  border-bottom: 2px solid var(--mode-color, $main-color);
   background-color: $white;
 
   button {
-    border-color: $main-color;
-    color: $main-color;
+    border-color: var(--mode-color, $main-color);
+    color: var(--mode-color, $main-color);
 
     &:hover {
-      border-color: $action-color;
+      border-color: var(--mode-color, $main-color);
+      background-color: var(--mode-color, $main-color);
     }
-  }
-
-  .random-text {
-    color: $main-color;
   }
 }
 </style>
