@@ -86,3 +86,9 @@ function onUpdateDirectorMovie(scenes: Scene[]) {
   }
 }
 </style>
+
+<styles lang="scss" scoped>
+.view-container.director {
+  @include mode-color($director-color);
+}
+</styles>

@@ -1,7 +1,7 @@
 <template>
   <h2
-    :class="['turn-text', gameStore.getGameModeName]"
     v-if="!sceneStore.allScenesPlayed && sceneStore.getCurrentScene"
+    class="turn-text"
   >
     {{ text.turn }}:
     <span class="player-name">{{ playerTurn }}</span>
@@ -36,21 +36,8 @@ $height: 54px;
   background: $white;
   height: $height;
   min-height: $height;
-  color: $main-color;
   font-weight: bold;
   margin: 0;
-
-  &.impro {
-    color: $impro-color;
-  }
-
-  &.actor {
-    color: $actor-color;
-  }
-
-  &.director {
-    color: $director-color;
-  }
 
   .player-name {
     color: $black;

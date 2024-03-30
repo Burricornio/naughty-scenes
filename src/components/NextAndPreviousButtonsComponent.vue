@@ -2,17 +2,17 @@
   <div class="next-and-previous-container">
     <button
       @click="props.goPrev"
+      class="next-and-previous-button"
       :disabled="prevButtonDisabled"
       :title="text.previous"
-      :class="gameStore.getGameModeName"
     >
       <Icon class="icon" icon="mdi:chevron-double-left" />
     </button>
     <span class="title">{{ title }}</span>
     <button
       @click="props.goNext"
+      class="next-and-previous-button"
       :title="text.next"
-      :class="gameStore.getGameModeName"
     >
       <Icon class="icon" icon="mdi:chevron-double-right" />
     </button>
@@ -21,7 +21,6 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { useGameStore } from '@/stores/useGame'
 import { Icon } from '@iconify/vue'
 
 // PROPS
@@ -44,9 +43,6 @@ const props = defineProps({
   }
 })
 
-// STORE
-const gameStore = useGameStore()
-
 // DATA
 const { t } = useI18n()
 
@@ -60,7 +56,6 @@ const text = {
 .next-and-previous-container {
   @include flex;
   @include round-button;
-  @include mode-button-hover;
   height: 54px;
   width: 100%;
 

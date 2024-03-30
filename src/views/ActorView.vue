@@ -70,3 +70,9 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
   }
 }
 </script>
+
+<styles lang="scss" scoped>
+.view-container.actor {
+  @include mode-color($actor-color);
+}
+</styles>

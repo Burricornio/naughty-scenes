@@ -93,18 +93,6 @@ body {
   max-width: $max-width;
   border-radius: $border-radius;
   height: calc(100% - 60px);
-
-  &.impro {
-    background-color: $impro-color;
-  }
-
-  &.actor {
-    background-color: $actor-color;
-  }
-
-  &.director {
-    background-color: $director-color;
-  }
 }
 
 h1 {

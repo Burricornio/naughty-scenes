@@ -57,6 +57,9 @@
     "step_one": {
       "player_name": "Actor {number}"
     },
+    "load_movie_bar": {
+      "create_own_scene": "crea tu propa escenna"
+    },
     "step_two": {
       "impro_mode": "Modo impro"
     },

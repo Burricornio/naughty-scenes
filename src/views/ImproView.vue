@@ -1,6 +1,6 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
-  <div :class="['view-container', gameStore.getGameModeName]" v-else>
+  <div :class="['view-container', getGameModeName]" v-else>
     <HeaderModeComponent :title="text.modeTitle" />
     <SceneContainerComponent />
     <BannerComponent v-if="!sceneStore.allScenesPlayed" />
@@ -24,8 +24,7 @@ import { useI18n } from 'vue-i18n'
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
-const gameStore = useGameStore()
-const { setGameMode, setViewTimer } = useGameStore()
+const { setGameMode, setViewTimer, getGameModeName } = useGameStore()
 
 // TEXTS
 const { t } = useI18n()
@@ -60,3 +59,9 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
   }
 }
 </script>
+
+<styles lang="scss" scoped>
+.view-container.impro {
+  @include mode-color($impro-color);
+}
+</styles>

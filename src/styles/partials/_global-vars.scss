@@ -4,6 +4,7 @@ $blue: #3628b8;
 $fuchsia: #E833A0;
 $gray-02: #CBCBCB;
 $gray: #7b7777;
+$gray-02: #a5989a33;
 $green: #528232;
 $green-02: #caa406;
 $green-03: #e3fad3;
@@ -27,7 +28,7 @@ $impro-color-hover: $purple-02;
 // GLOBAL COLORS
 $action-color: $orange-02;
 $action-color-hover: $green-02;
-$disabled-color: $pink-02;
+$disabled-color: $gray-02;
 $disabled-text: $gray;
 $warning-color: $pink;
 $input-gray: $gray-02;
@@ -45,6 +46,8 @@ $secondary-font: circular, sans-serif;
 
 // BORDER
 $border-radius: 8px;
+$border-radius-bottom: 0 0 $border-radius $border-radius;
+$border-radius-top: $border-radius $border-radius 0 0;
 
 // WIDTH
 $max-width: 1100px;

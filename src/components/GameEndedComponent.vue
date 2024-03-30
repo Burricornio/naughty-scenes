@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="sceneStore.allScenesPlayed"
-    :class="[gameStore.getGameModeName, 'game-ended-container']"
-  >
+  <div v-if="sceneStore.allScenesPlayed" class="game-ended-container">
     <div class="actions-container">
       <p class="all-played-text">{{ text.allPlayed }}</p>
       <div class="icons-container">
@@ -79,45 +76,6 @@ function repeatAgain(repeatSameGameFlag: boolean) {
     width: 100%;
     text-transform: uppercase;
     padding: 10px;
-  }
-
-  &.impro {
-    button.icon-container {
-      color: $impro_color;
-      border-color: $impro_color;
-      background-color: $impro_color;
-
-      &:hover {
-        color: $white;
-        background-color: $impro_color;
-      }
-    }
-  }
-
-  &.actor {
-    button.icon-container {
-      color: $actor_color;
-      border-color: $actor_color;
-      background-color: $actor_color;
-
-      &:hover {
-        color: $white;
-        background-color: $actor_color;
-      }
-    }
-  }
-
-  &.director {
-    button.icon-container {
-      color: $director_color;
-      border-color: $director_color;
-      background-color: $director_color;
-
-      &:hover {
-        color: $white;
-        background-color: $actor_color;
-      }
-    }
   }
 
   .actions-container {

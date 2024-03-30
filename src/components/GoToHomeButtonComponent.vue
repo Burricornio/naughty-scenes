@@ -1,6 +1,6 @@
 <template>
   <div class="go-home-button-container">
-    <button :class="gameStore.getGameModeName" @click="goToHome" title="inicio">
+    <button class="go-home-button" @click="goToHome" title="inicio">
       <Icon class="icon" icon="material-symbols:home" />
     </button>
   </div>
@@ -10,11 +10,9 @@
 import { useRouter } from 'vue-router'
 import { useResetStore } from '@/stores/useResetStore'
 import { Icon } from '@iconify/vue'
-import { useGameStore } from '@/stores/useGame'
 
 // STORE
 const { resetGame } = useResetStore()
-const gameStore = useGameStore()
 
 // ROUTER
 const router = useRouter()
@@ -30,7 +28,6 @@ function goToHome() {
 .go-home-button-container {
   @include flex;
   @include round-button;
-  @include mode-button-hover;
   position: relative;
 }
 </style>

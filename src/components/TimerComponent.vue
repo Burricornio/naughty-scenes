@@ -1,7 +1,6 @@
 <template>
   <div v-if="getViewTimer" class="timer-container">
     <DurationComponent
-      class="duration"
       @up-duration="increment"
       @down-duration="decrement"
       :minutes="minutesRef"
@@ -132,26 +131,18 @@ function decrement(): void {
 
 <style lang="scss" scoped>
 .timer-container {
-  width: 100%;
+  width: 300px;
+  padding: 20px;
   .timer-buttons {
     @include flex;
     height: 100px;
     background: $white;
+    border-radius: $border-radius-bottom;
 
     button {
-      color: $white;
       font-size: 20px;
-      background-color: $main-color;
       min-width: 60px;
-      border: none;
       margin: 8px;
-
-      &:disabled {
-        border: none;
-        background: $disabled-color;
-        color: $disabled-text;
-        pointer-events: none;
-      }
 
       &:hover {
         background-color: $action-color;
