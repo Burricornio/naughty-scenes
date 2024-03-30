@@ -97,6 +97,14 @@ body {
   &.impro {
     background-color: $impro-color;
   }
+
+  &.actor {
+    background-color: $actor-color;
+  }
+
+  &.director {
+    background-color: $director-color;
+  }
 }
 
 h1 {
@@ -167,6 +175,7 @@ hr {
 button {
   font-family: $secondary-font;
   font-weight: bold;
+  font-size: 14px;
   min-width: 110px;
   height: 40px;
   color: $white;

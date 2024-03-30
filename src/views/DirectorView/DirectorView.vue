@@ -1,9 +1,9 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
-  <div class="view-container">
+  <div :class="['view-container', gameStore.gameModeName]" v-else>
     <HeaderModeComponent
       v-if="!countdownStore.showCountdown"
-      title="DIRECTOR MODE"
+      :title="text.modeTitle"
     />
     <LoadMovieBar v-if="!gameStore.getGameStartedFlag" />
     <MovieContainerComponent
@@ -29,11 +29,18 @@ import HeaderModeComponent from '@/components/HeaderModeComponent.vue'
 import LoadMovieBar from '@/components/director/LoadMovieBar.vue'
 import MovieContainerComponent from '@/components/director/MovieContainerComponent.vue'
 import { GameMode } from '@/stores/useGame/types'
+import { useI18n } from 'vue-i18n'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
 const gameStore = useGameStore()
+
+// TEXTS
+const { t } = useI18n()
+const text = {
+  modeTitle: `${t('modes.mode_literal')} ${t('modes.director')}`
+}
 
 // DATA
 const movie = ref<Scene[]>([])

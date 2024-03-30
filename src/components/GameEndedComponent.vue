@@ -1,10 +1,13 @@
 <template>
-  <div v-if="sceneStore.allScenesPlayed" class="movie-ended-container">
+  <div
+    v-if="sceneStore.allScenesPlayed"
+    :class="[gameStore.getGameModeName, 'game-ended-container']"
+  >
     <div class="actions-container">
-      <p>{{ text.allPlayed }}</p>
+      <p class="all-played-text">{{ text.allPlayed }}</p>
       <div class="icons-container">
         <button class="icon-container" @click="repeatAgain(true)">
-          <span>Repetir la misma partida</span>
+          <span>{{ text.repeatSameScenes }}</span>
           <Icon class="icon" icon="material-symbols:repeat" />
         </button>
         <button
@@ -12,14 +15,13 @@
           class="icon-container"
           @click="repeatAgain(false)"
         >
-          <span>Jugar nueva película</span>
+          <span>{{ text.allPlayed }}</span>
           <Icon class="icon" icon="material-symbols:repeat" />
         </button>
         <button v-else class="icon-container" @click="repeatAgain(false)">
-          <span>Repetir</span>
+          <span>{{ text.repeatSameMode }}</span>
           <Icon class="icon" icon="material-symbols:repeat" />
         </button>
-        <GoToHomeButtonComponent />
       </div>
     </div>
     <BannerComponent />
@@ -36,15 +38,25 @@ import { Icon } from '@iconify/vue'
 import { useGameStore } from '@/stores/useGame'
 import { GameMode } from '@/stores/useGame/types'
 import BannerComponent from '@/components/BannerComponent.vue'
-import GoToHomeButtonComponent from '@/components/GoToHomeButtonComponent.vue'
+import { computed } from 'vue'
 
 // STORE
 const sceneStore = useSceneStore()
 const gameStore = useGameStore()
 
+// COMPUTED
+const mode = computed(() => gameStore.getGameModeName)
+
 // TEXTS
 const { t } = useI18n()
-const text = { allPlayed: t('all_played') }
+const text = {
+  allPlayed: t('all_played'),
+  repeatSameScenes: t('component.game_ended.repeat_same_scenes'),
+  repeatSameMode: t('component.game_ended.repeat_same_mode', {
+    mode: mode.value
+  }),
+  playNewGame: t('component.game_ended.play_new_game')
+}
 
 // EMITS
 const emit = defineEmits([EmittedEvent.REPEAT_AGAIN])
@@ -55,19 +67,65 @@ function repeatAgain(repeatSameGameFlag: boolean) {
 </script>
 
 <style lang="scss" scoped>
-.movie-ended-container {
+.game-ended-container {
   @include flex($flex-direction: column, $justify-content: flex-start);
-  @include borders;
   width: 100%;
   background: $white;
-  padding: 20px 0;
   height: 100%;
-  border-radius: $border-radius;
+  border-radius: 0 0 $border-radius $border-radius;
+
+  .all-played-text {
+    font-weight: bold;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 10px;
+  }
+
+  &.impro {
+    button.icon-container {
+      color: $impro_color;
+      border-color: $impro_color;
+      background-color: $impro_color;
+
+      &:hover {
+        color: $white;
+        background-color: $impro_color;
+      }
+    }
+  }
+
+  &.actor {
+    button.icon-container {
+      color: $actor_color;
+      border-color: $actor_color;
+      background-color: $actor_color;
+
+      &:hover {
+        color: $white;
+        background-color: $actor_color;
+      }
+    }
+  }
+
+  &.director {
+    button.icon-container {
+      color: $director_color;
+      border-color: $director_color;
+      background-color: $director_color;
+
+      &:hover {
+        color: $white;
+        background-color: $actor_color;
+      }
+    }
+  }
 
   .actions-container {
     @include flex($flex-direction: column);
     width: 100%;
     flex: 1;
+    padding-top: 20px;
+
     .icons-container {
       @include flex;
       margin: 10px;
@@ -76,6 +134,7 @@ function repeatAgain(repeatSameGameFlag: boolean) {
         @include flex;
         padding: 10px;
         margin-left: 20px;
+        background-color: $white;
 
         .icon {
           margin-left: 4px;
@@ -86,4 +145,3 @@ function repeatAgain(repeatSameGameFlag: boolean) {
   }
 }
 </style>
-@/stores/useGame

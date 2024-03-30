@@ -5,7 +5,7 @@
     "director": "director",
     "mode_literal": "modo"
   },
-  "all_played": "¡¡¡Todas jugadas!!!",
+  "all_played": "Has jugado todas las escenas disponibles",
   "button": {
     "continue": "Continuar",
     "next": "Siguiente",
@@ -23,6 +23,11 @@
     "begin": "Empezar"
   },
   "component": {
+    "game_ended": {
+      "repeat_same_scenes": "Repetir escenas",
+      "repeat_same_mode": "Repetir modo {mode}",
+      "play_new_movie": "Jugar nueva película"
+    },
     "choose_game_mode_step": {
       "impro_mode_explanation": {
         "p1": "Las escenas aparecen aleatoriamente sin límite de tiempo.",

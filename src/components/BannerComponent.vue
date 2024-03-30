@@ -20,5 +20,10 @@ const gameStore = useGameStore()
   background: $main-color;
   color: $white;
   margin: 1px 0;
+
+  &:last-child {
+    margin: 0;
+    border-radius: 0 0 $border-radius $border-radius;
+  }
 }
 </style>
