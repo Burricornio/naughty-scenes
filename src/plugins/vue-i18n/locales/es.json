@@ -23,6 +23,12 @@
     "begin": "Empezar"
   },
   "component": {
+    "director-steps": {
+      "select_scenes": "Seleccionar escenas",
+      "order_scenes": "Ordenar escenas",
+      "configure_movie": "Configurar película",
+      "play_movie": "Empezar película"
+    },
     "game_ended": {
       "repeat_same_scenes": "Repetir escenas",
       "repeat_same_mode": "Repetir modo {mode}",
@@ -58,7 +64,7 @@
       "player_name": "Actor {number}"
     },
     "load_movie_bar": {
-      "create_own_scene": "crea tu propa escenna"
+      "create_own_scene": "crear nueva escena"
     },
     "step_two": {
       "impro_mode": "Modo impro"
