@@ -71,23 +71,6 @@
 
   .duration {
     @include borders($width: 2px, $color: $mode);
-
-    .duration-button {
-      @include borders($width: 2px, $color: $mode);
-      background-color: $white;
-      color: $mode;
-
-      &:hover {
-        color: $white!important;
-        background-color: $mode!important;
-      }
-
-      &:disabled {
-        background-color: $disabled-color;
-        color: $disabled-text;
-      }
-
-    }
   }
 
   .timer-buttons button {
