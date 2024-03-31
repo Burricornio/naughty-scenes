@@ -1,10 +1,10 @@
 <template>
-  <div v-if="getViewTimer" class="timer-container">
-    <DurationComponent :minutes="minutesRef" :seconds="seconds" />
+  <div v-if="getViewTimer" class="timer-container" :key="props.componentKey">
+    <DurationComponent :minutes="minutes" :seconds="seconds" />
     <div class="timer-buttons">
       <button
         @click="startTimer"
-        :disabled="isTimerRunning"
+        :disabled="isTimerRunning || timeIsZero"
         :title="startButtonText"
       >
         <Icon icon="mdi:play" />
@@ -12,15 +12,12 @@
       <button @click="stopTimer" :disabled="!isTimerRunning" :title="text.stop">
         <Icon icon="mdi:stop" />
       </button>
-      <button @click="resetTimer" :disabled="!canReset" :title="text.reset">
-        <Icon icon="mdi:restore" />
-      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect, watch } from 'vue'
+import { ref, watchEffect, watch, computed } from 'vue'
 import { useGameStore } from '@/stores/useGame'
 import { useI18n } from 'vue-i18n'
 import DurationComponent from '@/components/DurationComponent.vue'
@@ -32,6 +29,10 @@ const props = defineProps({
   minutes: {
     type: Number,
     default: 1
+  },
+  componentKey: {
+    type: Number,
+    required: true
   }
 })
 
@@ -51,24 +52,27 @@ const text = {
 
 let timerInterval = 0
 const seconds = ref<number>(0)
-const minutesRef = ref<number>(props.minutes)
+const minutes = ref<number>(props.minutes)
 const isTimerRunning = ref<boolean>(false)
-const canReset = ref<boolean>(false)
 const startButtonText = ref<string>(text.start)
+
+// COMPUTED
+const timeIsZero = computed<boolean>(
+  () => minutes.value === 0 && seconds.value === 0
+)
 
 // WATCH
 watch(
-  () => props.minutes,
+  () => props.componentKey,
   () => {
     resetTimer()
   }
 )
 
 watchEffect(() => {
-  if (minutesRef.value === 0 && seconds.value === 0) {
+  if (timeIsZero.value) {
     clearInterval(timerInterval)
     isTimerRunning.value = false
-    canReset.value = false
     startButtonText.value = text.restart
     enableNextSceneButton()
   }
@@ -83,15 +87,13 @@ function enableNextSceneButton() {
 // METHODS
 function startTimer(): void {
   startButtonText.value = text.start
-  canReset.value = false
   timerInterval = setInterval(() => {
-    if (minutesRef.value === 0 && seconds.value === 0) {
+    if (minutes.value === 0 && seconds.value === 0) {
       clearInterval(timerInterval)
       isTimerRunning.value = false
-      canReset.value = true
     } else {
       if (seconds.value === 0) {
-        minutesRef.value--
+        minutes.value--
         seconds.value = 59
       } else {
         seconds.value--
@@ -104,27 +106,25 @@ function startTimer(): void {
 function stopTimer(): void {
   clearInterval(timerInterval)
   isTimerRunning.value = false
-  canReset.value = true
   startButtonText.value = text.continue
 }
 
 function resetTimer(): void {
-  minutesRef.value = props.minutes
+  minutes.value = props.minutes
   seconds.value = 0
   clearInterval(timerInterval)
   isTimerRunning.value = false
-  canReset.value = false
   startButtonText.value = text.start
 }
 </script>
 
 <style lang="scss" scoped>
 .timer-container {
-  width: 300px;
+  width: 250px;
   padding: 20px;
   .timer-buttons {
     @include flex;
-    height: 100px;
+    height: 65px;
     background: $white;
     border-radius: $border-radius-bottom;
 
