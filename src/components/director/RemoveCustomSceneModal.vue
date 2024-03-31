@@ -9,7 +9,8 @@
 <script setup lang="ts">
 import useModal from '@/composables/useModal'
 import ModalComponent from '@/components/ModalComponent.vue'
-import { Scene, useSceneStore } from '@/stores/useSceneStore'
+import { Scene } from '@/stores/useScene/types'
+import { useSceneStore } from '@/stores/useScene'
 
 // PROPS
 const props = defineProps<{

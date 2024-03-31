@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useSceneStore } from '@/stores/useSceneStore'
+import { useSceneStore } from '@/stores/useScene'
 import { useGameStore } from '@/stores/useGame'
 import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
 import { useI18n } from 'vue-i18n'

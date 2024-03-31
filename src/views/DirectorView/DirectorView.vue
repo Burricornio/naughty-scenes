@@ -20,7 +20,8 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { Scene, useSceneStore } from '@/stores/useSceneStore'
+import { Scene } from '@/stores/useScene/types'
+import { useSceneStore } from '@/stores/useScene'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import { useGameStore } from '@/stores/useGame'
 import CountdownComponent from '@/components/CountdownComponent.vue'

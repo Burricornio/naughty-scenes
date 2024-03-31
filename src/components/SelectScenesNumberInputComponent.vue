@@ -15,7 +15,7 @@
 import { useForm } from 'vee-validate'
 import { useI18n } from 'vue-i18n'
 import * as yup from 'yup'
-import { useSceneStore } from '@/stores/useSceneStore'
+import { useSceneStore } from '@/stores/useScene'
 import { EmittedEvent } from '@/events'
 
 const props = defineProps({

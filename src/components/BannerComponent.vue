@@ -8,7 +8,8 @@
   height: 100px;
   min-height: 100px;
   width: 100%;
-  color: $white;
+  color: $black;
+  background-color: $white;
   margin: 1px 0;
 
   &:last-child {

@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useCountdownStore } from '@/stores/useCountdownStore'
-import { useSceneStore } from '@/stores/useSceneStore'
+import { useSceneStore } from '@/stores/useScene'
 import { useGameStore } from '@/stores/useGame'
 import { GameMode } from '@/stores/useGame/types'
 import BannerComponent from '@/components/BannerComponent.vue'

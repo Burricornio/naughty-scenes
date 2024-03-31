@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { Scene } from './useSceneStore'
+import { Scene } from './useScene'
 
 // export type DirectorScene = Scene & {
 //   isOpenAccordion: boolean

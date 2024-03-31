@@ -33,8 +33,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import draggable from 'vuedraggable'
+import { Scene } from '@/stores/useScene/types'
+import { useSceneStore } from '@/stores/useScene'
 import { Icon } from '@iconify/vue'
-import { Scene, useSceneStore } from '@/stores/useSceneStore'
 import { EmittedEvent } from '@/events'
 
 const sceneStore = useSceneStore()

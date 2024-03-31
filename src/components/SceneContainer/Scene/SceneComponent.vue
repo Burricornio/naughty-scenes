@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useGameStore } from '@/stores/useGame'
-import { Scene } from '@/stores/useSceneStore'
+import { Scene } from '@/stores/useScene/types'
 import { EmittedEvent } from '@/events'
 import { GameMode } from '@/stores/useGame/types'
 import NextAndPreviousButtonsComponent from '@/components/SceneContainer/Scene/NextAndPreviousButtonsComponent.vue'

@@ -1,24 +1,9 @@
 import { computed, ref } from 'vue'
+import { Scene, SelectScenesObject } from './types'
 import { defineStore } from 'pinia'
 // import defaultScenesJSON from '@/assets/default-scenes.json'
 import defaultSixScenesJSON from '@/assets/default-six-scenes.json'
 import { getElementsArray, shuffleArray } from '@/helpers/array'
-
-export type Scene = {
-  id: number
-  title: string
-  instructions: string
-  duration: number
-  rndBtnOptions?: string[]
-  type: string
-  selected?: boolean
-  isOpenAccordion?: boolean
-}
-
-interface SelectScenesObject {
-  numberOfScenes: number
-  shuffle: boolean
-}
 
 export const useSceneStore = defineStore(
   'useSceneStore',

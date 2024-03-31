@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import moviesJSON from '@/assets/movies.json'
-import { Scene, useSceneStore } from './useSceneStore'
+import { Scene, useSceneStore } from './useScene'
 
 interface Movie {
   id: number

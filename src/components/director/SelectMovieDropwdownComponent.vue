@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { useMovieStore, MovieParsed } from '@/stores/useMovieStore'
-import { useSceneStore } from '@/stores/useSceneStore'
+import { useSceneStore } from '@/stores/useScene'
 import { computed } from 'vue'
 import CustomDropdownComponent from '@/components/director/CustomDropdownComponent.vue'
 import { EmittedEvent } from '@/events'

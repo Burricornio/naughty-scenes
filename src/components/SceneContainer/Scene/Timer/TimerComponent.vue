@@ -124,7 +124,7 @@ function resetTimer(): void {
   padding: 20px;
   .timer-buttons {
     @include flex;
-    height: 65px;
+    height: 70px;
     background: $white;
     border-radius: $border-radius-bottom;
 
