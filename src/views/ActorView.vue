@@ -3,12 +3,6 @@
   <div :class="['view-container', getGameModeName]" v-else>
     <HeaderModeComponent :title="text.modeTitle" />
     <SceneContainerComponent />
-    <SceneMiniaturesComponent
-      v-if="!sceneStore.allScenesPlayed"
-      :scenes="sceneStore.getScenes"
-      :playedSceneIds="sceneStore.getPlayedSceneIds"
-      :currentScene="sceneStore.getCurrentScene"
-    />
     <BannerComponent />
     <GameEndedComponent @repeat-again="onRepeatAgain" />
   </div>
@@ -22,7 +16,6 @@ import { useI18n } from 'vue-i18n'
 import CountdownComponent from '@/components/CountdownComponent.vue'
 import GameEndedComponent from '@/components/GameEndedComponent.vue'
 import SceneContainerComponent from '@/components/SceneContainer/SceneContainerComponent.vue'
-import SceneMiniaturesComponent from '@/components/SceneMiniaturesComponent.vue'
 import HeaderModeComponent from '@/components/HeaderModeComponent.vue'
 import BannerComponent from '@/components/BannerComponent.vue'
 import { useGameStore } from '@/stores/useGame'
