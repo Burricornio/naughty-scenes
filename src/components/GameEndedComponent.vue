@@ -51,8 +51,7 @@ const text = {
   repeatSameScenes: t('component.game_ended.repeat_same_scenes'),
   repeatSameMode: t('component.game_ended.repeat_same_mode', {
     mode: mode.value
-  }),
-  playNewGame: t('component.game_ended.play_new_game')
+  })
 }
 
 // EMITS
