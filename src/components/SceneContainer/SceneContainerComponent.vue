@@ -2,7 +2,7 @@
   <TurnOfComponent />
   <SceneComponent
     :scene="sceneStore.getCurrentScene"
-    :prevButtonDisabled="sceneStore.getSceneIndex === 0"
+    :prevButtonDisabled="prevButtonDisabled"
     @select-next-scene="selectNextScene"
     @select-previous-scene="selectPreviousScene"
   />
@@ -11,12 +11,22 @@
 <script setup lang="ts">
 import { useGameStore } from '@/stores/useGame'
 import { useSceneStore } from '@/stores/useSceneStore'
-import SceneComponent from '@/components/SceneComponent.vue'
+import SceneComponent from '@/components/SceneContainer/Scene/SceneComponent.vue'
 import TurnOfComponent from '@/components/SceneContainer/TurnOfComponent.vue'
+import { computed } from 'vue'
+import { GameMode } from '@/stores/useGame/types'
 
 // STORE
 const sceneStore = useSceneStore()
 const gameStore = useGameStore()
+
+// COMPUTED
+const prevButtonDisabled = computed(() => {
+  if (gameStore.getGameMode === GameMode.ACTOR) {
+    return true
+  }
+  return sceneStore.getSceneIndex === 0
+})
 
 // METHODS
 function selectNextScene(): void {

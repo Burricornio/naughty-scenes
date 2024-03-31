@@ -7,5 +7,6 @@ export enum EmittedEvent {
   UPDATE_DIRECTOR_MOVIE = 'update-director-movie',
   LOADED_CUSTOM_MOVIE_FLAG = 'loaded-custom-movie-flag',
   RELOAD_COMPONENT = 'reload-component',
-  SELECTED_GAME_MODE = 'selected-game-mode'
+  SELECTED_GAME_MODE = 'selected-game-mode',
+  ENABLE_NEXT_BUTTON_SCENE = 'enable-next-button-scene'
 }
