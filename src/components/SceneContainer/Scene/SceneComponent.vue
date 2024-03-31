@@ -17,6 +17,7 @@
     />
     <TimerComponent
       :minutes="scene.duration"
+      :componentKey="timerComponentKey"
       @enable-next-button-scene="onEnableNextSceneButton"
     />
   </div>
@@ -31,7 +32,7 @@ import { GameMode } from '@/stores/useGame/types'
 import NextAndPreviousButtonsComponent from '@/components/SceneContainer/Scene/NextAndPreviousButtonsComponent.vue'
 import RandomButtonComponent from '@/components/SceneContainer/Scene/RandomButtonComponent.vue'
 import StartTimerInstructionsComponent from '@/components/SceneContainer/Scene/StartTimerInstructionsComponent.vue'
-import TimerComponent from '@/components/SceneContainer/Scene/TimerComponent.vue'
+import TimerComponent from '@/components/SceneContainer/Scene/Timer/TimerComponent.vue'
 
 // PROPS
 const { scene } = defineProps<{
@@ -44,6 +45,7 @@ const gameStore = useGameStore()
 
 // DATA
 const nextButtonDisabled = ref<boolean>(false)
+const timerComponentKey = ref<number>(0)
 
 // EMITS
 const emit = defineEmits([
@@ -54,6 +56,7 @@ const emit = defineEmits([
 
 function selectNextScene() {
   if (gameStore.getGameMode === GameMode.ACTOR) {
+    timerComponentKey.value++
     nextButtonDisabled.value = true
   }
   emit(EmittedEvent.SELECT_NEXT_SCENE)
