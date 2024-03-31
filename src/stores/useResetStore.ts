@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { useSceneStore } from './useSceneStore'
+import { useSceneStore } from './useScene'
 import { useGameStore } from './useGame'
 // import { useCardsStore } from './useCardsStore'
 // import { useButtonsStore } from './useButtonsStore'

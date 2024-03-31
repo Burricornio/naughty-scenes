@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { useGameStore } from '@/stores/useGame'
-import { useSceneStore } from '@/stores/useSceneStore'
+import { useSceneStore } from '@/stores/useScene'
 import SceneComponent from '@/components/SceneContainer/Scene/SceneComponent.vue'
 import TurnOfComponent from '@/components/SceneContainer/TurnOfComponent.vue'
 import { computed } from 'vue'

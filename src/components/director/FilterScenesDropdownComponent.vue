@@ -7,7 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { Scene, useSceneStore } from '@/stores/useSceneStore'
+import { Scene } from '@/stores/useScene/types'
+import { useSceneStore } from '@/stores/useScene'
 import { computed } from 'vue'
 import CustomDropdownComponent from '@/components/director/CustomDropdownComponent.vue'
 import { EmittedEvent } from '@/events'

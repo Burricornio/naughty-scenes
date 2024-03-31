@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useCountdownStore } from '@/stores/useCountdownStore'
-import { useSceneStore } from '@/stores/useSceneStore'
+import { useSceneStore } from '@/stores/useScene'
 import { useI18n } from 'vue-i18n'
 import CountdownComponent from '@/components/CountdownComponent.vue'
 import GameEndedComponent from '@/components/GameEndedComponent.vue'

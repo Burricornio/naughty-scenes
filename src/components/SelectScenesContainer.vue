@@ -33,7 +33,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Scene, useSceneStore } from '@/stores/useSceneStore'
+import { Scene } from '@/stores/useScene/types'
+import { useSceneStore } from '@/stores/useScene'
 import RemoveCustomSceneModal from '@/components/director/RemoveCustomSceneModal.vue'
 import { Icon } from '@iconify/vue'
 import useModal from '@/composables/useModal'

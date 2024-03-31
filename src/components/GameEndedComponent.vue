@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { EmittedEvent } from '@/events'
 import { useI18n } from 'vue-i18n'
-import { useSceneStore } from '@/stores/useSceneStore'
+import { useSceneStore } from '@/stores/useScene'
 import { Icon } from '@iconify/vue'
 import { useGameStore } from '@/stores/useGame'
 import { GameMode } from '@/stores/useGame/types'

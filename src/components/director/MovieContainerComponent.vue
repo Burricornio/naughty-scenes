@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { useSceneStore } from '@/stores/useSceneStore'
+import { useSceneStore } from '@/stores/useScene'
 import SceneContainerComponent from '@/components/SceneContainer/SceneContainerComponent.vue'
 import GameEndedComponent from '@/components/GameEndedComponent.vue'
 import SceneMiniaturesComponent from '@/components/SceneMiniaturesComponent.vue'

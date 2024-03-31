@@ -22,7 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import { DirectorScene, Scene, useSceneStore } from '@/stores/useSceneStore'
+import { useSceneStore } from '@/stores/useScene'
+import { Scene } from '@/stores/useScene/types'
 import { computed } from 'vue'
 import draggable from 'vuedraggable'
 

@@ -28,10 +28,11 @@ selected:false
 title:"Scene 9" -->
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { Scene } from '@/stores/useScene/types'
+import { useSceneStore } from '@/stores/useScene'
 import useModal from '@/composables/useModal'
 import ModalComponent from '@/components/ModalComponent.vue'
-import { ref } from 'vue'
-import { Scene, useSceneStore } from '@/stores/useSceneStore'
 
 // STORE
 const { openAddNewScene, closeAddNewSceneModal } = useModal()

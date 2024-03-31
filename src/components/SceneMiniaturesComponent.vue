@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Scene } from '@/stores/useSceneStore'
+import { Scene } from '@/stores/useScene/types'
 import ModalComponent from '@/components/ModalComponent.vue'
 import useModal from '@/composables/useModal'
 
