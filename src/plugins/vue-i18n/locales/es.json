@@ -15,8 +15,6 @@
     "restart": "Repetir",
     "start": "Iniciar",
     "stop": "Detener",
-    "increment": "Up",
-    "decrement": "Down",
     "close": "Cerrar",
     "save": "Guardar",
     "select": "Seleccionar",

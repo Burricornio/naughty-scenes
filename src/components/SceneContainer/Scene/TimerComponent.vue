@@ -1,12 +1,6 @@
 <template>
   <div v-if="getViewTimer" class="timer-container">
-    <DurationComponent
-      @up-duration="increment"
-      @down-duration="decrement"
-      :minutes="minutesRef"
-      :seconds="seconds"
-      :disabledButtons="isTimerRunning"
-    />
+    <DurationComponent :minutes="minutesRef" :seconds="seconds" />
     <div class="timer-buttons">
       <button
         @click="startTimer"
@@ -121,17 +115,6 @@ function resetTimer(): void {
   isTimerRunning.value = false
   canReset.value = false
   startButtonText.value = text.start
-}
-
-function increment(): void {
-  minutesRef.value++
-}
-
-function decrement(): void {
-  if (minutesRef.value === 0) {
-    return
-  }
-  minutesRef.value--
 }
 </script>
 
