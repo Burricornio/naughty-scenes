@@ -1,7 +1,6 @@
 <template>
   <div v-if="getViewTimer" class="timer-container">
     <DurationComponent
-      class="duration"
       @up-duration="increment"
       @down-duration="decrement"
       :minutes="minutesRef"
@@ -28,10 +27,11 @@
 
 <script setup lang="ts">
 import { ref, watchEffect, watch } from 'vue'
-import DurationComponent from '@/components/DurationComponent.vue'
+import { useGameStore } from '@/stores/useGame'
 import { useI18n } from 'vue-i18n'
+import DurationComponent from '@/components/DurationComponent.vue'
+import { EmittedEvent } from '@/events'
 import { Icon } from '@iconify/vue'
-import { useMovieStore } from '@/stores/useMovieStore'
 
 // PROPS
 const props = defineProps({
@@ -42,7 +42,7 @@ const props = defineProps({
 })
 
 // STORE
-const { getViewTimer } = useMovieStore()
+const { getViewTimer } = useGameStore()
 
 // DATA
 const { t } = useI18n()
@@ -76,10 +76,15 @@ watchEffect(() => {
     isTimerRunning.value = false
     canReset.value = false
     startButtonText.value = text.restart
-    minutesRef.value = 1
-    seconds.value = 0
+    enableNextSceneButton()
   }
 })
+// EMITS
+const emit = defineEmits([EmittedEvent.ENABLE_NEXT_BUTTON_SCENE])
+
+function enableNextSceneButton() {
+  emit(EmittedEvent.ENABLE_NEXT_BUTTON_SCENE)
+}
 
 // METHODS
 function startTimer(): void {
@@ -132,26 +137,18 @@ function decrement(): void {
 
 <style lang="scss" scoped>
 .timer-container {
-  width: 100%;
+  width: 300px;
+  padding: 20px;
   .timer-buttons {
     @include flex;
     height: 100px;
     background: $white;
+    border-radius: $border-radius-bottom;
 
     button {
-      color: $white;
       font-size: 20px;
-      background-color: $main-color;
       min-width: 60px;
-      border: none;
       margin: 8px;
-
-      &:disabled {
-        border: none;
-        background: $disabled-color;
-        color: $disabled-text;
-        pointer-events: none;
-      }
 
       &:hover {
         background-color: $action-color;

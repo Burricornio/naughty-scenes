@@ -29,10 +29,15 @@ export const useSceneStore = defineStore(
     const playedSceneIds = ref<number[]>([])
     const currentScene = ref<Scene | null>(null)
     const selectedScenes = ref<Scene[]>([])
+    const actorModeScenesNumber = ref<number>(0)
 
     const getSceneIndex = computed<number>(() => sceneIndex.value)
 
     const getScenes = computed<Scene[]>(() => scenes.value)
+
+    const getActorModeScenesNumber = computed<number>(
+      () => actorModeScenesNumber.value
+    )
 
     // const getSelectedScenes = computed<Scene[]>(() =>
     //   scenes.value.filter((scene: Scene) => scene.selected)
@@ -99,6 +104,10 @@ export const useSceneStore = defineStore(
 
     function decreaseIndex() {
       sceneIndex.value--
+    }
+
+    function setActorModeScenesNumber(scenesNumber: number) {
+      actorModeScenesNumber.value = scenesNumber
     }
 
     function setCurrentScene(scene: Scene | null) {
@@ -192,6 +201,8 @@ export const useSceneStore = defineStore(
       resetSelectedScenes,
       $reset,
       setSelectedScenes,
+      getActorModeScenesNumber,
+      setActorModeScenesNumber,
       // Save in localstorage
       sceneIndex,
       scenes,

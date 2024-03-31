@@ -1,41 +1,44 @@
 // PALLETE
-$fuchsia-molon: #E833A0;
-$pink-molon: #ff3859;
-$pink-light: #ff385933;
-$blue-molon: #3628b8;
-$purple-molon: #9E5AD7;
-$blue-molon-02: #0075EB;
-$blue-molon-03: #007FD4;
-$green-molon: #158f15;
-$yellow-molon: #acb328;
-$orange-molon: #f2a702;
-
-// COLORS
 $black: #131313;
-$dark-red: #9e0140;
-$fuchsia: #dc01b4;
-$gold: #a48254;
-$pink: #f495e1;
-$purple: #776fa9;
+$blue: #3628b8;
+$fuchsia: #E833A0;
+$gray-02: #CBCBCB;
+$gray: #7b7777;
+$gray-02: #a5989a33;
+$green: #528232;
+$green-02: #caa406;
+$green-03: #e3fad3;
+$orange-02: #caa406;
+$orange: #e58111;
+$orange-02: #ffe9cf;
+$pink-02: #ff385933;
+$pink: #ff3859;
+$purple: #5b22d0;
+$purple-02: #eee8fb;
 $white: #fff;
-$gray: #676067;
-$gray-02: #b3b0b3;
-$red-01: #ee5050;
-$red-02: #cf3d3d;
-$red-03: #ab5d5d;
-$light-blue: #2d9be5;
-$dark-blue: #3579b7;
-$main-color: $pink-molon;
-$secondary-color: $blue-molon;
-$action-color: #caa406;
-$error-color: $action-color;
-$size-01: 10px;
-$size-02: 10px;
-$modal-color: $main-color;
-$disabled-color: $pink-light;
-$disabled-text: #7b7777;
 
-// ea039d
+// MODE COLORS
+$actor-color: $orange;
+$actor-color-hover: $orange-02;
+$director-color: $green;
+$director-color-hover: $green-03;
+$impro-color: $purple;
+$impro-color-hover: $purple-02;
+
+// GLOBAL COLORS
+$action-color: $orange-02;
+$action-color-hover: $green-02;
+$disabled-color: $gray-02;
+$disabled-text: $gray;
+$warning-color: $pink;
+$input-gray: $gray-02;
+$main-color: $pink;
+$modal-color: $main-color;
+
+// SIZE
+$size-01: 10px;
+$size-02: 20px;
+$size-03: 40px;
 
 // FONTS
 $main-font: 'Montserrat', sans-serif;
@@ -43,12 +46,8 @@ $secondary-font: circular, sans-serif;
 
 // BORDER
 $border-radius: 8px;
-
-// PADDINGS AND MARGIN
-$padding-01: $size-01;
-$padding-02: $size-02;
-$margin-01: $size-01;
-$margin-02: $size-02;
+$border-radius-bottom: 0 0 $border-radius $border-radius;
+$border-radius-top: $border-radius $border-radius 0 0;
 
 // WIDTH
 $max-width: 1100px;

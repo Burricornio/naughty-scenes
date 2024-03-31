@@ -1,7 +1,6 @@
 <template>
   <div class="go-home-button-container">
-    <button @click="goToHome" title="inicio">
-      <!-- <span>Ir a inicio</span> -->
+    <button class="go-home-button" @click="goToHome" title="inicio">
       <Icon class="icon" icon="material-symbols:home" />
     </button>
   </div>
@@ -9,8 +8,8 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { Icon } from '@iconify/vue'
 import { useResetStore } from '@/stores/useResetStore'
+import { Icon } from '@iconify/vue'
 
 // STORE
 const { resetGame } = useResetStore()

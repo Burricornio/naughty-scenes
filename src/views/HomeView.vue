@@ -1,23 +1,23 @@
 <template>
   <NavigationComponent />
   <main class="home-view-content">
-    <StartMovieModal v-if="open" />
+    <StartGameModal v-if="open" />
     <div v-else class="slogan-container">
       <p class="slogan">{{ text.slogan_1 }}</p>
       <p class="slogan">{{ text.slogan_2 }}</p>
-      <StartMovieButtonComponent />
+      <StartGameButtonComponent />
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import useModal from '@/composables/useModal'
-import { useI18n } from 'vue-i18n'
-import NavigationComponent from '@/components/home-view/NavigationComponent.vue'
-import StartMovieButtonComponent from '@/components/home-view/StartMovieButtonComponent.vue'
-import StartMovieModal from '@/components/home-view/StartMovieModal/StartMovieModal.vue'
 import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import useModal from '@/composables/useModal'
 import { useResetStore } from '@/stores/useResetStore'
+import NavigationComponent from '@/components/HomeView/NavigationComponent.vue'
+import StartGameButtonComponent from '@/components/HomeView/StartGameButtonComponent.vue'
+import StartGameModal from '@/components/HomeView/StartGameModal/StartGameModal.vue'
 
 // STORE
 const { open } = useModal()

@@ -22,10 +22,6 @@
         <span class="selected-number">{{ numberOfSelectedScenes }}</span>
       </div>
 
-      <!-- <SelectScenesNumberInputComponent
-        :scenesNumber="numberOfScenes"
-        @change-scenes-number-length="selectRandomScenes"
-      /> -->
       <div v-if="allScenes.length">
         <SelectScenesContainerComponent :scenes="allScenes" />
       </div>
@@ -48,14 +44,15 @@
 
 <script setup lang="ts">
 import { onMounted, computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useCountdownStore } from '@/stores/useCountdownStore'
+import { Scene, useSceneStore } from '@/stores/useSceneStore'
+import { EmittedEvent } from '@/events'
 import { DirectorStep } from '@/views/DirectorView/types/directorViewTypes'
 import AddNewSceneModal from '@/components/AddNewSceneModal.vue'
 import SelectScenesContainerComponent from '@/components/SelectScenesContainer.vue'
 import OrderCurrentDirectorMovieAccordion from '@/components/OrderCurrentDirectorMovieAccordion.vue'
 import DirectorSetUpComponent from '@/components/director/DirectorSetUpComponent.vue'
-import { Scene, useSceneStore } from '@/stores/useSceneStore'
-import { EmittedEvent } from '@/events'
-import { useCountdownStore } from '@/stores/useCountdownStore'
 import BannerComponent from '@/components/BannerComponent.vue'
 
 interface StepButton {
@@ -74,6 +71,15 @@ const props = defineProps<{
 const sceneStore = useSceneStore()
 const { setCountdownStatus } = useCountdownStore()
 
+// TEXTS
+const { t } = useI18n()
+const text = {
+  selectScenes: t('component.director-steps.select_scenes'),
+  orderScenes: t('component.director-steps.order_scenes'),
+  configureMovie: t('component.director-steps.configure_movie'),
+  playMovie: t('component.director-steps.play_movie')
+}
+
 // DATA
 const step = ref<number>(DirectorStep.SELECT_SCENES)
 const selectedScenes = computed<Scene[]>(() => sceneStore.getSelectedScenes)
@@ -87,25 +93,25 @@ const numberOfSelectedScenes = computed<number>(
 const stepButtons = computed<StepButton[]>(() => [
   {
     stepNumber: DirectorStep.SELECT_SCENES,
-    text: 'SELECT YOUR SCENES',
+    text: text.selectScenes,
     action: () => setStep(DirectorStep.SELECT_SCENES),
     disabled: false
   },
   {
     stepNumber: DirectorStep.ORDER_SCENES,
-    text: 'ORDER YOUR SCENES',
+    text: text.orderScenes,
     action: () => setStep(DirectorStep.ORDER_SCENES),
     disabled: numberOfSelectedScenes.value === 0
   },
   {
     stepNumber: DirectorStep.CONFIGURE_MOVIE,
-    text: 'CONFIGURE MOVIE',
+    text: text.configureMovie,
     action: () => setStep(DirectorStep.CONFIGURE_MOVIE),
     disabled: numberOfSelectedScenes.value === 0
   },
   {
     stepNumber: DirectorStep.START_MOVIE,
-    text: 'PLAY MOVIE',
+    text: text.playMovie,
     action: () => playMovie(),
     disabled: numberOfSelectedScenes.value === 0
   }
@@ -151,27 +157,40 @@ function onReloadComponent() {
 <style lang="scss" scoped>
 .director-steps {
   @include flex($flex-direction: column, $justify-content: flex-start);
+  @include borders($width: 10px, $color: $white);
   width: 100%;
   background-color: $white;
   flex: 1;
+  box-sizing: border-box;
 
   .steps-container {
     @include flex($justify-content: space-between);
-    background-color: $main-color;
+    background-color: $black;
     width: 100%;
+    border-radius: 4px;
 
     .step-button {
       margin: 10px 40px;
+      color: $director-color;
+      background-color: $white;
+      border-color: $director-color;
 
-      &:disabled {
-        @include borders($width: 2px);
+      &:hover {
+        background-color: $director-color;
         color: $white;
       }
 
+      &:disabled {
+        @include borders($width: 2px, $color: $black);
+        color: $disabled-text;
+        background-color: $disabled-color;
+      }
+
       &.current-step {
-        background-color: $white;
-        color: $main-color;
+        background-color: $director-color;
+        color: $white;
         cursor: initial;
+        border-color: $director-color;
       }
     }
   }

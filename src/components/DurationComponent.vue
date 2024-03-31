@@ -5,12 +5,14 @@
       <div class="buttons-container">
         <button
           @click="incrementDuration"
+          class="duration-button"
           :disabled="disabledButtons"
           :title="text.up"
         >
           <Icon class="icon" icon="mdi:plus" />
         </button>
         <button
+          class="duration-button"
           :disabled="disabledDecrementButton"
           @click="decrementDuration"
           :title="text.down"
@@ -82,44 +84,32 @@ function formatTime(value: number): string {
   @include flex;
   background-color: $white;
   padding-top: 24px;
+  border-radius: $border-radius-top;
 
   .duration {
     @include flex;
-    @include borders($width: 2px);
-    color: $main-color;
-    padding: $padding-01;
+    background-color: $black;
+    color: $white;
+    padding: $size-01;
     width: 110px;
     border-radius: $border-radius;
 
     .duration-number {
-      color: $main-color;
+      color: $white;
       font-size: 24px;
     }
     .buttons-container {
       @include flex($flex-direction: column);
-      margin-left: $margin-02;
+      margin-left: $size-02;
 
-      button {
+      .duration-button {
         height: 30px;
-        background-color: transparent;
-        color: $white;
         min-width: 40px;
         margin: 0;
         border-radius: 0;
-        background: $main-color;
-        border: none;
-
-        &:hover {
-          background-color: $action-color;
-        }
-
-        &:disabled {
-          background-color: $disabled-color;
-          color: $disabled-text;
-        }
 
         &:first-of-type {
-          border-bottom: 1px solid $white;
+          border-bottom: none;
         }
       }
     }

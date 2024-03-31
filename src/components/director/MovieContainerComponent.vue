@@ -7,14 +7,14 @@
       :playedSceneIds="sceneStore.getPlayedSceneIds"
       :currentScene="sceneStore.getCurrentScene"
     />
-    <MovieEndedComponent @repeat-again="repeatAgain" />
+    <GameEndedComponent @repeat-again="repeatAgain" />
   </section>
 </template>
 
 <script setup lang="ts">
 import { useSceneStore } from '@/stores/useSceneStore'
 import SceneContainerComponent from '@/components/SceneContainer/SceneContainerComponent.vue'
-import MovieEndedComponent from '@/components/MovieEndedComponent.vue'
+import GameEndedComponent from '@/components/GameEndedComponent.vue'
 import SceneMiniaturesComponent from '@/components/SceneMiniaturesComponent.vue'
 import { EmittedEvent } from '@/events'
 

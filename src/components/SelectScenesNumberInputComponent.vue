@@ -1,24 +1,17 @@
 <template>
   <div class="select-scenes-number">
-    <div class="input-container">
-      <label>{{ text.scenesNumberLabel }}:</label>
-      <input
-        type="number"
-        v-bind="scenesNumberInput"
-        :max="sceneStore.getDefaultScenesNumberLength"
-        :min="minNumber"
-        @keyup.enter="(event) => handleEnterKey(event)"
-      />
-      <p class="errors">{{ errors.scenesNumber }}</p>
-    </div>
-    <button :disabled="disabledBtn" @click="selectScenes">
-      {{ text.selectScenesNumber }}
-    </button>
+    <input
+      type="number"
+      v-bind="scenesNumberInput"
+      :max="sceneStore.getDefaultScenesNumberLength"
+      :min="minNumber"
+      @input="emitSelectedScenesNumber"
+    />
+    <p class="errors">{{ errors.scenesNumber }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useForm } from 'vee-validate'
 import { useI18n } from 'vue-i18n'
 import * as yup from 'yup'
@@ -40,7 +33,6 @@ const minNumber = 1
 // TEXTS
 const { t } = useI18n()
 const text = {
-  scenesNumberLabel: t('view.director.scenes_number_label'),
   maxRule: t('rule.max', { number: addMaxInputValue() }),
   minRule: t('rule.min', { number: minNumber }),
   requiredRule: t('rule.required'),
@@ -57,31 +49,14 @@ const { errors, defineInputBinds } = useForm({
 })
 const scenesNumberInput = defineInputBinds('scenesNumber')
 
-// COMPUTED
-const disabledBtn = computed(() => {
-  return scenesNumberInput.value.value
-    ? scenesNumberInput.value.value > sceneStore.getDefaultScenesNumberLength
-    : true
-})
-
 // EMITS
 const emit = defineEmits([EmittedEvent.CHANGE_SCENES_NUMBER_LENGTH])
 
-function changeInputValue(value: number) {
+function changeInputValue(value: number | undefined) {
   emit(EmittedEvent.CHANGE_SCENES_NUMBER_LENGTH, value)
 }
 
 // METHODS
-function selectScenes(): void {
-  if (
-    scenesNumberInput.value.value! <= sceneStore.getDefaultScenesNumberLength
-  ) {
-    const inputValue = scenesNumberInput.value.value as number
-    sceneStore.selectRandomScenes(inputValue)
-    changeInputValue(inputValue)
-  }
-}
-
 function addMaxInputValue() {
   return sceneStore.getDefaultScenesNumberLength
 }
@@ -95,28 +70,19 @@ function addRules() {
     .max(sceneStore.getDefaultScenesNumberLength, text.maxRule)
 }
 
-function handleEnterKey(event: KeyboardEvent): void {
-  if (event.target instanceof HTMLInputElement && event.target.value) {
-    selectScenes()
-  }
+function emitSelectedScenesNumber() {
+  changeInputValue(scenesNumberInput.value.value)
 }
 </script>
 
 <style lang="scss" scoped>
 .select-scenes-number {
-  @include flex($align-items: flex-start);
-
-  .input-container {
-    margin-bottom: 10px;
-
-    input {
-      width: 200px;
-    }
-  }
-
-  button {
-    min-width: 130px;
-    margin: 22px 0 0 10px;
+  .errors {
+    min-height: 20px;
+    color: $warning-color;
+    font-size: 14px;
+    margin-top: 3px;
+    text-align: left;
   }
 }
 </style>

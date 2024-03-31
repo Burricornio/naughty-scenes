@@ -1,37 +1,31 @@
 <template>
-  <h2
-    class="turn-text"
-    v-if="!sceneStore.allScenesPlayed && sceneStore.getCurrentScene"
-  >
-    {{ text.turn }}:
-    <span class="player-name">{{ playerTurn }}</span>
-  </h2>
+  <TurnOfComponent />
   <SceneComponent
     :scene="sceneStore.getCurrentScene"
-    :prevButtonDisabled="sceneStore.getSceneIndex === 0"
+    :prevButtonDisabled="prevButtonDisabled"
     @select-next-scene="selectNextScene"
     @select-previous-scene="selectPreviousScene"
   />
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useMovieStore } from '@/stores/useMovieStore'
+import { useGameStore } from '@/stores/useGame'
 import { useSceneStore } from '@/stores/useSceneStore'
-import SceneComponent from '@/components/SceneComponent.vue'
+import SceneComponent from '@/components/SceneContainer/Scene/SceneComponent.vue'
+import TurnOfComponent from '@/components/SceneContainer/TurnOfComponent.vue'
+import { computed } from 'vue'
+import { GameMode } from '@/stores/useGame/types'
 
 // STORE
 const sceneStore = useSceneStore()
-const movieStore = useMovieStore()
+const gameStore = useGameStore()
 
-// TEXTS
-const { t } = useI18n()
-const text = { allPlayed: t('all_played'), turn: t('turn') }
-
-const playerTurn = computed<string>(() => {
-  const playerNames = Object.values(movieStore.getPlayerNames)
-  return playerNames[sceneStore.getSceneIndex % playerNames.length]
+// COMPUTED
+const prevButtonDisabled = computed(() => {
+  if (gameStore.getGameMode === GameMode.ACTOR) {
+    return true
+  }
+  return sceneStore.getSceneIndex === 0
 })
 
 // METHODS
@@ -41,7 +35,7 @@ function selectNextScene(): void {
   }
   sceneStore.increaseIndex()
   if (sceneStore.getSceneIndex === sceneStore.getScenesLength) {
-    movieStore.addNewGamePlayed()
+    gameStore.addNewGamePlayed()
   }
   if (sceneStore.getScenes[sceneStore.getSceneIndex]) {
     sceneStore.setCurrentScene(sceneStore.getScenes[sceneStore.getSceneIndex])
@@ -56,21 +50,3 @@ function selectPreviousScene(): void {
   sceneStore.popPlayedSceneId()
 }
 </script>
-
-<style lang="scss">
-.turn-text {
-  @include flex;
-  width: 100%;
-  background: $white;
-  height: 54px;
-  color: $main-color;
-  font-weight: bold;
-  margin: 0;
-
-  .player-name {
-    color: $black;
-    margin-left: 5px;
-    text-transform: uppercase;
-  }
-}
-</style>

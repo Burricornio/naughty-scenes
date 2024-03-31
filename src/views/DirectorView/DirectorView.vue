@@ -1,13 +1,13 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
-  <div class="view-container">
-    <HeaderViewComponent
+  <div :class="['view-container', gameStore.gameModeName]" v-else>
+    <HeaderModeComponent
       v-if="!countdownStore.showCountdown"
-      title="DIRECTOR MODE"
+      :title="text.modeTitle"
     />
-    <LoadMovieBar v-if="!movieStore.getGameStartedFlag" />
+    <LoadMovieBar v-if="!gameStore.getGameStartedFlag" />
     <MovieContainerComponent
-      v-if="movieStore.getGameStartedFlag"
+      v-if="gameStore.getGameStartedFlag"
       @repeat-again="onRepeatAgain"
     />
     <DirectorStepsComponent
@@ -20,29 +20,34 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-// import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
 import { Scene, useSceneStore } from '@/stores/useSceneStore'
-import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
 import { useCountdownStore } from '@/stores/useCountdownStore'
-import MovieContainerComponent from '@/components/director/MovieContainerComponent.vue'
-import DirectorStepsComponent from '@/components/director/DirectorStepsComponent.vue'
-import LoadMovieBar from '@/components/director/LoadMovieBar.vue'
+import { useGameStore } from '@/stores/useGame'
 import CountdownComponent from '@/components/CountdownComponent.vue'
-import { GameMode, useMovieStore } from '@/stores/useMovieStore'
+import DirectorStepsComponent from '@/components/director/DirectorStepsComponent.vue'
+import HeaderModeComponent from '@/components/HeaderModeComponent.vue'
+import LoadMovieBar from '@/components/director/LoadMovieBar.vue'
+import MovieContainerComponent from '@/components/director/MovieContainerComponent.vue'
+import { GameMode } from '@/stores/useGame/types'
+import { useI18n } from 'vue-i18n'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
-// const { setGameMode, setGameStartedFlag, getGameStartedFlag } = useMovieStore()
-const movieStore = useMovieStore()
+const gameStore = useGameStore()
+
+// TEXTS
+const { t } = useI18n()
+const text = {
+  modeTitle: `${t('modes.mode_literal')} ${t('modes.director')}`
+}
 
 // DATA
 const movie = ref<Scene[]>([])
-// const startedMovieFlag = ref<boolean>(false)
 
 // HOOKS
 onMounted(() => {
-  movieStore.setGameMode(GameMode.DIRECTOR)
+  gameStore.setGameMode(GameMode.DIRECTOR)
   countdownStore.setCountdownStatus(false)
   sceneStore.unselectAllScenes()
 })
@@ -53,13 +58,13 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
     countdownStore.setCountdownStatus(true)
     sceneStore.playMovie(sceneStore.getScenes)
   } else {
-    movieStore.setGameStartedFlag(false)
+    gameStore.setGameStartedFlag(false)
     sceneStore.resetSelectedScenes()
   }
 }
 
 function changeStartedMovieFlag() {
-  movieStore.setGameStartedFlag(true)
+  gameStore.setGameStartedFlag(true)
 }
 
 function onUpdateDirectorMovie(scenes: Scene[]) {
@@ -81,3 +86,9 @@ function onUpdateDirectorMovie(scenes: Scene[]) {
   }
 }
 </style>
+
+<styles lang="scss" scoped>
+.view-container.director {
+  @include mode-color($director-color);
+}
+</styles>

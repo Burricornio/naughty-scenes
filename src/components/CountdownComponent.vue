@@ -20,11 +20,11 @@ const count = ref<number>(3)
 const numberClassColor = computed(() => {
   switch (count.value) {
     case 2:
-      return 'yellow'
+      return 'actor'
     case 3:
-      return 'pink'
+      return 'impro'
     default:
-      return 'white'
+      return 'director'
   }
 })
 
@@ -68,17 +68,17 @@ onMounted(() => {
     width: 180px;
     height: 180px;
 
-    &.yellow {
-      color: $action-color;
-      border-color: $action-color;
+    &.actor {
+      color: $actor-color;
+      border-color: $actor-color;
     }
 
-    &.white {
-      color: $white;
-      border-color: $white;
+    &.director {
+      color: $director-color;
+      border-color: $director-color;
     }
 
-    &.pink {
+    &.impro {
       color: $main-color;
       border-color: $main-color;
     }

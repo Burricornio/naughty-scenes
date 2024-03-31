@@ -1,7 +1,7 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
-  <div class="view-container" v-else>
-    <HeaderViewComponent title="ACTOR MODE" />
+  <div :class="['view-container', getGameModeName]" v-else>
+    <HeaderModeComponent :title="text.modeTitle" />
     <SceneContainerComponent />
     <SceneMiniaturesComponent
       v-if="!sceneStore.allScenesPlayed"
@@ -10,7 +10,7 @@
       :currentScene="sceneStore.getCurrentScene"
     />
     <BannerComponent />
-    <MovieEndedComponent @repeat-again="onRepeatAgain" />
+    <GameEndedComponent @repeat-again="onRepeatAgain" />
   </div>
 </template>
 
@@ -18,22 +18,26 @@
 import { onMounted } from 'vue'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import { useSceneStore } from '@/stores/useSceneStore'
+import { useI18n } from 'vue-i18n'
 import CountdownComponent from '@/components/CountdownComponent.vue'
-import MovieEndedComponent from '@/components/MovieEndedComponent.vue'
+import GameEndedComponent from '@/components/GameEndedComponent.vue'
 import SceneContainerComponent from '@/components/SceneContainer/SceneContainerComponent.vue'
 import SceneMiniaturesComponent from '@/components/SceneMiniaturesComponent.vue'
-import HeaderViewComponent from '@/components/HeaderViewComponent.vue'
+import HeaderModeComponent from '@/components/HeaderModeComponent.vue'
 import BannerComponent from '@/components/BannerComponent.vue'
-import { GameMode, useMovieStore } from '@/stores/useMovieStore'
+import { useGameStore } from '@/stores/useGame'
+import { GameMode } from '@/stores/useGame/types'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
-const { setGameMode, setViewTimer } = useMovieStore()
+const { setGameMode, setViewTimer, getGameModeName } = useGameStore()
 
-// DATA
-// ¿Dejar que el jugador escoja el número de escenas?
-const numberOfScenes = 3
+// TEXTS
+const { t } = useI18n()
+const text = {
+  modeTitle: `${t('modes.mode_literal')} ${t('modes.actor')}`
+}
 
 // HOOKS
 onMounted(() => {
@@ -47,7 +51,7 @@ onMounted(() => {
 // METHODS
 function selectRandomScenes() {
   sceneStore.selectScenes({
-    numberOfScenes: numberOfScenes,
+    numberOfScenes: sceneStore.getActorModeScenesNumber,
     shuffle: true
   })
 }
@@ -66,3 +70,9 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
   }
 }
 </script>
+
+<styles lang="scss" scoped>
+.view-container.actor {
+  @include mode-color($actor-color);
+}
+</styles>

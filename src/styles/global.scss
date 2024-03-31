@@ -91,7 +91,6 @@ body {
   @include flex($flex-direction: column, $justify-content: space-between);
   margin: 30px auto;
   max-width: $max-width;
-  background: $main-color;
   border-radius: $border-radius;
   height: calc(100% - 60px);
 }
@@ -99,7 +98,7 @@ body {
 h1 {
   font-family: $secondary-font;
   font-size: 35px;
-  color: $green-molon;
+  color: $green;
   font-weight: bold;
   margin: 20px;
 }
@@ -107,7 +106,7 @@ h1 {
 h2 {
   font-family: $secondary-font;
   font-size: 20px;
-  color: $green-molon;
+  color: $green;
   margin: 20px;
 }
 
@@ -124,12 +123,12 @@ label {
 }
 
 input {
-  @include borders($color: rgb(203, 203, 203));
+  @include borders($color: $input-gray);
   width: 100%;
   height: 40px;
   color: $black;
   box-sizing: border-box;
-  padding: 0 $padding-01;
+  padding: 0 $size-01;
   font-size: 16px;
   background-color: $white;
   border-radius: $border-radius;
@@ -151,7 +150,7 @@ input {
 
   .errors {
     min-height: 20px;
-    color: $error-color;
+    color: $warning-color;
     font-size: 14px;
     margin-top: 3px;
   }
@@ -164,6 +163,7 @@ hr {
 button {
   font-family: $secondary-font;
   font-weight: bold;
+  font-size: 14px;
   min-width: 110px;
   height: 40px;
   color: $white;

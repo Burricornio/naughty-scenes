@@ -56,7 +56,6 @@ function showSceneInfoModal(scene: Scene) {
   width: 100%;
   list-style-type: none;
   background: lightpink;
-  margin-top: 20px;
   padding: 0;
   cursor: pointer;
 

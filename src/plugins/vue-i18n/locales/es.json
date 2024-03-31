@@ -1,9 +1,14 @@
 {
-  "all_played": "¡¡¡Todas jugadas!!!",
+  "modes": {
+    "impro": "impro",
+    "actor": "actor",
+    "director": "director",
+    "mode_literal": "modo"
+  },
+  "all_played": "Has jugado todas las escenas disponibles",
   "button": {
     "continue": "Continuar",
     "next": "Siguiente",
-    "play": "Jugar",
     "previous": "Anterior",
     "random": "Random",
     "reset": "Resetear",
@@ -14,14 +19,52 @@
     "decrement": "Down",
     "close": "Cerrar",
     "save": "Guardar",
-    "select": "Seleccionar"
+    "select": "Seleccionar",
+    "begin": "Empezar"
   },
   "component": {
+    "director-steps": {
+      "select_scenes": "Seleccionar escenas",
+      "order_scenes": "Ordenar escenas",
+      "configure_movie": "Configurar película",
+      "play_movie": "Empezar película"
+    },
+    "game_ended": {
+      "repeat_same_scenes": "Repetir escenas",
+      "repeat_same_mode": "Repetir modo {mode}",
+      "play_new_movie": "Jugar nueva película"
+    },
+    "choose_game_mode_step": {
+      "impro_mode_explanation": {
+        "p1": "Las escenas aparecen aleatoriamente sin límite de tiempo.",
+        "p2": "Tú decides cuando pasar a la siguiente escena.",
+        "p3": "¿Serás capaz de jugarlas todas?"
+      },
+      "actor_mode_explanation": {
+        "p1": "Selecciona el número de escenas que quieres jugar.",
+        "p2": "Completa el tiempo del cronómetro para pasar a la siguiente escena.",
+        "p3": "¿Podrás acabar la película?"
+      },
+      "director_mode_explanation": {
+        "p1": "Configurar tus propias películas como un director profesional.",
+        "p2": "Podrás crear nuevas escenas o elegirlas entre las disponibles.",
+        "p3": "Guardalas y podrás repetir tu película en cualquier momento."
+      }
+    },
+    "instruction_title": {
+      "enter_player_names": "Introduce el nombre de los actores",
+      "select_game_mode": "Selecciona el modo de juego",
+      "select_scenes_number": "Selecciona el numero de escenas"
+
+    },
     "countdown": {
       "times_up": "¡Tiempo terminado!"
     },
     "step_one": {
       "player_name": "Actor {number}"
+    },
+    "load_movie_bar": {
+      "create_own_scene": "crear nueva escena"
     },
     "step_two": {
       "impro_mode": "Modo impro"
@@ -42,14 +85,10 @@
     "actor": {
       "random_deck": "Baraja aleatoria"
     },
-    "director": {
-      "scenes_number_label": "Número de escenas"
-    },
     "home": {
       "slogan_1": "¿Quieres rodar tu propia película XXX?",
       "slogan_2": "Pulsa el botón y prepárate para disfrutar."
     }
   },
-  "play_again": "Jugar otra vez",
   "turn": "Turno de"
 }

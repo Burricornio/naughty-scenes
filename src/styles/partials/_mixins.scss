@@ -37,3 +37,81 @@
     }
   }
 }
+
+@mixin mode-color($mode) {
+
+  background-color: $mode;
+
+  .scene-component-container {
+    background-color: $mode;
+  }
+
+  .turn-text {
+    color: $mode;
+  }
+
+  button.go-home-button:hover,
+  button.next-and-previous-button:hover {
+    background-color: $white;
+    color: $mode;
+  }
+
+  .game-ended-container .icons-container {
+    button.icon-container {
+      color: $mode;
+      border-color: $mode;
+      background-color: $white;
+
+      &:hover {
+        color: $white;
+        background-color: $mode;
+      }
+    }
+  }
+
+  .duration {
+    @include borders($width: 2px, $color: $mode);
+
+    .duration-button {
+      @include borders($width: 2px, $color: $mode);
+      background-color: $white;
+      color: $mode;
+
+      &:hover {
+        color: $white!important;
+        background-color: $mode!important;
+      }
+
+      &:disabled {
+        background-color: $disabled-color;
+        color: $disabled-text;
+      }
+
+    }
+  }
+
+  .timer-buttons button {
+    @include borders($width: 2px, $color: $mode);
+    background-color: $white;
+    color: $mode;
+
+    &:hover {
+      background-color: $mode!important;
+      color: $white!important;
+    }
+
+    &:disabled {
+      border-color: transparent;
+      background: $disabled-color;
+      color: $disabled-text;
+      pointer-events: none;
+    }
+  }
+
+  .banner-section {
+    background-color: $mode;
+  }
+}
+
+
+

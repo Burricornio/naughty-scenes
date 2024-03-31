@@ -1,3 +1,4 @@
+import { GameModeName } from '@/stores/useGame/types'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
@@ -8,17 +9,17 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/impro',
-    name: 'Impro',
+    name: GameModeName.IMPRO,
     component: () => import('@/views/ImproView.vue')
   },
   {
     path: '/actor',
-    name: 'Actor',
+    name: GameModeName.ACTOR,
     component: () => import('@/views/ActorView.vue')
   },
   {
     path: '/director',
-    name: 'Director',
+    name: GameModeName.DIRECTOR,
     component: () => import('@/views/DirectorView/DirectorView.vue')
   }
 ]

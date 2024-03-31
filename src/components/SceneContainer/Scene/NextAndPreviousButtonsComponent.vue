@@ -2,13 +2,19 @@
   <div class="next-and-previous-container">
     <button
       @click="props.goPrev"
+      class="next-and-previous-button"
       :disabled="prevButtonDisabled"
       :title="text.previous"
     >
       <Icon class="icon" icon="mdi:chevron-double-left" />
     </button>
     <span class="title">{{ title }}</span>
-    <button @click="props.goNext" :title="text.next">
+    <button
+      @click="props.goNext"
+      class="next-and-previous-button"
+      :disabled="nextButtonDisabled"
+      :title="text.next"
+    >
       <Icon class="icon" icon="mdi:chevron-double-right" />
     </button>
   </div>
@@ -32,6 +38,10 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
+  nextButtonDisabled: {
+    type: Boolean,
+    default: false
+  },
   title: {
     type: String,
     required: true
@@ -51,15 +61,20 @@ const text = {
 .next-and-previous-container {
   @include flex;
   @include round-button;
-  background: $main-color;
   height: 54px;
   width: 100%;
+
   .title {
     text-transform: uppercase;
     font-size: 22px;
     font-weight: bold;
     color: $white;
     margin: 0 10%;
+  }
+
+  button:disabled {
+    border-color: transparent;
+    background-color: transparent;
   }
 }
 </style>
