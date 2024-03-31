@@ -28,8 +28,9 @@
 <script setup lang="ts">
 import { ref, watchEffect, watch } from 'vue'
 import { useGameStore } from '@/stores/useGame'
-import DurationComponent from '@/components/DurationComponent.vue'
 import { useI18n } from 'vue-i18n'
+import DurationComponent from '@/components/DurationComponent.vue'
+import { EmittedEvent } from '@/events'
 import { Icon } from '@iconify/vue'
 
 // PROPS
@@ -75,10 +76,15 @@ watchEffect(() => {
     isTimerRunning.value = false
     canReset.value = false
     startButtonText.value = text.restart
-    minutesRef.value = 1
-    seconds.value = 0
+    enableNextSceneButton()
   }
 })
+// EMITS
+const emit = defineEmits([EmittedEvent.ENABLE_NEXT_BUTTON_SCENE])
+
+function enableNextSceneButton() {
+  emit(EmittedEvent.ENABLE_NEXT_BUTTON_SCENE)
+}
 
 // METHODS
 function startTimer(): void {

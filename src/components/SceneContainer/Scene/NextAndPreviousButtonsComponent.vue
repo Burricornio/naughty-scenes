@@ -12,6 +12,7 @@
     <button
       @click="props.goNext"
       class="next-and-previous-button"
+      :disabled="nextButtonDisabled"
       :title="text.next"
     >
       <Icon class="icon" icon="mdi:chevron-double-right" />
@@ -34,6 +35,10 @@ const props = defineProps({
     required: true
   },
   prevButtonDisabled: {
+    type: Boolean,
+    default: false
+  },
+  nextButtonDisabled: {
     type: Boolean,
     default: false
   },
