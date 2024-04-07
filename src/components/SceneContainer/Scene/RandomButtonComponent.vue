@@ -17,8 +17,8 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { useGameStore } from '@/stores/useGame'
-import { GameModeName } from '@/stores/useGame/types'
+import { useModeStore } from '@/stores/useMode'
+import { ModeName } from '@/stores/useMode/types'
 import { useI18n } from 'vue-i18n'
 import { getRandomArrayElement } from '@/helpers/array'
 import { Icon } from '@iconify/vue'
@@ -29,7 +29,7 @@ const props = defineProps<{
 }>()
 
 // STORE
-const gameStore = useGameStore()
+const modeStore = useModeStore()
 
 // TEXT
 const { t } = useI18n()
@@ -44,12 +44,12 @@ const randomOption = ref<string>('')
 // COMPUTED
 const modeColor = computed(() => {
   modeColor
-  switch (gameStore.getGameModeName) {
-    case GameModeName.IMPRO:
+  switch (modeStore.getModeName) {
+    case ModeName.IMPRO:
       return '#5b22d0'
-    case GameModeName.ACTOR:
+    case ModeName.ACTOR:
       return '#e58111'
-    case GameModeName.DIRECTOR:
+    case ModeName.DIRECTOR:
       return '#528232'
     default:
       return 'vlack'

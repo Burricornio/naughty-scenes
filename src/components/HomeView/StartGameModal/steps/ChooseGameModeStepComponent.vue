@@ -25,10 +25,10 @@
 <script setup lang="ts">
 import { useModalsStore } from '@/stores/useModalsStore'
 import { useRouter } from 'vue-router'
-import { useGameStore } from '@/stores/useGame'
+import { useModeStore } from '@/stores/useMode'
 import { useI18n } from 'vue-i18n'
 import { useCountdownStore } from '@/stores/useCountdownStore'
-import { GameModeName } from '@/stores/useGame/types'
+import { ModeName } from '@/stores/useMode/types'
 import { Step } from './types/stepsTypes'
 
 interface Mode {
@@ -44,7 +44,7 @@ interface Mode {
 // STORE
 const countdownStore = useCountdownStore()
 const modalsStore = useModalsStore()
-const { setGameModeName } = useGameStore()
+const { setModeName } = useModeStore()
 
 // ROUTER
 const router = useRouter()
@@ -74,43 +74,43 @@ const text = {
 // DATA
 const modes: Mode[] = [
   {
-    name: GameModeName.IMPRO,
+    name: ModeName.IMPRO,
     explanation: {
       p1: text.improModeExplanation.p1,
       p2: text.improModeExplanation.p2,
       p3: text.improModeExplanation.p3
     },
-    action: () => goToView(GameModeName.IMPRO)
+    action: () => goToView(ModeName.IMPRO)
   },
   {
-    name: GameModeName.ACTOR,
+    name: ModeName.ACTOR,
     explanation: {
       p1: text.actorModeExplanation.p1,
       p2: text.actorModeExplanation.p2,
       p3: text.actorModeExplanation.p3
     },
-    action: () => goToSelectNumberOfScenesStep(GameModeName.ACTOR)
+    action: () => goToSelectNumberOfScenesStep(ModeName.ACTOR)
   },
   {
-    name: GameModeName.DIRECTOR,
+    name: ModeName.DIRECTOR,
     explanation: {
       p1: text.directorModeExplanation.p1,
       p2: text.directorModeExplanation.p2,
       p3: text.directorModeExplanation.p3
     },
-    action: () => goToView(GameModeName.DIRECTOR)
+    action: () => goToView(ModeName.DIRECTOR)
   }
 ]
 
-function goToView(name: GameModeName) {
-  setGameModeName(name)
+function goToView(name: ModeName) {
+  setModeName(name)
   countdownStore.setCountdownStatus(true)
   router.push({ name })
 }
 
-function goToSelectNumberOfScenesStep(name: GameModeName) {
+function goToSelectNumberOfScenesStep(name: ModeName) {
   modalsStore.setStartMovieModalCurrentStep(Step.SELECTE_SCENES_NUMBER)
-  setGameModeName(name)
+  setModeName(name)
 }
 </script>
 

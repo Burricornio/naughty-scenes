@@ -9,7 +9,7 @@
     />
     <div class="instructions">
       <p>{{ scene.instructions }}</p>
-      <StartTimerInstructionsComponent />
+      <StartTimerInstructionsComponent v-if="modeStore.getIsActorMode" />
     </div>
     <RandomButtonComponent
       v-if="scene.rndBtnOptions && scene.rndBtnOptions.length"
@@ -25,10 +25,9 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { useGameStore } from '@/stores/useGame'
+import { useModeStore } from '@/stores/useMode'
 import { Scene } from '@/stores/useScene/types'
 import { EmittedEvent } from '@/events'
-import { GameMode } from '@/stores/useGame/types'
 import NextAndPreviousButtonsComponent from '@/components/SceneContainer/Scene/NextAndPreviousButtonsComponent.vue'
 import RandomButtonComponent from '@/components/SceneContainer/Scene/RandomButtonComponent.vue'
 import StartTimerInstructionsComponent from '@/components/SceneContainer/Scene/StartTimerInstructionsComponent.vue'
@@ -41,7 +40,7 @@ const { scene } = defineProps<{
 }>()
 
 // STORE
-const gameStore = useGameStore()
+const modeStore = useModeStore()
 
 // DATA
 const nextButtonDisabled = ref<boolean>(false)
@@ -55,7 +54,7 @@ const emit = defineEmits([
 ])
 
 function selectNextScene() {
-  if (gameStore.getGameMode === GameMode.ACTOR) {
+  if (modeStore.getIsActorMode) {
     timerComponentKey.value++
     nextButtonDisabled.value = true
   }
@@ -72,7 +71,7 @@ function onEnableNextSceneButton() {
 
 // HOOKS
 onMounted(() => {
-  if (gameStore.getGameMode === GameMode.ACTOR) {
+  if (modeStore.getIsActorMode) {
     nextButtonDisabled.value = true
   }
 })

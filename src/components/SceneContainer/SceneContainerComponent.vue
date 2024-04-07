@@ -10,19 +10,20 @@
 
 <script setup lang="ts">
 import { useGameStore } from '@/stores/useGame'
+import { useModeStore } from '@/stores/useMode'
 import { useSceneStore } from '@/stores/useScene'
 import SceneComponent from '@/components/SceneContainer/Scene/SceneComponent.vue'
 import TurnOfComponent from '@/components/SceneContainer/TurnOfComponent.vue'
 import { computed } from 'vue'
-import { GameMode } from '@/stores/useGame/types'
 
 // STORE
 const sceneStore = useSceneStore()
 const gameStore = useGameStore()
+const modeStore = useModeStore()
 
 // COMPUTED
 const prevButtonDisabled = computed(() => {
-  if (gameStore.getGameMode === GameMode.ACTOR) {
+  if (modeStore.getIsActorMode) {
     return true
   }
   return sceneStore.getSceneIndex === 0

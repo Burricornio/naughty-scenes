@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useSceneStore } from '@/stores/useScene'
-import { useGameStore } from '@/stores/useGame'
+import { useModeStore } from '@/stores/useMode'
 import SelectScenesNumberInputComponent from '@/components/SelectScenesNumberInputComponent.vue'
 import { useI18n } from 'vue-i18n'
 import { useCountdownStore } from '@/stores/useCountdownStore'
@@ -23,7 +23,7 @@ const initialScenesNumber = 3
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
-const gameStore = useGameStore()
+const modeStore = useModeStore()
 
 // DATA
 const numberOfScenes = ref(initialScenesNumber)
@@ -52,7 +52,7 @@ function selectRandomScenes(selectedScenesNumber: number) {
 function startGame() {
   sceneStore.setActorModeScenesNumber(selectedSceneLength.value)
   countdownStore.setCountdownStatus(true)
-  router.push({ name: gameStore.getGameModeName })
+  router.push({ name: modeStore.getModeName })
 }
 </script>
 

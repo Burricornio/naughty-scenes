@@ -1,6 +1,6 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
-  <div :class="['view-container', getGameModeName]" v-else>
+  <div :class="['view-container', getModeName]" v-else>
     <HeaderModeComponent :title="text.modeTitle" />
     <SceneContainerComponent />
     <BannerComponent />
@@ -10,7 +10,10 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { Mode } from '@/stores/useMode/types'
 import { useCountdownStore } from '@/stores/useCountdownStore'
+import { useGameStore } from '@/stores/useGame'
+import { useModeStore } from '@/stores/useMode'
 import { useSceneStore } from '@/stores/useScene'
 import { useI18n } from 'vue-i18n'
 import CountdownComponent from '@/components/CountdownComponent.vue'
@@ -18,13 +21,12 @@ import GameEndedComponent from '@/components/GameEndedComponent.vue'
 import SceneContainerComponent from '@/components/SceneContainer/SceneContainerComponent.vue'
 import HeaderModeComponent from '@/components/HeaderModeComponent.vue'
 import BannerComponent from '@/components/BannerComponent.vue'
-import { useGameStore } from '@/stores/useGame'
-import { GameMode } from '@/stores/useGame/types'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
-const { setGameMode, setViewTimer, getGameModeName } = useGameStore()
+const { setViewTimer } = useGameStore()
+const { setMode, getModeName } = useModeStore()
 
 // TEXTS
 const { t } = useI18n()
@@ -34,7 +36,7 @@ const text = {
 
 // HOOKS
 onMounted(() => {
-  setGameMode(GameMode.ACTOR)
+  setMode(Mode.ACTOR)
   if (!sceneStore.getScenesLength) {
     selectRandomScenes()
   }

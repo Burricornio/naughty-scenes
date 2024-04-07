@@ -8,7 +8,7 @@
           <Icon class="icon" icon="material-symbols:repeat" />
         </button>
         <button
-          v-if="gameStore.getGameMode === GameMode.DIRECTOR"
+          v-if="modeStore.getIsDirectorMode"
           class="icon-container"
           @click="repeatAgain(false)"
         >
@@ -32,17 +32,17 @@ import { EmittedEvent } from '@/events'
 import { useI18n } from 'vue-i18n'
 import { useSceneStore } from '@/stores/useScene'
 import { Icon } from '@iconify/vue'
-import { useGameStore } from '@/stores/useGame'
-import { GameMode } from '@/stores/useGame/types'
+import { useModeStore } from '@/stores/useMode'
+import { Mode } from '@/stores/useMode/types'
 import BannerComponent from '@/components/BannerComponent.vue'
 import { computed } from 'vue'
 
 // STORE
 const sceneStore = useSceneStore()
-const gameStore = useGameStore()
+const modeStore = useModeStore()
 
 // COMPUTED
-const mode = computed(() => gameStore.getGameModeName)
+const mode = computed(() => modeStore.getModeName)
 
 // TEXTS
 const { t } = useI18n()

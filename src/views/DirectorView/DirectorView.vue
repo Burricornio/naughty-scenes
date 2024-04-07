@@ -1,6 +1,6 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
-  <div :class="['view-container', gameStore.gameModeName]" v-else>
+  <div :class="['view-container', modeStore.modeName]" v-else>
     <HeaderModeComponent
       v-if="!countdownStore.showCountdown"
       :title="text.modeTitle"
@@ -20,22 +20,24 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { Mode } from '@/stores/useMode/types'
 import { Scene } from '@/stores/useScene/types'
+import { useI18n } from 'vue-i18n'
 import { useSceneStore } from '@/stores/useScene'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import { useGameStore } from '@/stores/useGame'
+import { useModeStore } from '@/stores/useMode'
 import CountdownComponent from '@/components/CountdownComponent.vue'
 import DirectorStepsComponent from '@/components/director/DirectorStepsComponent.vue'
 import HeaderModeComponent from '@/components/HeaderModeComponent.vue'
 import LoadMovieBar from '@/components/director/LoadMovieBar.vue'
 import MovieContainerComponent from '@/components/director/MovieContainerComponent.vue'
-import { GameMode } from '@/stores/useGame/types'
-import { useI18n } from 'vue-i18n'
 
 // STORE
 const sceneStore = useSceneStore()
 const countdownStore = useCountdownStore()
 const gameStore = useGameStore()
+const modeStore = useModeStore()
 
 // TEXTS
 const { t } = useI18n()
@@ -48,7 +50,7 @@ const movie = ref<Scene[]>([])
 
 // HOOKS
 onMounted(() => {
-  gameStore.setGameMode(GameMode.DIRECTOR)
+  modeStore.setMode(Mode.DIRECTOR)
   countdownStore.setCountdownStatus(false)
   sceneStore.unselectAllScenes()
 })
