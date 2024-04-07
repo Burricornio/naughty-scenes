@@ -16,14 +16,14 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
 import useModal from '@/composables/useModal'
-import { Step } from '@/components/HomeView/StartGameModal/steps/types/stepsTypes'
+import { Step } from '@/components/home/StartGameModal/steps/types/stepsTypes'
 import { useResetStore } from '@/stores/useResetStore'
 import { useModalsStore } from '@/stores/useModalsStore'
-import InstructionTitleComponent from '@/components/HomeView/StartGameModal/InstructionTitleComponent.vue'
+import InstructionTitleComponent from '@/components/home/StartGameModal/InstructionTitleComponent.vue'
 import ModalComponent from '@/components/ModalComponent.vue'
-import EnterPlayersNameStepComponent from '@/components/HomeView/StartGameModal/steps/EnterPlayersNameStepComponent.vue'
-import ChooseGameModeStepComponent from '@/components/HomeView/StartGameModal/steps/ChooseGameModeStepComponent.vue'
-import SelectScenesNumberStepComponent from '@/components/HomeView/StartGameModal/steps/SelectScenesNumberStepComponent.vue'
+import EnterPlayersNameStepComponent from '@/components/home/StartGameModal/steps/EnterPlayersNameStepComponent.vue'
+import ChooseGameModeStepComponent from '@/components/home/StartGameModal/steps/ChooseGameModeStepComponent.vue'
+import SelectScenesNumberStepComponent from '@/components/home/StartGameModal/steps/SelectScenesNumberStepComponent.vue'
 
 // STORE
 const { resetGame } = useResetStore()
@@ -47,3 +47,4 @@ function closeStartGameModal() {
   closeModal()
 }
 </script>
+@/components/home/StartGameModal/steps/types/stepsTypes

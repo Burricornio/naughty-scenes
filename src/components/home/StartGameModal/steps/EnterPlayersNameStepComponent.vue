@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { Step } from '@/components/HomeView/StartGameModal/steps/types/stepsTypes'
+import { Step } from '@/components/home/StartGameModal/steps/types/stepsTypes'
 import { useGameStore } from '@/stores/useGame'
 import { useModalsStore } from '@/stores/useModalsStore'
 import { useI18n } from 'vue-i18n'
@@ -174,3 +174,4 @@ function goToSelectModeStep() {
   }
 }
 </style>
+@/components/home/StartGameModal/steps/types/stepsTypes
