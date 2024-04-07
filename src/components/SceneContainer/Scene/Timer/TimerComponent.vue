@@ -1,6 +1,10 @@
 <template>
   <div v-if="getViewTimer" class="timer-container" :key="props.componentKey">
-    <DurationComponent :minutes="minutes" :seconds="seconds" />
+    <DurationComponent
+      :minutes="minutes"
+      :seconds="seconds"
+      :volumeDisabled="volumeDisabled"
+    />
     <div class="timer-buttons">
       <button
         @click="startTimer"
@@ -11,6 +15,9 @@
       </button>
       <button @click="stopTimer" :disabled="!isTimerRunning" :title="text.stop">
         <Icon icon="mdi:stop" />
+      </button>
+      <button @click="toggleVolume" :title="volumeBtnText">
+        <Icon :icon="volumeicon" />
       </button>
     </div>
   </div>
@@ -40,6 +47,7 @@ const props = defineProps({
 const { getViewTimer } = useGameStore()
 
 // DATA
+const volumeDisabled = ref<boolean>(true)
 const { t } = useI18n()
 
 const text = {
@@ -47,7 +55,9 @@ const text = {
   reset: t('button.reset'),
   restart: t('button.restart'),
   start: t('button.start'),
-  stop: t('button.stop')
+  stop: t('button.stop'),
+  volumeEnableTxt: t('volume.enable'),
+  volumeDisableTxt: t('volume.disable')
 }
 
 let timerInterval = 0
@@ -61,6 +71,15 @@ const timeIsZero = computed<boolean>(
   () => minutes.value === 0 && seconds.value === 0
 )
 
+const volumeBtnText = computed(() =>
+  volumeDisabled.value ? text.volumeEnableTxt : text.volumeDisableTxt
+)
+
+const volumeicon = computed(() =>
+  volumeDisabled.value
+    ? 'material-symbols:volume-off'
+    : 'material-symbols:volume-up'
+)
 // WATCH
 watch(
   () => props.componentKey,
@@ -115,6 +134,10 @@ function resetTimer(): void {
   clearInterval(timerInterval)
   isTimerRunning.value = false
   startButtonText.value = text.start
+}
+
+function toggleVolume() {
+  volumeDisabled.value = !volumeDisabled.value
 }
 </script>
 

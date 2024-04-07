@@ -18,7 +18,12 @@
     "close": "Cerrar",
     "save": "Guardar",
     "select": "Seleccionar",
-    "begin": "Empezar"
+    "begin": "Empezar",
+    "volume": "{status} volumen"
+  },
+  "volume": {
+    "enable": "Habilitar sonido de aviso los tres útimos segundos",
+    "disable": "Deshabilitar sonido de aviso los tres útimos segundos"
   },
   "component": {
     "director-steps": {
