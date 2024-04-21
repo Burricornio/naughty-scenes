@@ -47,4 +47,3 @@ function closeStartGameModal() {
   closeModal()
 }
 </script>
-@/components/home/StartGameModal/steps/types/stepsTypes

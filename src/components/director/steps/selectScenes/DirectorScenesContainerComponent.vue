@@ -35,7 +35,7 @@
 import { computed, ref } from 'vue'
 import { Scene } from '@/stores/useScene/types'
 import { useSceneStore } from '@/stores/useScene'
-import RemoveCustomSceneModal from '@/components/director/RemoveCustomSceneModal.vue'
+import RemoveCustomSceneModal from '@/components/director/steps/selectScenes/RemoveCustomsceneModal.vue'
 import { Icon } from '@iconify/vue'
 import useModal from '@/composables/useModal'
 

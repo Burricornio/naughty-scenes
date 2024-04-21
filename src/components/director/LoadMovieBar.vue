@@ -4,11 +4,7 @@
       class="filter"
       @loaded-custom-movie-flag="setLoadedCustomMovieFlag"
     />
-    <FilterScenesDropdownComponent
-      class="filter"
-      :loadCustomMovieFlag="loadedCustomMovieFlag"
-      @loaded-custom-movie-flag="setLoadedCustomMovieFlag"
-    />
+    <FilterScenesDropdownComponent class="filter" />
     <button class="add-secene-button" @click="addNewScene">
       {{ text.createOwnScene }}
     </button>
@@ -16,27 +12,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { DirectorStep } from '@/stores/useDirector/types'
 import { useI18n } from 'vue-i18n'
 import useModal from '@/composables/useModal'
+import { useDirectorStore } from '@/stores/useDirector'
 import SelectMovieDropwdownComponent from '@/components/director/SelectMovieDropwdownComponent.vue'
 import FilterScenesDropdownComponent from '@/components/director/FilterScenesDropdownComponent.vue'
 
 // STORE
 const { openAddNewSceneModal } = useModal()
+const { setDirectorStep } = useDirectorStore()
 
 // TEXTS
 const { t } = useI18n()
 const text = {
   createOwnScene: t('component.load_movie_bar.create_own_scene')
 }
-
-// DATA
-const loadedCustomMovieFlag = ref<boolean>(false)
-
 // METHODS
-function setLoadedCustomMovieFlag(status: boolean): void {
-  loadedCustomMovieFlag.value = status
+function setLoadedCustomMovieFlag(): void {
+  setDirectorStep(DirectorStep.SELECT_SCENES)
 }
 function addNewScene() {
   openAddNewSceneModal()

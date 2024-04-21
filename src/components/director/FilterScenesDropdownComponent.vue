@@ -9,20 +9,14 @@
 <script setup lang="ts">
 import { Scene } from '@/stores/useScene/types'
 import { useSceneStore } from '@/stores/useScene'
+import { useDirectorStore } from '@/stores/useDirector'
 import { computed } from 'vue'
 import CustomDropdownComponent from '@/components/director/CustomDropdownComponent.vue'
-import { EmittedEvent } from '@/events'
-
-// PROPS
-const props = defineProps({
-  loadCustomMovieFlag: {
-    type: Boolean,
-    required: true
-  }
-})
+import { DirectorStep } from '@/stores/useDirector/types'
 
 // STORE
 const sceneStore = useSceneStore()
+const { setDirectorStep } = useDirectorStore()
 
 // DATA
 const filterScenes = [
@@ -52,27 +46,22 @@ const defaultScenesFiltered = computed<Scene[]>(() =>
   sceneStore.getDefaultScenes.filter((scene: Scene) => scene.type === 'default')
 )
 
-// EMITS
-const emit = defineEmits([EmittedEvent.LOADED_CUSTOM_MOVIE_FLAG])
-
-function emitLoadedCustomMovieFlag() {
-  emit(EmittedEvent.LOADED_CUSTOM_MOVIE_FLAG, false)
-}
-
 // METHODS
 function showAllScenes(): void {
+  sceneStore.unselectAllScenes()
   sceneStore.playMovie(sceneStore.getDefaultScenes)
-  if (props.loadCustomMovieFlag) {
-    sceneStore.unselectAllScenes()
-    emitLoadedCustomMovieFlag()
-  }
+  setDirectorStep(DirectorStep.SELECT_SCENES)
 }
 
 function showOnlyCustomScenes(): void {
+  sceneStore.unselectAllScenes()
   sceneStore.playMovie(customScenesFiltered.value)
+  setDirectorStep(DirectorStep.SELECT_SCENES)
 }
 
 function showOnlyDefaultScenes(): void {
+  sceneStore.unselectAllScenes()
   sceneStore.playMovie(defaultScenesFiltered.value)
+  setDirectorStep(DirectorStep.SELECT_SCENES)
 }
 </script>

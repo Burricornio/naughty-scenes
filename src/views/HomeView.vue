@@ -21,7 +21,7 @@ import StartGameModal from '@/components/home/StartGameModal/StartGameModal.vue'
 
 // STORE
 const { open } = useModal()
-const { resetLocalStorage } = useResetStore()
+const { resetLocalStorage, resetGame } = useResetStore()
 
 // TEXTS
 const { t } = useI18n()
@@ -34,6 +34,7 @@ const text = {
 // HOOKS
 onMounted(() => {
   resetLocalStorage()
+  resetGame()
 })
 </script>
 

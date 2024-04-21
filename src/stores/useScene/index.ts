@@ -124,6 +124,7 @@ export const useSceneStore = defineStore(
       scenes.value.forEach((scene: Scene) => {
         scene.selected = false
       })
+      resetSelectedScenes()
     }
 
     function selectAllScenes() {
@@ -153,8 +154,13 @@ export const useSceneStore = defineStore(
         (scene: Scene) => scene.id === sceneId
       )
 
-      if (sceneIndex !== -1) {
+      const selectedSceneIndex = selectedScenes.value.findIndex(
+        (scene: Scene) => scene.id === sceneId
+      )
+
+      if (sceneIndex !== -1 && selectedSceneIndex !== -1) {
         scenes.value.splice(sceneIndex, 1)
+        selectedScenes.value.splice(selectedSceneIndex, 1)
       }
     }
 
