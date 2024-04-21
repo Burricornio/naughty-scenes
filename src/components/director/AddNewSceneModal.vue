@@ -22,7 +22,6 @@
 <!-- duration:9
 id:9
 instructions:"Instrucciones de la escena número 9"
-isOpenAccordion:true
 rndBtnOptions:['a', 'b']
 selected:false
 title:"Scene 9" -->
@@ -46,8 +45,7 @@ const scene = ref<Scene>({
   rndBtnOptions: [],
   title: '',
   type: 'custom',
-  selected: true,
-  isOpenAccordion: false
+  selected: true
 })
 
 // METHODS

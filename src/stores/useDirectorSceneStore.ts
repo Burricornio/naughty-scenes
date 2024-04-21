@@ -1,35 +1,13 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import { Scene } from './useScene'
-
-// export type DirectorScene = Scene & {
-//   isOpenAccordion: boolean
-//   selected: boolean
-// }
-
-// const sceneStore = useSceneStore()
+import { Scene } from './useScene/types'
 
 export const useDirectorSceneStore = defineStore(
   'useDirectorSceneStore',
   () => {
     const currentMovie = ref<Scene[]>([])
 
-    // const getDirectorScenes = computed({
-    //   get: () => {
-    //     return sceneStore.getScenes.map((scene: Scene) => ({
-    //       ...scene,
-    //       isOpenAccordion: true,
-    //       selected: scene.selected || false
-    //     }))
-    //   },
-    //   set: (value) => value
-    // })
-
     const getCurrentMovie = computed(() => currentMovie.value)
-
-    // function updateSelectedDirectorScenes(movie: DirectorScene[]): void {
-    //   getDirectorScenes.value = movie
-    // }
 
     function updateCurrentMovie(movie: Scene[]) {
       currentMovie.value = movie
@@ -41,8 +19,6 @@ export const useDirectorSceneStore = defineStore(
     }
 
     return {
-      // getDirectorScenes,
-      // updateSelectedDirectorScenes,
       getCurrentMovie,
       updateCurrentMovie,
       removeCurrentMovieScene

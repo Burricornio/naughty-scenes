@@ -1,7 +1,7 @@
 <template>
   <section class="movie-container">
     <SceneContainerComponent />
-    <SceneMiniaturesComponent
+    <MovieMiniaturesComponent
       v-if="!sceneStore.allScenesPlayed"
       :scenes="sceneStore.getScenes"
       :playedSceneIds="sceneStore.getPlayedSceneIds"
@@ -15,7 +15,7 @@
 import { useSceneStore } from '@/stores/useScene'
 import SceneContainerComponent from '@/components/SceneContainer/SceneContainerComponent.vue'
 import GameEndedComponent from '@/components/GameEndedComponent.vue'
-import SceneMiniaturesComponent from '@/components/SceneMiniaturesComponent.vue'
+import MovieMiniaturesComponent from '@/components/director/MovieMiniaturesComponent.vue'
 import { EmittedEvent } from '@/events'
 
 // STORE

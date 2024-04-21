@@ -6,7 +6,6 @@ export type Scene = {
   rndBtnOptions?: string[]
   type: string
   selected?: boolean
-  isOpenAccordion?: boolean
 }
 
 export interface SelectScenesObject {

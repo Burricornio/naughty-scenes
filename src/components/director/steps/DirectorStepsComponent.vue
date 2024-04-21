@@ -8,7 +8,7 @@
     <DirectorSelectScenesComponent v-if="step === DirectorStep.SELECT_SCENES" />
 
     <!-- STEP 2 -->
-    <OrderCurrentDirectorMovieAccordion
+    <DirectorOrderScenes
       v-if="step === DirectorStep.ORDER_SCENES"
       :key="orderDirectorMovieKey"
       @update-director-movie="updateMovie"
@@ -30,8 +30,8 @@ import { useDirectorStore } from '@/stores/useDirector'
 import { Scene } from '@/stores/useScene/types'
 import { useSceneStore } from '@/stores/useScene'
 import { DirectorStep } from '@/views/DirectorView/types/directorViewTypes'
-import AddNewSceneModal from '@/components/AddNewSceneModal.vue'
-import OrderCurrentDirectorMovieAccordion from '@/components/OrderCurrentDirectorMovieAccordion.vue'
+import AddNewSceneModal from '@/components/director/AddNewSceneModal.vue'
+import DirectorOrderScenes from '@/components/director/steps/orderScenes/DirectorOrderScenesComponent.vue'
 import DirectorSetUpComponent from '@/components/director/DirectorSetUpComponent.vue'
 import BannerComponent from '@/components/BannerComponent.vue'
 import DirectorStepsButtonsComponent from '@/components/director/steps/DirectorStepsButtonsComponent.vue'

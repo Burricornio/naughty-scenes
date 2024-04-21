@@ -12,7 +12,6 @@
       >
         <header>
           <div class="title-container">
-            <h2>Open: {{ scene.isOpenAccordion }}</h2>
             <Icon
               v-if="scene.type === 'custom'"
               icon="mdi:delete"
@@ -22,9 +21,6 @@
           <h2>Selected: {{ scene.selected }}</h2>
           <h2>{{ scene.title }}</h2>
         </header>
-        <section v-if="scene.isOpenAccordion">
-          <div>{{ scene.instructions }}</div>
-        </section>
       </li>
     </ul>
   </section>
