@@ -18,7 +18,7 @@ import { useI18n } from 'vue-i18n'
 import { useCountdownStore } from '@/stores/useCountdownStore'
 import router from '@/router'
 
-const initialScenesNumber = 3
+const initialScenesNumber = 1
 
 // STORE
 const sceneStore = useSceneStore()

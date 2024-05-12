@@ -66,10 +66,10 @@ function playSound() {
     color: $white;
     background-color: $black;
     padding: $size-01;
-    border-radius: $border-radius-top;
+    border-radius: $border-radius;
 
     &.final-number {
-      background-color: $main-color;
+      color: $highlighted-color;
     }
   }
 }

@@ -1,20 +1,22 @@
 <template>
-  <section class="banner-section">Espacio para publicidad</section>
+  <section class="banner-section">
+    Espacio para publicidad
+    <!-- <img class="banner-image" src="@/assets/img/banners/example.webp" /> -->
+  </section>
 </template>
 
 <style lang="scss">
 .banner-section {
   @include flex;
-  height: 100px;
-  min-height: 100px;
+  min-height: 150px;
   width: 100%;
-  color: $black;
+  color: $main-color;
   background-color: $white;
   margin: 1px 0;
+  border-top: 1px solid $main-color;
 
-  &:last-child {
-    margin: 0;
-    border-radius: 0 0 $border-radius $border-radius;
+  .banner-image {
+    max-height: 200px;
   }
 }
 </style>

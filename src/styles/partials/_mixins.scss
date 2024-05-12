@@ -9,16 +9,19 @@
   flex-direction: $flex-direction;
 }
 
-@mixin round-button {
+@mixin round-button($size: 40px) {
 
   button {
     @include flex;
     @include borders($color: $white, $width: 2px);
+    width: $size;
+    height: $size;
     position: relative;
     background-color: transparent;
-    min-width: 40px;
+    // min-width: 35px;
     border-radius: 50%;
     margin: 0;
+    padding: 0;
 
     &:disabled {
       border-color: $disabled-color;
@@ -26,14 +29,21 @@
     }
 
     &:hover {
-      color: $white;
-      background-color: $action-color;
+      border-color: $white;
+      background-color: $white;
+
+      .icon {
+        color: $main-color;
+      }
     }
 
     .icon {
-      position: absolute;
-      top: 4px;
-      font-size: 25px;
+      font-size: 20px;
+      // position: absolute;
+      // top: 4.5px;
+      // left: 5.5px;
+      // font-size: 20px;
+      color: $white;
     }
   }
 }
@@ -46,9 +56,9 @@
     background-color: $mode;
   }
 
-  .turn-text {
-    color: $mode;
-  }
+  // .turn-text {
+  //   color: $mode;
+  // }
 
   button.go-home-button:hover,
   button.next-and-previous-button:hover {
@@ -91,6 +101,3 @@
     }
   }
 }
-
-
-

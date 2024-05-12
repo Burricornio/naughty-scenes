@@ -1,6 +1,6 @@
 <template>
   <div class="instruction-container">
-    <p class="instruction-text">{{ intructionText }}</p>
+    <p class="instruction-text" v-html="intructionText" />
   </div>
 </template>
 
@@ -39,16 +39,18 @@ const intructionText = computed<string>(() => {
 
 <style lang="scss" scoped>
 .instruction-container {
-  @include flex($flex-direction: column);
-  margin-top: 20px;
+  @include flex;
+  margin: 34px 20px 0 20px;
 
   .instruction-text {
-    color: $modal-color;
+    border-radius: $border-radius;
+    max-width: 600px;
+    color: $white;
     font-size: 20px;
     font-weight: bold;
-    margin: 10px;
     text-transform: uppercase;
-    padding-top: 10px;
+    background-color: $main-color;
+    padding: 10px 30px;
   }
 }
 </style>

@@ -1,5 +1,6 @@
 // PALLETE
 $black: #131313;
+$black-02: #292424;
 $blue: #3628b8;
 $fuchsia: #E833A0;
 $gray-02: #CBCBCB;
@@ -14,8 +15,11 @@ $orange-02: #ffe9cf;
 $pink-02: #ff385933;
 $pink: #ff3859;
 $purple: #5b22d0;
+$purple-03: #7f54d7;
 $purple-02: #eee8fb;
 $white: #fff;
+$yellow-01: #ffee50;
+$yellow-02: #d5c607;
 
 // MODE COLORS
 $actor-color: $orange;
@@ -27,13 +31,16 @@ $impro-color-hover: $purple-02;
 
 // GLOBAL COLORS
 $action-color: $orange-02;
-$action-color-hover: $green-02;
-$disabled-color: $gray-02;
+$action-color-hover: $purple-03;
+$disabled-color: #dadada;
 $disabled-text: $gray;
 $warning-color: $pink;
 $input-gray: $gray-02;
 $main-color: $pink;
+$secondary-color: $yellow-01;
 $modal-color: $main-color;
+$highlighted-color: $yellow-01;
+
 
 // SIZE
 $size-01: 10px;
@@ -45,12 +52,12 @@ $main-font: 'Montserrat', sans-serif;
 $secondary-font: circular, sans-serif;
 
 // BORDER
-$border-radius: 8px;
+$border-radius: 4px;
 $border-radius-bottom: 0 0 $border-radius $border-radius;
 $border-radius-top: $border-radius $border-radius 0 0;
 
 // WIDTH
-$max-width: 1100px;
+$max-width: 700px;
 
 // HEIGTH
-$header-height: 80px;
+$header-height: 60px;

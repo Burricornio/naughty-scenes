@@ -108,6 +108,8 @@ function goToView(name: ModeName) {
   router.push({ name })
 }
 
+// TODO: Eliminar colores de modos en todas partes?
+
 function goToSelectNumberOfScenesStep(name: ModeName) {
   modalsStore.setStartMovieModalCurrentStep(Step.SELECTE_SCENES_NUMBER)
   setModeName(name)
@@ -117,88 +119,105 @@ function goToSelectNumberOfScenesStep(name: ModeName) {
 <style lang="scss" scoped>
 .choose-game-mode-container {
   @include flex;
-  margin: 10px 0 20px 0;
+  margin: 24px 0 20px 0;
 
   .mode-container {
     @include flex($flex-direction: column, $justify-content: flex-start);
-    max-width: 350px;
+    @include borders($color: $main-color);
+    max-width: 320px;
     margin: 10px;
     border-radius: $border-radius;
-    padding: 14px;
+    padding: $size-02;
+    color: $white;
 
     &:hover {
       cursor: pointer;
-    }
-
-    &.impro {
-      @include borders($color: $impro-color);
-
-      &:hover {
-        background-color: $impro-color-hover;
-      }
+      border-color: $highlighted-color;
+      background-color: $black-02;
 
       .title {
-        background-color: $impro-color;
+        background-color: $yellow-02;
       }
 
-      .explanation-item::marker {
-        color: $impro-color;
-      }
-    }
-
-    &.actor {
-      @include borders($color: $actor-color);
-
-      &:hover {
-        background-color: $actor-color-hover;
-      }
-
-      .title {
-        background-color: $actor-color;
-      }
-
-      .explanation-item::marker {
-        color: $actor-color;
+      .explanation-list .explanation-item::marker {
+        color: $highlighted-color;
       }
     }
 
-    &.director {
-      @include borders($color: $director-color);
+    // &.impro {
+    // @include borders($color: $impro-color);
 
-      &:hover {
-        background-color: $director-color-hover;
-      }
+    // &:hover {
+    //   background-color: $impro-color-hover;
+    // }
 
-      .title {
-        background-color: $director-color;
-      }
+    // .title {
+    //   background-color: $impro-color;
+    // }
 
-      .explanation-item::marker {
-        color: $director-color;
-      }
-    }
+    // .explanation-item::marker {
+    //   color: $impro-color;
+    //   // }
+    // }
+
+    // &.actor {
+    // @include borders($color: $actor-color);
+
+    // &:hover {
+    //   background-color: $actor-color-hover;
+    // }
+
+    // .title {
+    //   background-color: $actor-color;
+    // }
+
+    // .explanation-item::marker {
+    //   color: $actor-color;
+    // }
+    // }
+
+    // &.director {
+    // @include borders($color: $director-color);
+
+    // &:hover {
+    //   background-color: $director-color-hover;
+    // }
+
+    // .title {
+    //   background-color: $director-color;
+    // }
+
+    // .explanation-item::marker {
+    //   color: $director-color;
+    // }
+    // }
 
     .title {
       @include flex;
       font-family: circular, sans-serif;
       font-weight: bold;
+      background-color: $main-color;
       height: 40px;
       width: 100%;
-      color: #fff;
+      color: $white;
       text-transform: uppercase;
-      border-radius: 8px;
+      border-radius: $border-radius;
     }
 
     .explanation-list {
-      padding: 20px;
-      height: 110px;
+      padding: 24px 20px;
+      height: 130px;
       font-size: 16px;
       text-align: left;
       list-style-type: initial;
 
       .explanation-item {
         text-align: left;
-        margin-bottom: 14px;
+        margin-bottom: 24px;
+
+        &::marker {
+          color: $main-color;
+        }
       }
     }
 

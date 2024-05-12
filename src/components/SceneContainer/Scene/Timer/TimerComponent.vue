@@ -1,24 +1,30 @@
 <template>
   <div v-if="getViewTimer" class="timer-container" :key="props.componentKey">
-    <DurationComponent
-      :minutes="minutes"
-      :seconds="seconds"
-      :volumeDisabled="volumeDisabled"
-    />
-    <div class="timer-buttons">
-      <button
-        @click="startTimer"
-        :disabled="isTimerRunning || timeIsZero"
-        :title="startButtonText"
-      >
-        <Icon icon="mdi:play" />
-      </button>
-      <button @click="stopTimer" :disabled="!isTimerRunning" :title="text.stop">
-        <Icon icon="mdi:stop" />
-      </button>
-      <button @click="toggleVolume" :title="volumeBtnText">
-        <Icon :icon="volumeicon" />
-      </button>
+    <div class="timer">
+      <DurationComponent
+        :minutes="minutes"
+        :seconds="seconds"
+        :volumeDisabled="volumeDisabled"
+      />
+      <div class="timer-buttons">
+        <button
+          @click="startTimer"
+          :disabled="isTimerRunning || timeIsZero"
+          :title="startButtonText"
+        >
+          <Icon icon="mdi:play" />
+        </button>
+        <button
+          @click="stopTimer"
+          :disabled="!isTimerRunning"
+          :title="text.stop"
+        >
+          <Icon icon="mdi:stop" />
+        </button>
+        <button @click="toggleVolume" :title="volumeBtnText">
+          <Icon :icon="volumeicon" />
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -143,21 +149,31 @@ function toggleVolume() {
 
 <style lang="scss" scoped>
 .timer-container {
+  @include flex;
   width: 250px;
-  padding: 20px;
+  width: 100%;
+  background-color: $white;
+
+  .timer {
+    padding: $size-02;
+    width: 250px;
+  }
+
   .timer-buttons {
-    @include flex;
-    height: 70px;
+    @include flex($justify-content: space-between);
     background: $white;
-    border-radius: $border-radius-bottom;
+    margin-top: $size-02;
 
     button {
       font-size: 20px;
       min-width: 60px;
-      margin: 8px;
+      color: $main-color;
+      border-color: $main-color;
+      margin: 0;
 
       &:hover {
-        background-color: $action-color;
+        background-color: $main-color;
+        color: $white;
       }
     }
   }

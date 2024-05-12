@@ -42,9 +42,14 @@
       </div>
       <p class="errors">{{ errors.player2 }}</p>
     </div>
-    <button :disabled="disabledButton" @click="goToSelectModeStep">
-      {{ text.next }}
-    </button>
+    <div class="buttons-container">
+      <button class="secondary" @click="closeModal">
+        {{ text.close }}
+      </button>
+      <button :disabled="disabledButton" @click="goToSelectModeStep">
+        {{ text.next }}
+      </button>
+    </div>
   </form>
 </template>
 
@@ -53,6 +58,7 @@ import { computed, ref, watch } from 'vue'
 import { Step } from '@/components/home/StartGameModal/steps/types/stepsTypes'
 import { useGameStore } from '@/stores/useGame'
 import { useModalsStore } from '@/stores/useModalsStore'
+import useModal from '@/composables/useModal'
 import { useI18n } from 'vue-i18n'
 import { useForm } from 'vee-validate'
 import { Icon } from '@iconify/vue'
@@ -66,10 +72,12 @@ const disabledButton = ref<boolean>(true)
 // STORE
 const useGame = useGameStore()
 const modalsStore = useModalsStore()
+const { closeModal } = useModal()
 
 // TEXTS
 const { t } = useI18n()
 const text = {
+  close: t('button.close'),
   minRule: t('rule.min', { number: minCharacters }),
   next: t('button.next'),
   playerName1: t('component.step_one.player_name', { number: 1 }),
@@ -127,7 +135,7 @@ function goToSelectModeStep() {
 .enter-players-name-container {
   @include flex($flex-direction: column);
   padding: $size-01 $size-02 0 $size-02;
-  margin-top: 10px;
+  margin-top: 30px;
 
   .input-container {
     @include flex($flex-direction: column, $align-items: flex-start);
@@ -156,7 +164,7 @@ function goToSelectModeStep() {
         font-size: 12px;
         right: 10px;
         top: 13px;
-        color: $main-color;
+        color: $highlighted-color;
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
         cursor: pointer;
@@ -168,10 +176,16 @@ function goToSelectModeStep() {
     }
   }
 
-  button {
-    align-self: flex-end;
-    margin-right: 0;
+  .buttons-container {
+    @include flex($justify-content: flex-end);
+    width: 100%;
+    margin: $size-01;
+
+    button {
+      align-self: flex-end;
+      margin-right: 0;
+      width: 110px;
+    }
   }
 }
 </style>
-@/components/home/StartGameModal/steps/types/stepsTypes

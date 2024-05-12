@@ -3,6 +3,7 @@ export type Scene = {
   title: string
   instructions: string
   duration: number
+  detail?: string
   rndBtnOptions?: string[]
   type: string
   selected?: boolean

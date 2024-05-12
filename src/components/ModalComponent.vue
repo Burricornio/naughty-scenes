@@ -38,20 +38,20 @@ function closeModal() {
   z-index: 1000;
 
   .modal-content {
-    @include borders($width: 5px, $color: $modal-color);
+    @include borders($width: 1px, $color: $modal-color);
     position: relative;
-    top: -8%;
-    background: $white;
+    top: -9%;
+    background: $black;
     border-radius: $border-radius;
     min-width: 550px;
     overflow: auto;
-    padding: $size-01;
+    padding: $size-02;
 
     button {
       position: absolute;
-      height: 20px;
+      height: 24px;
       min-width: 0;
-      top: 14px;
+      top: 16px;
       right: 20px;
       color: $modal-color;
       font-size: 16px;

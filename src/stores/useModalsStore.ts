@@ -7,6 +7,25 @@ export const useModalsStore = defineStore('useModalsStore', () => {
 
   const currentStep = computed<Step>(() => startMovieModalCurrentStep.value)
 
+  const getStartMovieModalCurrentStepName = computed<string>(() => {
+    let name = ''
+    switch (startMovieModalCurrentStep.value) {
+      case Step.INITIAL:
+        name = 'initial'
+        break
+      case Step.INSERT_PLAYER_NAMES:
+        name = 'insert-player-names'
+        break
+      case Step.SELECTE_SCENES_NUMBER:
+        name = 'select-scenes-number'
+        break
+      case Step.SELECT_MOVIE_MODE:
+        name = 'select-movie-mode'
+        break
+    }
+    return name
+  })
+
   function setStartMovieModalCurrentStep(step: Step) {
     startMovieModalCurrentStep.value = step
   }
@@ -24,6 +43,7 @@ export const useModalsStore = defineStore('useModalsStore', () => {
     // setStartGameModalCurrentStep,
     // increaseStartGameModalCurrentStep,
     // decreaseStartGameModalCurrentStep,
+    getStartMovieModalCurrentStepName,
     currentStep,
     setStartMovieModalCurrentStep
   }

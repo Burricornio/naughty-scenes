@@ -1,34 +1,42 @@
 [
   {
     "id": 1,
-    "title": "Amansado el pan",
-    "subtitle": "Masaje manual",
-    "instructions": "Túmbate en la cama (tú decides si boca abajo o boca arriba) y prepárate para recibir un fantático masaje manual por parte de tu partenaire. ¡A gozar!",
-    "detail": "Puedes decidir tú mism@ si tumbarte boca arriba o bocaabajo, o pulsa el botón de azar y que sea el destino quien elija por ti.",    
-    "duration": 7
+    "title": "Masaje manual",
+    "instructions": "Túmbate en la cama y prepárate para recibir un fantástico masaje manual por parte de tu partenaire.",
+    "detail": "Decide si prefieres tumbarte boca arriba o boca abajo.",
+    "rndBtnOptions": ["Boca arriba", "Boca abajo"],
+    "duration": 1,
+    "type": "custom",
+    "selected": false
   },
   {
     "id": 2,
-    "title": "El gatito bebe leche",
-    "subtitle": "Masaje con la lengua",
-    "instructions": "Túmbate en la cama (tú decides si boca abajo o boca arriba) y deja que la lengua calentita de tu pareja recorra tu cuerpo. ¡Qué gustito, ¿no?!",
-    "detail": "Puedes decidir tú mism@ si tumbarte boca arriba o bocaabajo, o pulsa el botón de azar y que sea el destino quien elija por ti.",
-    "duration": 5
+    "title": "Masaje con lengua",
+    "instructions": "Túmbate en la cama y deja que la lengua de tu pareja recorra tu cuerpo.",
+    "detail": "Decide si prefieres tumbarte boca arriba o boca abajo.",
+    "rndBtnOptions": ["Boca arriba", "Boca abajo"],
+    "duration": 1,
+    "type": "custom",
+    "selected": false
   },
   {
     "id": 3,
-    "title": "Al rico pellizquito",
-    "subtitle": "Lamer, morder y tocar pezones",
-    "instructions": "Saca tus pezones al sol y deja que tu pareja disfrute un rato jugando con ellos",
-    "detail": "Elige si quieres que utilice los dedos, la lengua o te atreves con todo a la vez. También puedes pulsar el botón del azar si estás perezos@.",
-    "duration": 2
+    "title": "Jugueteo con pezones",
+    "instructions": "Saca tus pezones al sol y deja que tu pareja juegue con ellos.",
+    "detail": "Elige si quieres que utilice los dedos, la lengua o te atreves con todo a la vez.",
+    "rndBtnOptions": ["Solo dedos", "Solo lengua", "Vale todo"],
+    "duration": 1,
+    "type": "custom",
+    "selected": false
   },
   {
     "id": 4,
-    "title": "El apagón del amor",
-    "subtitle": "Tocamientos a ciegas",
-    "instructions": "Dejad la habitación completamente a oscuras y dejad que vuestras manos y vuestras mentes se expresen libremente.",
-    "detail": "Estaría bien que llegaseis a un consenso sobre si podeís tener sexo con penetración. También podeís pulsar el boto´n del amor y ver que os depara el destino",
-    "duration": 7
+    "title": "Tocamientos a ciegas",
+    "instructions": "Dejad la habitación completamente a oscuras y que vuestras manos y vuestras mentes se expresen libremente.",
+    "detail": "Llegad a un consenso sobre si podeís tener sexo con penetración o preferís solo unos toqueteos.",
+    "rndBtnOptions": ["Solo penetración", "Solo tocamientos", "Vale todo"],
+    "duration": 1,
+    "type": "custom",
+    "selected": false
   }
 ]

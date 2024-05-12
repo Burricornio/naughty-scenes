@@ -3,9 +3,11 @@
     "impro": "impro",
     "actor": "actor",
     "director": "director",
-    "mode_literal": "modo"
+    "mode_literal": "modo  {mode}"
   },
-  "all_played": "Has jugado todas las escenas disponibles",
+  "all_played": "Ya has jugado todas las escenas disponibles.",
+  "and_now": "¿Y ahora que hacemos?",
+  "start_timer_warning": "Para pasar a la siguiente escena hay que agotar el tiempo del cronómetro.",
   "button": {
     "continue": "Continuar",
     "next": "Siguiente",
@@ -19,7 +21,8 @@
     "save": "Guardar",
     "select": "Seleccionar",
     "begin": "Empezar",
-    "volume": "{status} volumen"
+    "volume": "{status} volumen",
+    "random_text": "¿No te decides? Pulsa sobre el dado y deja que el azar escoja."
   },
   "volume": {
     "enable": "Habilitar sonido de aviso los tres útimos segundos",
@@ -33,9 +36,11 @@
       "play_movie": "Empezar película"
     },
     "game_ended": {
-      "repeat_same_scenes": "Repetir escenas",
-      "repeat_same_mode": "Repetir modo {mode}",
-      "play_new_movie": "Jugar nueva película"
+      "repeat_same_scenes": "Repetir partida",
+      "repeat_same_movie": "Repetir película",
+      "repeat_same_mode": "Nuevo modo {mode}",
+      "play_new_movie": "Jugar nueva película",
+      "go_home": "Volver a inicio"
     },
     "choose_game_mode_step": {
       "impro_mode_explanation": {
@@ -55,8 +60,8 @@
       }
     },
     "instruction_title": {
-      "enter_player_names": "Introduce el nombre de los actores",
-      "select_game_mode": "Selecciona el modo de juego",
+      "enter_player_names": "Introduce el nombre de los <span class='highlighted'>jugadores</span>",
+      "select_game_mode": "Selecciona el <span class='highlighted'>modo</span> de juego",
       "select_scenes_number": "Selecciona el numero de escenas"
 
     },
@@ -64,7 +69,7 @@
       "times_up": "¡Tiempo terminado!"
     },
     "step_one": {
-      "player_name": "Actor {number}"
+      "player_name": "Jugador {number}"
     },
     "load_movie_bar": {
       "create_own_scene": "crear nueva escena"
@@ -81,16 +86,16 @@
   },
   "rule": {
     "required": "Este campo es necesario.",
-    "min": "El valor mínimo permitido es {number}.",
-    "max": "El valor máximo permitido es {number}."
+    "min": "El valor mínimo de caracteres permitido es {number}.",
+    "max": "El valor máximo de caracteres permitido es {number}."
   },
   "view": {
     "actor": {
       "random_deck": "Baraja aleatoria"
     },
     "home": {
-      "slogan_1": "¿Quieres rodar tu propia película XXX?",
-      "slogan_2": "Pulsa el botón y prepárate para disfrutar."
+      "slogan_1": "¿Quieres jugar a participar en una película X?",
+      "slogan_2": "Pulsa el botón y prepárate para disfrutar"
     }
   },
   "turn": "Turno de"

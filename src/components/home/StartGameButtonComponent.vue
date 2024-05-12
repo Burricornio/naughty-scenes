@@ -21,20 +21,22 @@ const { openModal } = useModal()
 
 <style lang="scss" scoped>
 .start-movie-btn {
-  width: 145px;
-  height: 145px;
+  width: 132px;
+  height: 132px;
   color: $white;
   background-color: $main-color;
   border-radius: 50%;
-  animation: pulse 2s infinite;
+  // animation: pulse 2s infinite;
   outline: none;
-  border: 1px solid $white;
+  // border: 1px solid $white;
   cursor: pointer;
+  margin-top: 2.5%;
+  border-color: $main-color;
 
   &:hover {
-    color: $white;
-    background-color: $action-color-hover;
-    animation: pulseHover 2s infinite;
+    background-color: $yellow-02;
+    border-color: $yellow-02;
+    // animation: pulseHover 2s infinite;
   }
 
   .play-icon {
@@ -42,35 +44,35 @@ const { openModal } = useModal()
   }
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(0.98);
-    box-shadow: 0 0 0 0 $white;
-  }
+// @keyframes pulse {
+//   0% {
+//     transform: scale(0.98);
+//     box-shadow: 0 0 0 0 $white;
+//   }
 
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 1px $white;
-  }
+//   70% {
+//     transform: scale(1);
+//     box-shadow: 0 0 0 1px $white;
+//   }
 
-  100% {
-    transform: scale(0.98);
-    box-shadow: 0 0 0 0 $white;
-  }
-}
+//   100% {
+//     transform: scale(0.98);
+//     box-shadow: 0 0 0 0 $white;
+//   }
+// }
 
-@keyframes pulseHover {
-  0% {
-    transform: scale(0.98);
-    box-shadow: 0 0 0 0 $white;
-  }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 1px $white;
-  }
-  100% {
-    transform: scale(0.98);
-    box-shadow: 0 0 0 0 $white;
-  }
-}
+// @keyframes pulseHover {
+//   0% {
+//     transform: scale(0.98);
+//     box-shadow: 0 0 0 0 $white;
+//   }
+//   70% {
+//     transform: scale(1);
+//     box-shadow: 0 0 0 1px $white;
+//   }
+//   100% {
+//     transform: scale(0.98);
+//     box-shadow: 0 0 0 0 $white;
+//   }
+// }
 </style>

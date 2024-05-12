@@ -1,10 +1,15 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
   <div :class="['view-container', getModeName]" v-else>
-    <HeaderModeComponent :title="text.modeTitle" />
-    <SceneContainerComponent />
-    <BannerComponent />
-    <GameEndedComponent @repeat-again="onRepeatAgain" />
+    <section class="scene-wrapper">
+      <HeaderModeComponent
+        v-if="!sceneStore.allScenesPlayed"
+        :title="text.modeTitle"
+      />
+      <SceneContainerComponent />
+      <GameEndedComponent @repeat-again="onRepeatAgain" />
+    </section>
+    <BannerComponent class="banner" />
   </div>
 </template>
 
@@ -65,9 +70,3 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
   }
 }
 </script>
-
-<styles lang="scss" scoped>
-.view-container.actor {
-  @include mode-color($actor-color);
-}
-</styles>

@@ -43,16 +43,21 @@ onMounted(() => {
   @include flex;
   height: calc(100% - 150px);
   padding-bottom: 70px;
+  margin-top: 8%;
 
   .slogan-container {
-    @include flex($flex-direction: column);
     height: 100%;
+
     .slogan {
       align-self: flex-start;
       font-size: 48px;
       font-weight: 600;
       color: $white;
-      margin-bottom: 20px;
+      margin-bottom: $size-02;
+
+      ~ .slogan {
+        font-size: 42px;
+      }
     }
   }
 }

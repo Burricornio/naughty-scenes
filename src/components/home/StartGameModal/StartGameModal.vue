@@ -1,6 +1,8 @@
 <template>
   <ModalComponent :open="open" @close-modal="closeStartGameModal">
-    <InstructionTitleComponent />
+    <InstructionTitleComponent
+      :step="modalsStore.getStartMovieModalCurrentStepName"
+    />
     <EnterPlayersNameStepComponent
       v-if="modalsStore.currentStep === Step.INSERT_PLAYER_NAMES"
     />

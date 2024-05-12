@@ -1,10 +1,15 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
   <div :class="['view-container', getModeName]" v-else>
-    <HeaderModeComponent :title="text.modeTitle" />
-    <SceneContainerComponent />
-    <BannerComponent v-if="!sceneStore.allScenesPlayed" />
-    <GameEndedComponent @repeat-again="onRepeatAgain" />
+    <section class="scene-wrapper">
+      <HeaderModeComponent
+        v-if="!sceneStore.allScenesPlayed"
+        :title="text.modeTitle"
+      />
+      <SceneContainerComponent />
+      <GameEndedComponent @repeat-again="onRepeatAgain" />
+    </section>
+    <BannerComponent class="banner" />
   </div>
 </template>
 
@@ -31,7 +36,7 @@ const { setMode, getModeName } = useModeStore()
 // TEXTS
 const { t } = useI18n()
 const text = {
-  modeTitle: `${t('modes.mode_literal')} ${t('modes.impro')}`
+  modeTitle: t('modes.mode_literal', { mode: t('modes.impro') })
 }
 
 // HOOKS
@@ -60,10 +65,5 @@ function onRepeatAgain(repeatSameGameFlag: boolean) {
     selectRandomScenes()
   }
 }
+// TODO - eliminar mode color?
 </script>
-
-<styles lang="scss" scoped>
-.view-container.impro {
-  @include mode-color($impro-color);
-}
-</styles>

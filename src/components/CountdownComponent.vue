@@ -17,14 +17,25 @@ const countdownStore = useCountdownStore()
 const count = ref<number>(3)
 
 // COMPUTED
+// const numberClassColor = computed(() => {
+//   switch (count.value) {
+//     case 2:
+//       return 'actor'
+//     case 3:
+//       return 'impro'
+//     default:
+//       return 'director'
+//   }
+// })
+
 const numberClassColor = computed(() => {
   switch (count.value) {
     case 2:
-      return 'actor'
+      return 'two'
     case 3:
-      return 'impro'
+      return 'three'
     default:
-      return 'director'
+      return 'one'
   }
 })
 
@@ -68,17 +79,32 @@ onMounted(() => {
     width: 180px;
     height: 180px;
 
-    &.actor {
-      color: $actor-color;
-      border-color: $actor-color;
+    // &.actor {
+    //   color: $actor-color;
+    //   border-color: $actor-color;
+    // }
+
+    // &.director {
+    //   color: $director-color;
+    //   border-color: $director-color;
+    // }
+
+    // &.impro {
+    //   color: $main-color;
+    //   border-color: $main-color;
+    // }
+
+    &.one {
+      color: $highlighted-color;
+      border-color: $highlighted-color;
     }
 
-    &.director {
-      color: $director-color;
-      border-color: $director-color;
+    &.two {
+      color: $white;
+      border-color: $white;
     }
 
-    &.impro {
+    &.three {
       color: $main-color;
       border-color: $main-color;
     }

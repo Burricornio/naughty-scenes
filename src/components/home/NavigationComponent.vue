@@ -1,7 +1,7 @@
 <template>
   <nav class="nav-container">
     <div class="nav-toolbar">
-      <div class="app-name">{{ text.appName }}</div>
+      <AppNameComponent />
       <ul class="nav-list">
         <li v-for="(link, index) in links" :key="index" class="nav-item">
           <a class="nav-link" :href="link.route">{{ link.name }}</a>
@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import AppNameComponent from '@/components/AppNameComponent.vue'
 
 // TEXTS
 const { t } = useI18n()
@@ -44,7 +45,7 @@ const links = [
 .nav-container {
   @include flex;
   position: sticky;
-
+  margin: $size-02 0;
   .nav-toolbar {
     @include flex($justify-content: space-between);
     width: 80%;
@@ -52,27 +53,20 @@ const links = [
     height: $header-height;
     color: $white;
 
-    .app-name {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 28px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
     .nav-list {
       @include flex($justify-content: space-between);
       width: 300px;
 
       .nav-item {
         padding: $size-01 $size-02;
-        font-size: 16px;
+        font-size: 18px;
         width: 200px;
         cursor: pointer;
 
         &:hover {
-          border: 1px solid $white;
-          background-color: $action-color-hover;
-          border-radius: $border-radius;
+          // border: 1px solid $white;
+          background-color: $yellow-02;
+          // border-radius: $border-radius;
         }
 
         .nav-link {

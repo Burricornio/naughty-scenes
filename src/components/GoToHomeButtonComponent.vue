@@ -10,6 +10,7 @@
 import { useRouter } from 'vue-router'
 import { useResetStore } from '@/stores/useResetStore'
 import { Icon } from '@iconify/vue'
+import { ViewName } from '@/router/types'
 
 // STORE
 const { resetGame } = useResetStore()
@@ -20,7 +21,7 @@ const router = useRouter()
 // METHODS
 function goToHome() {
   resetGame()
-  router.push({ name: 'Home' })
+  router.push({ name: ViewName.HOME })
 }
 </script>
 
@@ -29,5 +30,11 @@ function goToHome() {
   @include flex;
   @include round-button;
   position: relative;
+
+  button {
+    @include flex;
+    width: 40px;
+    height: 40px;
+  }
 }
 </style>

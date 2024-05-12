@@ -1,6 +1,6 @@
 <template>
   <div class="header-container">
-    <h1 class="title">{{ title }}</h1>
+    <h1 class="title" v-html="title" />
     <GoToHomeButtonComponent />
   </div>
 </template>
@@ -20,8 +20,10 @@ const { title } = defineProps({
 <style lang="scss" scoped>
 .header-container {
   @include flex;
-  height: $header-height;
+  height: 84px;
+  width: 100%;
   border-radius: $border-radius;
+  background-color: $main-color;
 
   .title {
     color: $white;

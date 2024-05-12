@@ -1,9 +1,7 @@
 <template>
-  <div
-    v-if="options && options.length"
-    class="random-button-container"
-    :style="styles"
-  >
+  <div v-if="options && options.length" class="random-button-container">
+    <!-- <button class="secondary" @click="getRandomOption(options)">AZAR</button> -->
+    <p class="random-text">{{ text.randomText }}</p>
     <button
       v-if="!randomOption"
       @click="getRandomOption(options)"
@@ -11,7 +9,9 @@
     >
       <Icon class="icon" icon="mdi:dice" />
     </button>
-    <div v-else class="random-text">{{ randomOption }}</div>
+    <div v-else class="random-result-container">
+      <p class="random-result">{{ randomOption }}</p>
+    </div>
   </div>
 </template>
 
@@ -35,7 +35,8 @@ const modeStore = useModeStore()
 const { t } = useI18n()
 
 const text = {
-  random: t('button.random')
+  random: t('button.random'),
+  randomText: t('button.random_text')
 }
 
 // DATA
@@ -56,11 +57,11 @@ const modeColor = computed(() => {
   }
 })
 
-const styles = computed(() => {
-  return {
-    '--mode-color': modeColor.value
-  }
-})
+// const styles = computed(() => {
+//   return {
+//     '--mode-color': modeColor.value
+//   }
+// })
 
 // WATCH
 watch(
@@ -77,21 +78,46 @@ function getRandomOption(options: string[]): void {
 
 <style lang="scss" scoped>
 .random-button-container {
-  @include flex;
+  @include flex($flex-direction: column);
   @include round-button;
   width: 100%;
-  height: 54px;
   border-top: 2px solid var(--mode-color, $main-color);
   border-bottom: 2px solid var(--mode-color, $main-color);
-  background-color: $white;
+  background-color: $main-color;
+  color: $white;
+  border-radius: 0 0 $border-radius $border-radius;
+  padding: 16px 0;
+
+  .random-text {
+    color: $white;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
 
   button {
-    border-color: var(--mode-color, $main-color);
-    color: var(--mode-color, $main-color);
+    // border-color: var(--mode-color, $main-color);
+    // color: var(--mode-color, $main-color);
+    color: $white;
 
     &:hover {
-      border-color: var(--mode-color, $main-color);
-      background-color: var(--mode-color, $main-color);
+      border-color: $white;
+      background-color: $white;
+    }
+  }
+
+  .random-result-container {
+    @include flex;
+    height: 40px;
+    width: 100%;
+
+    .random-result {
+      @include flex;
+      height: 30px;
+      padding: 4px 30px;
+      font-weight: bold;
+      color: $main-color;
+      background-color: $white;
+      border-radius: $border-radius;
     }
   }
 }

@@ -12,14 +12,19 @@
 import { useGameStore } from '@/stores/useGame'
 import { useModeStore } from '@/stores/useMode'
 import { useSceneStore } from '@/stores/useScene'
+import { useRouter } from 'vue-router'
 import SceneComponent from '@/components/SceneContainer/Scene/SceneComponent.vue'
 import TurnOfComponent from '@/components/SceneContainer/TurnOfComponent.vue'
 import { computed } from 'vue'
+import { ViewName } from '@/router/types'
 
 // STORE
 const sceneStore = useSceneStore()
 const gameStore = useGameStore()
 const modeStore = useModeStore()
+
+// ROUTER
+const router = useRouter()
 
 // COMPUTED
 const prevButtonDisabled = computed(() => {
@@ -31,6 +36,11 @@ const prevButtonDisabled = computed(() => {
 
 // METHODS
 function selectNextScene(): void {
+  // console.log('entrooo', sceneStore.allScenesPlayed)
+  // if (sceneStore.allScenesPlayed) {
+  //   console.log('ir a la nueva ruta')
+  //   return
+  // }
   if (sceneStore.getCurrentScene) {
     sceneStore.pushPlayedSceneId(sceneStore.getCurrentScene.id)
   }

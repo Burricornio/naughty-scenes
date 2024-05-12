@@ -2,7 +2,8 @@ import { computed, ref } from 'vue'
 import { Scene, SelectScenesObject } from './types'
 import { defineStore } from 'pinia'
 // import defaultScenesJSON from '@/assets/default-scenes.json'
-import defaultSixScenesJSON from '@/assets/default-six-scenes.json'
+// import defaultSixScenesJSON from '@/assets/default-six-scenes.json'
+import defaultSixScenesJSON from '@/assets/real.json'
 import { getElementsArray, shuffleArray } from '@/helpers/array'
 
 export const useSceneStore = defineStore(

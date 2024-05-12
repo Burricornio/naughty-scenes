@@ -9,7 +9,8 @@
     />
     <div class="instructions">
       <p>{{ scene.instructions }}</p>
-      <StartTimerInstructionsComponent v-if="modeStore.getIsActorMode" />
+      <p>{{ scene.detail }}</p>
+      <p v-if="modeStore.getIsActorMode">{{ text.startTimerWarning }}</p>
     </div>
     <RandomButtonComponent
       v-if="scene.rndBtnOptions && scene.rndBtnOptions.length"
@@ -25,6 +26,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useModeStore } from '@/stores/useMode'
 import { Scene } from '@/stores/useScene/types'
 import { EmittedEvent } from '@/events'
@@ -41,6 +43,12 @@ const { scene } = defineProps<{
 
 // STORE
 const modeStore = useModeStore()
+
+// TEXTS
+const { t } = useI18n()
+const text = {
+  startTimerWarning: t('start_timer_warning')
+}
 
 // DATA
 const nextButtonDisabled = ref<boolean>(false)
@@ -81,15 +89,26 @@ onMounted(() => {
 .scene-component-container {
   @include flex($flex-direction: column);
   width: 100%;
-  flex: 1;
+  // flex: 1;
+
   .instructions {
     @include flex($flex-direction: column);
     width: 100%;
-    flex: 1;
+    height: 100%;
+    padding-top: 50px;
+    min-height: 200px;
     font-family: $secondary-font;
-    height: 40px;
-    background-color: $white;
-    padding: 20px 0;
+    background-color: $black;
+
+    p {
+      font-size: 18px;
+      margin-bottom: 40px;
+      padding: 0 40px;
+      text-align: left;
+      width: 70%;
+      color: $white;
+      line-height: 22px;
+    }
   }
 }
 </style>

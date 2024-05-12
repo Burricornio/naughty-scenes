@@ -29,15 +29,17 @@ const playerTurn = computed<string>(() => {
 </script>
 
 <style lang="scss">
-$height: 54px;
+$height: 50px;
 .turn-text {
   @include flex;
   width: 100%;
   background: $white;
   height: $height;
   min-height: $height;
+  color: $main-color;
   font-weight: bold;
   margin: 0;
+  font-size: 18px;
 
   .player-name {
     color: $black;

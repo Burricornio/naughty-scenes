@@ -1,12 +1,13 @@
 <template>
   <CountdownComponent v-if="countdownStore.showCountdown" />
-  <div :class="['view-container', modeStore.modeName]" v-else>
+  <div class="director-view" v-else>
     <HeaderModeComponent
       v-if="!countdownStore.showCountdown"
       :title="text.modeTitle"
     />
     <LoadMovieBar v-if="!gameStore.getGameStartedFlag" />
     <MovieContainerComponent
+      class="view-container"
       v-if="gameStore.getGameStartedFlag"
       @repeat-again="onRepeatAgain"
     />
@@ -78,7 +79,9 @@ function onUpdateDirectorMovie(scenes: Scene[]) {
 <style lang="scss" scoped>
 .director-view {
   @include flex($flex-direction: column);
-  margin-bottom: 20px;
+  padding: $size-02;
+  max-width: 1100px;
+  margin: auto;
 
   .steps-container {
     @include flex;

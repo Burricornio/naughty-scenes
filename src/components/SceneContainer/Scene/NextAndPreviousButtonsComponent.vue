@@ -59,22 +59,28 @@ const text = {
 
 <style lang="scss" scoped>
 .next-and-previous-container {
-  @include flex;
-  @include round-button;
-  height: 54px;
+  @include flex($justify-content: space-between);
+  @include round-button($size: 30px);
   width: 100%;
+  padding: 10px 0;
 
   .title {
-    text-transform: uppercase;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
     color: $white;
-    margin: 0 10%;
   }
 
   button:disabled {
     border-color: transparent;
     background-color: transparent;
+
+    .icon {
+      color: $disabled-color;
+    }
+  }
+
+  .next-and-previous-button {
+    margin: 0 30px;
   }
 }
 </style>
